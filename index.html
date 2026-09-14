@@ -3,726 +3,1123 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-  <title>Mila | Accesorios y productos</title>
-  <meta name="description" content="Mila. Accesorios y productos con un estilo delicado y femenino. Descubre nuestros favoritos del momento y compra fácilmente por WhatsApp." />
+  <meta name="theme-color" content="#fffdf5" />
+  <meta name="description" content="Mila. Maquillaje, skincare y accesorios seleccionados para convertir cada compra en una experiencia especial." />
+  <title>Mila CO. | Beauty & Lifestyle</title>
 
-  <!-- Fuentes y librerías -->
+  <!-- Tipografías: editorial serif + script para los detalles de marca. -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
-
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css"/>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Italianno&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
   <style>
-    /* ----- Reset y variables ----- */
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
+    :root {
+      --brown: #68462f;
+      --cream: #fffdf5;
+      --pink: #e7adb1;
+
+      /* Tonos derivados de la paleta oficial, sin introducir colores nuevos de identidad. */
+      --brown-soft: rgba(104, 70, 47, .12);
+      --brown-line: rgba(104, 70, 47, .22);
+      --pink-soft: rgba(231, 173, 177, .34);
+      --cream-deep: #f6efe2;
+
+      --serif: "DM Serif Display", Georgia, serif;
+      --script: "Italianno", "Brush Script MT", cursive;
+      --sans: "Manrope", Arial, sans-serif;
+
+      --content: 1180px;
+      --page-pad: clamp(20px, 4vw, 54px);
+      --section-space: clamp(76px, 9vw, 132px);
+      --line: 1px solid var(--brown-line);
     }
 
-    :root {
-      --white: #ffffff;
-      --black: #2c2c2c;
-      --soft-pink: #fbf3f7;
-      --rose-100: #f5dce6;
-      --rose-200: #eccbd9;
-      --rose-300: #dfb1c5;
-      --rose-400: #c989a6;
-      --rose-500: #b87393;
-      --gray-500: #6b6b6b;
-      --shadow-soft: 0 10px 35px rgba(0,0,0,0.06);
-      --shadow-soft-2: 0 18px 45px rgba(183, 115, 147, 0.13);
-      --radius-lg: 26px;
-      --radius-md: 18px;
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
     }
 
     html {
       scroll-behavior: smooth;
+      background: var(--cream);
     }
 
     body {
-      font-family: 'Manrope', sans-serif;
-      background: var(--white);
-      color: var(--black);
+      background: var(--cream);
+      color: var(--brown);
+      font-family: var(--sans);
       line-height: 1.6;
       overflow-x: hidden;
     }
 
+    body.menu-open {
+      overflow: hidden;
+    }
+
     img {
-      max-width: 100%;
       display: block;
+      max-width: 100%;
     }
 
     a {
-      text-decoration: none;
       color: inherit;
+      text-decoration: none;
+    }
+
+    button,
+    a {
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    button {
+      font: inherit;
+    }
+
+    :focus-visible {
+      outline: 2px solid var(--brown);
+      outline-offset: 4px;
     }
 
     .container {
-      max-width: 1220px;
-      margin: 0 auto;
-      padding: 0 28px;
+      width: min(calc(100% - (var(--page-pad) * 2)), var(--content));
+      margin-inline: auto;
     }
 
-    h1, h2, h3, h4 {
-      font-family: "Fraunces", serif;
-      font-weight: 400;
-      letter-spacing: -0.02em;
-      color: var(--black);
-    }
-
-    .kicker {
-      font-size: 0.85rem;
-      letter-spacing: 2px;
+    .eyebrow {
+      font-family: var(--sans);
+      font-size: .72rem;
+      font-weight: 800;
+      letter-spacing: .18em;
       text-transform: uppercase;
-      color: var(--rose-500);
-      font-weight: 700;
-      opacity: 0.85;
     }
 
-    .subtitle {
-      color: var(--gray-500);
-      max-width: 720px;
-      margin: 0 auto;
-      font-size: 1.05rem;
-      line-height: 1.7;
+    .script {
+      font-family: var(--script);
+      font-weight: 400;
     }
 
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
-      border-radius: 999px;
-      padding: 13px 30px;
-      font-size: 0.9rem;
-      font-weight: 700;
-      transition: 0.25s ease;
-      border: 1px solid transparent;
-      cursor: pointer;
-      white-space: nowrap;
+    .display {
+      font-family: var(--serif);
+      font-weight: 400;
+      line-height: .98;
+      letter-spacing: -.035em;
     }
 
-    .btn-primary {
-      background: var(--rose-400);
-      color: white;
-      box-shadow: var(--shadow-soft-2);
-    }
-
-    .btn-primary:hover {
-      transform: translateY(-2px);
-      background: var(--rose-500);
-    }
-
-    .btn-outline {
-      background: transparent;
-      border: 1px solid rgba(183, 115, 147, 0.35);
-      color: var(--rose-500);
-    }
-
-    .btn-outline:hover {
-      background: var(--rose-400);
-      color: white;
-      transform: translateY(-2px);
-    }
-
-    .btn-soft {
-      background: rgba(183, 115, 147, 0.10);
-      border: 1px solid rgba(183, 115, 147, 0.20);
-      color: var(--rose-500);
-    }
-
-    .badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 9px 14px;
-      border-radius: 999px;
-      background: rgba(255, 255, 255, 0.7);
-      border: 1px solid rgba(0,0,0,0.06);
-      font-size: 0.82rem;
-      font-weight: 700;
-      color: var(--black);
-      backdrop-filter: blur(10px);
-    }
-
-    /* ----- Header ----- */
+    /* =========================
+       HEADER
+    ========================= */
     .site-header {
-      position: fixed;
+      position: sticky;
       top: 0;
-      left: 0;
-      width: 100%;
-      z-index: 2000;
-      padding: 16px 0;
-      background: rgba(255,255,255,0.82);
-      border-bottom: 1px solid rgba(0,0,0,0.05);
-      backdrop-filter: blur(12px);
+      z-index: 100;
+      background: rgba(255, 253, 245, .96);
+      border-bottom: var(--line);
     }
 
     .header-inner {
-      display: flex;
-      justify-content: space-between;
+      min-height: 82px;
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
       align-items: center;
-      gap: 18px;
+      gap: 24px;
     }
 
-    .logo {
-      font-family: "Pacifico", cursive;
-      font-size: 2.6rem;
-      font-weight: 400;
-      color: var(--rose-300);
-      display: flex;
-      align-items: center;
-      gap: 10px;
+    .brand-lockup {
+      justify-self: start;
+      display: inline-flex;
+      flex-direction: column;
+      line-height: 1;
+      width: max-content;
     }
 
-    .logo-dot {
-      width: 9px;
-      height: 9px;
-      border-radius: 50%;
-      background: var(--rose-400);
-      display: inline-block;
+    .brand-lockup .mila {
+      font-family: var(--script);
+      font-size: clamp(2.5rem, 4vw, 3.5rem);
+      transform: translateY(3px);
     }
 
-    .nav-links {
-      display: flex;
-      gap: 30px;
-      list-style: none;
-      align-items: center;
-    }
-
-    .nav-links a {
-      font-size: 0.85rem;
-      letter-spacing: 1.2px;
+    .brand-lockup .co {
+      align-self: flex-end;
+      margin-top: -4px;
+      font-family: var(--serif);
+      font-size: .7rem;
+      letter-spacing: .08em;
       text-transform: uppercase;
-      font-weight: 800;
-      color: rgba(44,44,44,0.75);
-      transition: 0.2s ease;
     }
 
-    .nav-links a:hover {
-      color: var(--rose-500);
-    }
-
-    .header-actions {
+    .desktop-nav {
       display: flex;
-      gap: 12px;
       align-items: center;
+      justify-content: center;
+      gap: clamp(18px, 2.5vw, 34px);
+      list-style: none;
     }
 
-    .menu-icon {
+    .desktop-nav a {
+      font-size: .72rem;
+      font-weight: 800;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+    }
+
+    .desktop-nav a,
+    .footer-links a {
+      text-underline-offset: 4px;
+    }
+
+    .desktop-nav a:hover,
+    .footer-links a:hover {
+      text-decoration: underline;
+      text-decoration-thickness: 1px;
+    }
+
+    .header-action {
+      justify-self: end;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 9px;
+      min-height: 44px;
+      padding: 10px 19px;
+      border: 1px solid var(--brown);
+      background: var(--brown);
+      color: var(--cream);
+      font-size: .72rem;
+      font-weight: 800;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+
+    .button.secondary {
+      background: transparent;
+      color: var(--brown);
+    }
+
+    .menu-toggle {
       display: none;
-      font-size: 1.3rem;
-      color: var(--rose-500);
+      border: 0;
+      background: transparent;
+      color: var(--brown);
+      width: 44px;
+      height: 44px;
       cursor: pointer;
     }
 
-    /* ----- Hero ----- */
-    .hero {
-      padding: 155px 0 80px;
-      position: relative;
+    .menu-toggle span,
+    .menu-toggle::before,
+    .menu-toggle::after {
+      content: "";
+      display: block;
+      width: 22px;
+      height: 1px;
+      background: currentColor;
+      margin: 5px auto;
+    }
+
+    /* =========================
+       MOVING BRAND STRIP
+    ========================= */
+    .brand-strip {
+      border-bottom: var(--line);
+      border-top: var(--line);
       overflow: hidden;
-      background: linear-gradient(180deg, #ffffff 0%, var(--soft-pink) 100%);
+      background: var(--pink);
+      white-space: nowrap;
+    }
+
+    .brand-strip-track {
+      display: inline-flex;
+      min-width: max-content;
+      animation: marquee 24s linear infinite;
+    }
+
+    .brand-strip-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 22px;
+      padding: 9px 26px;
+      font-family: var(--serif);
+      font-size: .95rem;
+      letter-spacing: .02em;
+    }
+
+    .brand-strip-item::after {
+      content: "✦";
+      font-family: Georgia, serif;
+      font-size: .65rem;
+    }
+
+    @keyframes marquee {
+      from { transform: translateX(0); }
+      to { transform: translateX(-50%); }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      .brand-strip-track { animation: none; }
+    }
+
+    /* =========================
+       HERO
+    ========================= */
+    .hero {
+      padding: clamp(54px, 7vw, 92px) 0 clamp(64px, 8vw, 110px);
     }
 
     .hero-grid {
       display: grid;
-      grid-template-columns: 1.2fr 0.8fr;
-      gap: 60px;
+      grid-template-columns: minmax(0, 1.1fr) minmax(300px, .9fr);
       align-items: center;
+      gap: clamp(42px, 7vw, 94px);
+    }
+
+    .hero-copy {
+      max-width: 650px;
+    }
+
+    .hero-kicker {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 22px;
+    }
+
+    .hero-kicker::before {
+      content: "";
+      width: 42px;
+      height: 1px;
+      background: var(--brown);
     }
 
     .hero-title {
-      font-size: 4.2rem;
-      line-height: 1.05;
-      margin: 18px 0 18px;
+      font-family: var(--serif);
+      font-size: clamp(4rem, 8vw, 7.8rem);
+      line-height: .83;
+      letter-spacing: -.055em;
     }
 
-    .hero-title span {
-      color: var(--rose-500);
-      font-style: italic;
+    .hero-title .script-word {
+      display: block;
+      margin-left: clamp(18px, 5vw, 70px);
+      color: var(--pink);
+      font-family: var(--script);
+      font-size: 1.08em;
+      line-height: .8;
     }
 
-    .hero-text {
-      font-size: 1.1rem;
-      color: var(--gray-500);
-      max-width: 600px;
-      margin-bottom: 26px;
+    .hero-description {
+      max-width: 520px;
+      margin: 30px 0 28px;
+      font-size: 1rem;
     }
 
-    .hero-buttons {
+    .hero-actions {
       display: flex;
-      gap: 14px;
       flex-wrap: wrap;
-      margin-top: 14px;
+      gap: 10px;
     }
 
-    .hero-stats {
-      display: flex;
-      gap: 16px;
-      margin-top: 32px;
-      flex-wrap: wrap;
+    .hero-signature {
+      margin-top: 34px;
+      font-family: var(--script);
+      font-size: 2rem;
+      line-height: 1;
     }
 
-    .stat {
-      background: rgba(255,255,255,0.75);
-      border: 1px solid rgba(0,0,0,0.06);
-      border-radius: 18px;
-      padding: 16px 18px;
-      min-width: 160px;
-      backdrop-filter: blur(12px);
-      transition: transform 0.2s ease;
-    }
-
-    .stat:hover {
-      transform: translateY(-2px);
-    }
-
-    .stat h3 {
-      font-family: 'Manrope', sans-serif;
-      font-weight: 900;
-      font-size: 1.1rem;
-      margin-bottom: 6px;
-    }
-
-    .stat p {
-      font-size: 0.9rem;
-      color: var(--gray-500);
-    }
-
-    .hero-card {
-      border-radius: var(--radius-lg);
-      overflow: hidden;
-      box-shadow: var(--shadow-soft);
-      background: white;
-      border: 1px solid rgba(0,0,0,0.06);
+    .hero-visual {
       position: relative;
     }
 
-    .hero-card img {
+    .hero-frame {
+      position: relative;
+      min-height: 570px;
+      background: var(--cream-deep);
+      border: var(--line);
+      overflow: hidden;
+    }
+
+    .hero-frame img {
       width: 100%;
-      height: 520px;
+      height: 570px;
       object-fit: cover;
     }
 
-    .hero-card-overlay {
+    .hero-caption {
       position: absolute;
-      bottom: 18px;
       left: 18px;
-      right: 18px;
+      bottom: 18px;
+      padding: 11px 14px;
+      background: var(--cream);
+      border: 1px solid var(--brown);
+      font-size: .68rem;
+      font-weight: 800;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+
+    .pink-note {
+      position: absolute;
+      right: -24px;
+      top: 42px;
+      width: 118px;
+      height: 118px;
+      display: grid;
+      place-items: center;
+      background: var(--pink);
+      border: 1px solid var(--brown);
+      border-radius: 50%;
+      text-align: center;
+      font-family: var(--serif);
+      font-size: 1.1rem;
+      line-height: 1.05;
+      transform: rotate(7deg);
+    }
+
+    /* =========================
+       MARQUEE / MANIFESTO
+    ========================= */
+    .manifesto {
+      padding: 22px 0;
+      border-block: var(--line);
+      overflow: hidden;
+    }
+
+    .manifesto-track {
       display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 12px;
+      width: max-content;
+      gap: 52px;
+      animation: manifesto 28s linear infinite;
     }
 
-    /* ----- Secciones ----- */
+    .manifesto-word {
+      font-family: var(--serif);
+      font-size: clamp(1.6rem, 3vw, 2.8rem);
+      white-space: nowrap;
+    }
+
+    .manifesto-word:nth-child(even) {
+      font-family: var(--script);
+      color: var(--pink);
+      font-size: clamp(2.2rem, 4vw, 3.8rem);
+    }
+
+    @keyframes manifesto {
+      to { transform: translateX(-50%); }
+    }
+
+    /* =========================
+       SECTIONS
+    ========================= */
     .section {
-      padding: 95px 0;
-      position: relative;
-    }
-
-    .section.soft {
-      background: linear-gradient(180deg, #fcf6f9 0%, #f7e9f0 100%);
-    }
-
-    .section.white {
-      background: white;
+      padding: var(--section-space) 0;
     }
 
     .section-header {
-      text-align: center;
-      margin-bottom: 55px;
+      display: grid;
+      grid-template-columns: 1fr minmax(0, 2fr);
+      align-items: end;
+      gap: 40px;
+      margin-bottom: 48px;
+      border-bottom: var(--line);
+      padding-bottom: 20px;
     }
 
-    .section-header h2 {
-      font-size: 3rem;
-      margin: 12px 0 12px;
+    .section-title {
+      font-size: clamp(3rem, 6vw, 5.5rem);
     }
 
-    .divider {
-      width: 75px;
-      height: 2px;
-      background: var(--rose-300);
-      margin: 14px auto 20px;
-      border-radius: 999px;
-      opacity: 0.85;
+    .section-intro {
+      max-width: 540px;
+      justify-self: end;
+      font-size: .95rem;
     }
 
-    /* ----- Categorías ----- */
+    /* =========================
+       CATEGORY EDIT
+    ========================= */
     .category-grid {
       display: grid;
-      grid-template-columns: repeat(12, 1fr);
-      gap: 22px;
+      grid-template-columns: 1.1fr .9fr .9fr;
+      gap: 14px;
     }
 
     .category-card {
-      grid-column: span 4;
-      border-radius: var(--radius-lg);
-      overflow: hidden;
       position: relative;
-      min-height: 330px;
-      cursor: pointer;
-      border: 1px solid rgba(0,0,0,0.06);
-      transition: 0.35s ease;
+      min-height: 440px;
+      overflow: hidden;
+      border: var(--line);
+      background: var(--cream-deep);
     }
 
-    .category-card:hover {
-      transform: translateY(-6px);
-      box-shadow: var(--shadow-soft-2);
+    .category-card.large {
+      min-height: 590px;
     }
 
-    .category-card .bg {
+    .category-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .category-label {
       position: absolute;
-      inset: 0;
-      background-size: cover;
-      background-position: center;
-      transition: transform 0.6s ease;
+      left: 16px;
+      bottom: 16px;
+      background: var(--cream);
+      border: 1px solid var(--brown);
+      padding: 12px 15px;
     }
 
-    .category-card:hover .bg {
-      transform: scale(1.05);
+    .category-label strong {
+      display: block;
+      font-family: var(--serif);
+      font-size: 1.45rem;
+      font-weight: 400;
+      line-height: 1;
     }
 
-    .category-card .overlay {
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(180deg, rgba(0,0,0,0.05) 0%, rgba(0,0,0,0.42) 100%);
+    .category-label span {
+      display: block;
+      margin-top: 4px;
+      font-size: .64rem;
+      font-weight: 800;
+      letter-spacing: .1em;
+      text-transform: uppercase;
     }
 
-    .category-card .content {
-      position: absolute;
-      left: 22px;
-      right: 22px;
-      bottom: 20px;
-      color: white;
-      z-index: 2;
+    /* =========================
+       PRODUCT EDIT
+    ========================= */
+    .collection-heading {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 24px;
+      margin-bottom: 30px;
     }
 
-    .category-card .content h3 {
-      color: white;
-      font-size: 2rem;
-      margin-bottom: 8px;
+    .collection-heading h3 {
+      font-family: var(--serif);
+      font-size: clamp(2.5rem, 5vw, 4.2rem);
+      font-weight: 400;
+      line-height: 1;
     }
 
-    .category-card .tag {
-      font-size: 0.9rem;
-      opacity: 0.9;
+    .collection-heading span {
+      font-size: .7rem;
+      font-weight: 800;
+      letter-spacing: .12em;
+      text-transform: uppercase;
     }
 
-    /* ----- Productos ----- */
     .products-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 28px;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 14px;
     }
 
     .product-card {
-      background: rgba(255,255,255,0.9);
-      border: 1px solid rgba(0,0,0,0.06);
-      border-radius: var(--radius-lg);
+      border: var(--line);
+      background: var(--cream);
+    }
+
+    .product-image {
+      aspect-ratio: 1 / 1.1;
+      background: var(--cream-deep);
       overflow: hidden;
-      transition: 0.3s ease;
     }
 
-    .product-card:hover {
-      transform: translateY(-6px);
-      border-color: rgba(183, 115, 147, 0.25);
-      box-shadow: var(--shadow-soft-2);
-    }
-
-    .product-img {
+    .product-image img {
       width: 100%;
-      height: 250px;
-      background-size: cover;
-      background-position: center;
-      background-color: #f5f0f2;
+      height: 100%;
+      object-fit: cover;
     }
 
     .product-body {
-      padding: 18px 18px 20px;
+      padding: 16px;
+      border-top: var(--line);
     }
 
-    .product-body h3 {
-      font-size: 1.5rem;
-      margin-bottom: 6px;
+    .product-category {
+      font-size: .62rem;
+      font-weight: 800;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+    }
+
+    .product-name {
+      margin: 7px 0 13px;
+      font-family: var(--serif);
+      font-size: 1.45rem;
+      font-weight: 400;
+      line-height: 1.05;
     }
 
     .product-meta {
       display: flex;
-      justify-content: space-between;
       align-items: center;
+      justify-content: space-between;
       gap: 12px;
-      flex-wrap: wrap;
     }
 
     .price {
-      font-weight: 900;
-      color: var(--rose-500);
-      font-size: 1.1rem;
+      font-size: .86rem;
+      font-weight: 800;
     }
 
-    .pill {
-      font-size: 0.82rem;
-      font-weight: 900;
-      letter-spacing: 0.6px;
+    .product-tag {
+      padding: 5px 8px;
+      background: var(--pink);
+      border: 1px solid var(--brown);
+      font-size: .58rem;
+      font-weight: 800;
+      letter-spacing: .08em;
       text-transform: uppercase;
-      color: rgba(44,44,44,0.8);
-      border: 1px solid rgba(0,0,0,0.08);
-      padding: 7px 12px;
-      border-radius: 999px;
-      background: rgba(255,255,255,0.8);
     }
 
-    /* ----- CTA Banner ----- */
-    .cta-banner {
-      background: linear-gradient(
-        135deg,
-        rgba(183,115,147,0.08) 0%,
-        rgba(223,177,197,0.18) 55%,
-        rgba(239,222,230,0.22) 100%
-      );
-      border: 1px solid rgba(183, 115, 147, 0.15);
-      border-radius: 34px;
-      padding: 40px;
+    /* =========================
+       CTA
+    ========================= */
+    .cta {
+      background: var(--brown);
+      color: var(--cream);
+      border: 1px solid var(--brown);
+      min-height: 330px;
       display: grid;
-      grid-template-columns: 1.2fr 0.8fr;
-      gap: 20px;
-      align-items: center;
+      grid-template-columns: 1fr 180px;
+      align-items: stretch;
     }
 
-    .cta-actions {
+    .cta-copy {
+      padding: clamp(34px, 6vw, 68px);
       display: flex;
-      justify-content: flex-end;
-    }
-
-    /* ----- Pasos ----- */
-    .steps-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 22px;
-      margin-top: 30px;
-    }
-
-    .step-card {
-      background: rgba(255,255,255,0.9);
-      border-radius: var(--radius-lg);
-      border: 1px solid rgba(0,0,0,0.06);
-      padding: 26px;
-      transition: 0.3s ease;
-      text-align: center;
-    }
-
-    .step-card:hover {
-      transform: translateY(-6px);
-      border-color: rgba(183,115,147,0.22);
-      box-shadow: var(--shadow-soft);
-    }
-
-    .step-icon {
-      width: 52px;
-      height: 52px;
-      border-radius: 16px;
-      display: flex;
-      align-items: center;
+      flex-direction: column;
       justify-content: center;
-      background: rgba(183,115,147,0.12);
-      margin: 0 auto 16px;
-      color: var(--rose-500);
-      font-size: 1.2rem;
     }
 
-    /* ----- FAQ ----- */
-    .faq-grid {
+    .cta-copy .eyebrow {
+      color: var(--pink);
+      margin-bottom: 18px;
+    }
+
+    .cta-title {
+      max-width: 620px;
+      font-size: clamp(3rem, 6vw, 5.5rem);
+      color: var(--cream);
+    }
+
+    .cta-copy p {
+      max-width: 520px;
+      margin-top: 20px;
+      color: rgba(255,253,245,.82);
+    }
+
+    .cta-button {
+      margin-top: 28px;
+      width: max-content;
+      background: var(--pink);
+      color: var(--brown);
+      border-color: var(--pink);
+    }
+
+    .cta-mark {
+      min-width: 0;
       display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 18px;
-      margin-top: 35px;
+      place-items: center;
+      border-left: 1px solid rgba(255,253,245,.35);
+      background: var(--pink);
+      color: var(--brown);
+      font-family: var(--script);
+      font-size: clamp(5rem, 10vw, 9rem);
+      line-height: 1;
+    }
+
+    /* =========================
+       ABOUT + BUNNY
+    ========================= */
+    .about-grid {
+      display: grid;
+      grid-template-columns: .75fr 1.25fr;
+      gap: clamp(38px, 8vw, 110px);
+      align-items: center;
+    }
+
+    .bunny-stage {
+      min-height: 470px;
+      background: var(--pink);
+      border: var(--line);
+      display: grid;
+      place-items: center;
+      padding: 30px;
+      position: relative;
+    }
+
+    .bunny-stage::after {
+      content: "MILA BUNNY";
+      position: absolute;
+      left: 16px;
+      top: 16px;
+      font-size: .6rem;
+      font-weight: 800;
+      letter-spacing: .15em;
+    }
+
+    .bunny {
+      width: min(72%, 300px);
+      height: auto;
+      color: var(--brown);
+    }
+
+    .about-copy .eyebrow {
+      margin-bottom: 15px;
+    }
+
+    .about-title {
+      font-size: clamp(3rem, 6vw, 5.6rem);
+    }
+
+    .about-copy p {
+      max-width: 600px;
+      margin-top: 25px;
+      font-size: 1rem;
+    }
+
+    .about-signature {
+      margin-top: 28px;
+      font-family: var(--script);
+      font-size: 2.7rem;
+    }
+
+    /* =========================
+       GOOD TO KNOW
+    ========================= */
+    .good-to-know {
+      border-block: var(--line);
+    }
+
+    .info-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    .info-item {
+      min-height: 210px;
+      padding: 28px;
+      border-right: var(--line);
+    }
+
+    .info-item:last-child {
+      border-right: 0;
+    }
+
+    .info-number {
+      font-family: var(--script);
+      font-size: 2.2rem;
+      color: var(--pink);
+    }
+
+    .info-item h3 {
+      margin: 8px 0 8px;
+      font-family: var(--serif);
+      font-size: 1.65rem;
+      font-weight: 400;
+    }
+
+    .info-item p {
+      max-width: 280px;
+      font-size: .88rem;
+    }
+
+    /* =========================
+       FAQ
+    ========================= */
+    .faq-grid {
+      max-width: 900px;
+      margin-inline: auto;
+      border-top: var(--line);
     }
 
     .faq-item {
-      background: rgba(255,255,255,0.92);
-      border: 1px solid rgba(0,0,0,0.06);
-      border-radius: 26px;
-      overflow: hidden;
-      transition: 0.2s ease;
-    }
-
-    .faq-item:hover {
-      border-color: rgba(183,115,147,0.15);
+      border-bottom: var(--line);
     }
 
     .faq-question {
-      padding: 18px 20px;
+      width: 100%;
       display: flex;
       justify-content: space-between;
-      gap: 14px;
+      align-items: center;
+      gap: 20px;
+      padding: 21px 0;
+      border: 0;
+      background: transparent;
+      color: var(--brown);
+      text-align: left;
+      font-family: var(--serif);
+      font-size: 1.35rem;
       cursor: pointer;
-      font-weight: 900;
-      user-select: none;
     }
 
-    .faq-question i {
-      transition: transform 0.3s ease;
-    }
-
-    .faq-item.active .faq-question i {
-      transform: rotate(180deg);
+    .faq-question span:last-child {
+      font-family: var(--sans);
+      font-size: 1.2rem;
     }
 
     .faq-answer {
-      padding: 0 20px 18px;
-      color: var(--gray-500);
+      max-width: 700px;
+      padding: 0 40px 22px 0;
+      font-size: .9rem;
       display: none;
     }
 
-    .faq-item.active .faq-answer {
+    .faq-item.open .faq-answer {
       display: block;
     }
 
-    /* ----- Sobre Nosotras ----- */
-    .about-img img {
-      border-radius: 34px;
-      width: 100%;
-      height: auto;
-      box-shadow: var(--shadow-soft);
+    /* =========================
+       LEGAL / FOOTER
+    ========================= */
+    .legal-section {
+      padding: 54px 0;
+      border-top: var(--line);
     }
 
-    /* ----- Footer ----- */
-    .footer {
-      background: linear-gradient(180deg, var(--soft-pink) 0%, #ffffff 100%);
-      border-top: 1px solid rgba(0,0,0,0.06);
-      padding: 70px 0 45px;
-      margin-top: 40px;
-    }
-
-    .footer-grid {
+    .legal-grid {
       display: grid;
-      grid-template-columns: 1.3fr 1fr 1fr 1fr;
-      gap: 30px;
+      grid-template-columns: 1fr 1fr;
+      gap: 50px;
     }
 
-    .footer-col h4 {
-      font-family: 'Manrope', sans-serif;
-      font-weight: 800;
-      font-size: 0.9rem;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      margin-bottom: 16px;
+    .legal-copy h2 {
+      font-family: var(--serif);
+      font-size: 2rem;
+      font-weight: 400;
+      margin-bottom: 12px;
     }
 
-    .footer-col a {
+    .legal-copy p {
+      font-size: .78rem;
+      max-width: 560px;
+    }
+
+    .footer {
+      background: var(--brown);
+      color: var(--cream);
+      padding: 62px 0 26px;
+    }
+
+    .footer-top {
+      display: grid;
+      grid-template-columns: 1.4fr 1fr 1fr;
+      gap: 50px;
+      padding-bottom: 48px;
+      border-bottom: 1px solid rgba(255,253,245,.28);
+    }
+
+    .footer-logo {
+      font-family: var(--script);
+      font-size: 4rem;
+      line-height: .8;
+    }
+
+    .footer-logo small {
       display: block;
-      margin-bottom: 10px;
-      font-size: 0.95rem;
-      color: var(--gray-500);
-      transition: 0.2s ease;
+      margin-top: 12px;
+      font-family: var(--serif);
+      font-size: .68rem;
+      letter-spacing: .14em;
+      text-transform: uppercase;
     }
 
-    .footer-col a:hover {
-      color: var(--rose-500);
+    .footer p {
+      max-width: 380px;
+      margin-top: 22px;
+      color: rgba(255,253,245,.75);
+      font-size: .84rem;
+    }
+
+    .footer-col h3 {
+      margin-bottom: 14px;
+      color: var(--pink);
+      font-size: .68rem;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+    }
+
+    .footer-links {
+      display: grid;
+      gap: 8px;
+      list-style: none;
+      font-family: var(--serif);
+      font-size: 1.05rem;
     }
 
     .footer-bottom {
-      margin-top: 45px;
-      padding-top: 25px;
-      border-top: 1px solid rgba(0,0,0,0.06);
       display: flex;
       justify-content: space-between;
-      flex-wrap: wrap;
-      font-size: 0.9rem;
-      color: var(--gray-500);
+      gap: 20px;
+      padding-top: 22px;
+      color: rgba(255,253,245,.62);
+      font-size: .68rem;
     }
 
-    /* ----- WhatsApp Float ----- */
-    .whatsapp-float {
+    .whatsapp {
       position: fixed;
-      bottom: 25px;
-      right: 25px;
-      width: 58px;
-      height: 58px;
+      right: 20px;
+      bottom: 20px;
+      z-index: 90;
+      width: 55px;
+      height: 55px;
+      display: grid;
+      place-items: center;
+      background: var(--pink);
+      color: var(--brown);
+      border: 1px solid var(--brown);
       border-radius: 50%;
-      background: var(--rose-400);
-      color: white;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 26px;
-      z-index: 9999;
-      transition: 0.25s ease;
-      box-shadow: var(--shadow-soft-2);
     }
 
-    .whatsapp-float:hover {
-      transform: scale(1.05);
-      background: var(--rose-500);
+    .whatsapp svg {
+      width: 23px;
+      height: 23px;
     }
 
-    /* ----- Responsive ----- */
-    @media (max-width: 950px) {
-      .hero-grid {
-        grid-template-columns: 1fr;
-        gap: 40px;
-      }
-
-      .hero-title {
-        font-size: 3.2rem;
-      }
-
-      .category-card {
-        grid-column: span 12;
-      }
-
-      .faq-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .footer-grid {
-        grid-template-columns: 1fr 1fr;
-      }
-
-      .cta-banner {
-        grid-template-columns: 1fr;
-        text-align: center;
-      }
-
-      .cta-actions {
-        justify-content: center;
-      }
+    /* =========================
+       MOBILE
+    ========================= */
+    .mobile-nav {
+      display: none;
     }
 
-    @media (max-width: 768px) {
-      .menu-icon {
-        display: block;
+    @media (max-width: 980px) {
+      .header-inner {
+        grid-template-columns: 1fr auto auto;
       }
 
-      .nav-links {
-        position: fixed;
-        top: 72px;
-        left: -100%;
-        width: 100%;
-        background: rgba(255,255,255,0.95);
-        backdrop-filter: blur(12px);
-        flex-direction: column;
-        padding: 40px 0;
-        transition: left 0.3s ease;
-        gap: 22px;
-      }
-
-      .nav-links.active {
-        left: 0;
-      }
-
-      .header-actions {
+      .desktop-nav {
         display: none;
       }
 
-      .footer-grid {
+      .header-action {
+        display: block;
+      }
+
+      .menu-toggle {
+        display: block;
+      }
+
+      .hero-grid,
+      .about-grid {
         grid-template-columns: 1fr;
+      }
+
+      .hero-copy {
+        max-width: 760px;
+      }
+
+      .hero-frame,
+      .hero-frame img {
+        min-height: 520px;
+        height: 520px;
+      }
+
+      .category-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .category-card.large {
+        grid-column: 1 / -1;
+        min-height: 480px;
+      }
+
+      .products-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .cta {
+        grid-template-columns: 1fr 130px;
+      }
+
+      .footer-top {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .footer-brand {
+        grid-column: 1 / -1;
+      }
+    }
+
+    @media (max-width: 650px) {
+      :root {
+        --page-pad: 16px;
+      }
+
+      .site-header {
+        position: sticky;
+      }
+
+      .header-inner {
+        min-height: 70px;
+      }
+
+      .brand-lockup .mila {
+        font-size: 2.7rem;
+      }
+
+      .header-action {
+        display: none;
+      }
+
+      .mobile-nav {
+        position: fixed;
+        inset: 70px 0 0;
+        z-index: 99;
+        display: block;
+        padding: 30px var(--page-pad);
+        background: var(--cream);
+        border-top: var(--line);
+        transform: translateX(100%);
+        transition: transform .25s ease;
+      }
+
+      .mobile-nav.open {
+        transform: translateX(0);
+      }
+
+      .mobile-nav ul {
+        display: grid;
+        gap: 20px;
+        list-style: none;
+      }
+
+      .mobile-nav a {
+        font-family: var(--serif);
+        font-size: 2rem;
+      }
+
+      .hero {
+        padding-top: 44px;
+      }
+
+      .hero-title {
+        font-size: clamp(3.7rem, 19vw, 6rem);
+      }
+
+      .hero-description {
+        font-size: .92rem;
+      }
+
+      .hero-actions .button {
+        width: 100%;
+      }
+
+      .hero-frame,
+      .hero-frame img {
+        min-height: 410px;
+        height: 410px;
+      }
+
+      .pink-note {
+        right: 10px;
+        top: 18px;
+        width: 90px;
+        height: 90px;
+        font-size: .9rem;
+      }
+
+      .section-header {
+        grid-template-columns: 1fr;
+        gap: 12px;
+      }
+
+      .section-intro {
+        justify-self: start;
+      }
+
+      .category-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .category-card,
+      .category-card.large {
+        grid-column: auto;
+        min-height: 390px;
+      }
+
+      .products-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 8px;
+      }
+
+      .product-body {
+        padding: 11px;
+      }
+
+      .product-name {
+        font-size: 1.15rem;
+      }
+
+      .product-meta {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 8px;
+      }
+
+      .cta {
+        grid-template-columns: 1fr;
+      }
+
+      .cta-copy {
+        padding: 35px 24px;
+      }
+
+      .cta-mark {
+        min-height: 120px;
+        border-left: 0;
+        border-top: 1px solid rgba(255,253,245,.35);
+      }
+
+      .bunny-stage {
+        min-height: 360px;
+      }
+
+      .info-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .info-item {
+        min-height: auto;
+        border-right: 0;
+        border-bottom: var(--line);
+      }
+
+      .info-item:last-child {
+        border-bottom: 0;
+      }
+
+      .legal-grid {
+        grid-template-columns: 1fr;
+        gap: 32px;
+      }
+
+      .footer-top {
+        grid-template-columns: 1fr;
+        gap: 34px;
+      }
+
+      .footer-brand {
+        grid-column: auto;
+      }
+
+      .footer-bottom {
+        flex-direction: column;
+      }
+
+      .whatsapp {
+        right: 14px;
+        bottom: 14px;
       }
     }
   </style>
@@ -731,541 +1128,593 @@
 <body>
 
   <header class="site-header">
-    <div class="container">
-      <div class="header-inner">
+    <div class="container header-inner">
 
-        <a href="#inicio" class="logo">
-          Mila <span class="logo-dot"></span>
-        </a>
+      <a href="#inicio" class="brand-lockup" aria-label="Mila CO. inicio">
+        <span class="mila">Mila</span>
+        <span class="co">CO.</span>
+      </a>
 
-        <div class="menu-icon" id="menuIcon">
-          <i class="fas fa-bars"></i>
-        </div>
-
-        <ul class="nav-links" id="navLinks">
-          <li><a href="#inicio">Inicio</a></li>
+      <nav aria-label="Navegación principal">
+        <ul class="desktop-nav">
           <li><a href="#categorias">Categorías</a></li>
           <li><a href="#coleccion">Colección</a></li>
-          <li><a href="#como-comprar">Cómo comprar</a></li>
-          <li><a href="#nosotras">Sobre Mila</a></li>
-          <li><a href="#contacto">Contacto</a></li>
+          <li><a href="#sobre-mila">Sobre Mila</a></li>
+          <li><a href="#faq">Good to know</a></li>
         </ul>
+      </nav>
 
-        <div class="header-actions">
-          <a
-            href="https://wa.me/573001234567?text=Hola%20Mila%2C%20vi%20algo%20que%20me%20gust%C3%B3%20y%20quisiera%20saber%20m%C3%A1s"
-            target="_blank"
-            class="btn btn-primary"
-          >
-            <i class="fa-brands fa-whatsapp"></i> Comprar
-          </a>
-        </div>
-
+      <div class="header-action">
+        <a class="button" href="https://wa.me/573001234567?text=Hola%20Mila%2C%20quiero%20hacer%20un%20pedido." target="_blank" rel="noopener noreferrer">
+          Comprar
+        </a>
       </div>
+
+      <button class="menu-toggle" id="menuToggle" type="button" aria-label="Abrir menú" aria-expanded="false" aria-controls="mobileNav">
+        <span></span>
+      </button>
     </div>
+
+    <nav class="mobile-nav" id="mobileNav" aria-label="Navegación móvil">
+      <ul>
+        <li><a href="#inicio">Inicio</a></li>
+        <li><a href="#categorias">Categorías</a></li>
+        <li><a href="#coleccion">Colección</a></li>
+        <li><a href="#sobre-mila">Sobre Mila</a></li>
+        <li><a href="#faq">Good to know</a></li>
+        <li><a href="#contacto">Contacto</a></li>
+      </ul>
+    </nav>
   </header>
 
   <main id="inicio">
 
+    <!-- LÍNEA DE MARCA -->
+    <div class="brand-strip" aria-label="Categorías de Mila">
+      <div class="brand-strip-track">
+        <span class="brand-strip-item">Maquillaje</span>
+        <span class="brand-strip-item">Skincare</span>
+        <span class="brand-strip-item">Accesorios</span>
+        <span class="brand-strip-item">Mila CO.</span>
+        <span class="brand-strip-item">Maquillaje</span>
+        <span class="brand-strip-item">Skincare</span>
+        <span class="brand-strip-item">Accesorios</span>
+        <span class="brand-strip-item">Mila CO.</span>
+      </div>
+    </div>
+
     <!-- HERO -->
     <section class="hero">
-      <div class="container">
-        <div class="hero-grid">
+      <div class="container hero-grid">
 
-          <div data-aos="fade-up">
+        <div class="hero-copy">
+          <div class="hero-kicker eyebrow">Beauty & Lifestyle</div>
 
-            <div class="kicker">Mila</div>
+          <h1 class="hero-title display">
+            Descubre tus
+            <span class="script-word">favoritos.</span>
+          </h1>
 
-            <h1 class="hero-title">
-              Descubre tus <span>nuevos favoritos en Mila</span>
-            </h1>
+          <p class="hero-description">
+            Maquillaje, skincare y accesorios elegidos para que cada compra se sienta especial, desde el primer vistazo hasta que llega a tus manos.
+          </p>
 
-            <p class="hero-text">
-              Detalles, accesorios y productos para cada ocasión.
-            </p>
-
-            <div class="hero-buttons">
-              <a href="#categorias" class="btn btn-primary">
-                <i class="fa-solid fa-layer-group"></i> Ver categorías
-              </a>
-
-              <a href="#coleccion" class="btn btn-outline">
-                <i class="fa-solid fa-bag-shopping"></i> Ver colección
-              </a>
-            </div>
-
-            <div class="hero-stats">
-
-              <div class="stat">
-                <h3>Favoritos</h3>
-                <p>Productos que destacan</p>
-              </div>
-
-              <div class="stat">
-                <h3>Conoce Mila</h3>
-                <p>Tu próxima elección</p>
-              </div>
-
-              <div class="stat">
-                <h3>Atención</h3>
-                <p>Te ayudamos a elegir</p>
-              </div>
-
-            </div>
-
+          <div class="hero-actions">
+            <a href="#coleccion" class="button">Ver colección</a>
+            <a href="#categorias" class="button secondary">Explorar Mila</a>
           </div>
 
-          <div data-aos="zoom-in" data-aos-delay="150">
-
-            <div class="hero-card">
-
-              <img
-                src="imagenes/sobre-mila.jpeg"
-                alt="Productos de Mila"
-                loading="lazy"
-              >
-
-              <div class="hero-card-overlay">
-                <div class="badge">
-                  <i class="fa-solid fa-bag-shopping"></i>
-                  Favoritos del momento
-                </div>
-              </div>
-
-            </div>
-
-          </div>
-
+          <div class="hero-signature">curated by Mila</div>
         </div>
+
+        <div class="hero-visual">
+          <div class="hero-frame">
+            <img
+              src="https://images.unsplash.com/photo-1596462502278-27bfdc403348?auto=format&fit=crop&w=1000&q=82"
+              alt="Selección de productos de belleza"
+              width="1000"
+              height="1200"
+              fetchpriority="high"
+            />
+            <div class="hero-caption">Pequeños detalles. Mucha personalidad.</div>
+          </div>
+
+          <div class="pink-note" aria-hidden="true">
+            made<br>with<br>Mila
+          </div>
+        </div>
+
       </div>
     </section>
 
+    <!-- MANIFIESTO VISUAL -->
+    <div class="manifesto" aria-hidden="true">
+      <div class="manifesto-track">
+        <span class="manifesto-word">beauty</span>
+        <span class="manifesto-word">style</span>
+        <span class="manifesto-word">little things</span>
+        <span class="manifesto-word">Mila</span>
+        <span class="manifesto-word">beauty</span>
+        <span class="manifesto-word">style</span>
+        <span class="manifesto-word">little things</span>
+        <span class="manifesto-word">Mila</span>
+      </div>
+    </div>
+
     <!-- CATEGORÍAS -->
-    <section class="section white" id="categorias">
+    <section class="section" id="categorias">
       <div class="container">
 
-        <div class="section-header" data-aos="fade-up">
-
-          <div class="kicker">Descubre Mila</div>
-
-          <h2>Categorías que vas a amar</h2>
-
-          <div class="divider"></div>
-
+        <div class="section-header">
+          <div>
+            <div class="eyebrow">Discover Mila</div>
+            <h2 class="section-title display">Lo que te gusta.</h2>
+          </div>
+          <p class="section-intro">
+            Una mezcla de belleza, cuidado y accesorios para encontrar ese producto que termina convirtiéndose en favorito.
+          </p>
         </div>
 
         <div class="category-grid">
 
-          <a class="category-card" href="#coleccion" data-aos="fade-up">
-            <div class="bg" style="background-image:url('imagenes/accesorios.jpeg');"></div>
-            <div class="overlay"></div>
-            <div class="content">
-              <h3>Accesorios</h3>
-              <div class="tag">Detalles para completar tu estilo</div>
+          <a class="category-card large" href="#coleccion">
+            <img
+              src="https://images.unsplash.com/photo-1612810436541-336b5d47c0b1?auto=format&fit=crop&w=1000&q=82"
+              alt="Productos de skincare"
+              width="1000"
+              height="1200"
+              loading="lazy"
+              decoding="async"
+            />
+            <div class="category-label">
+              <strong>Skincare</strong>
+              <span>Care</span>
             </div>
           </a>
 
-          <a class="category-card" href="#coleccion" data-aos="fade-up">
-            <div class="bg" style="background-image:url('imagenes/skincare.jpeg');"></div>
-            <div class="overlay"></div>
-            <div class="content">
-              <h3>Skincare</h3>
-              <div class="tag">Cuidado para tu rutina</div>
+          <a class="category-card" href="#coleccion">
+            <img
+              src="https://images.unsplash.com/photo-1596755389378-c31d21fd1273?auto=format&fit=crop&w=800&q=82"
+              alt="Productos de maquillaje"
+              width="800"
+              height="1000"
+              loading="lazy"
+              decoding="async"
+            />
+            <div class="category-label">
+              <strong>Maquillaje</strong>
+              <span>Beauty</span>
             </div>
           </a>
 
-          <a class="category-card" href="#coleccion" data-aos="fade-up">
-            <div class="bg" style="background-image:url('imagenes/favoritos.jpeg');"></div>
-            <div class="overlay"></div>
-            <div class="content">
-              <h3>Favoritos</h3>
-              <div class="tag">Lo que está destacando ahora</div>
+          <a class="category-card" href="#coleccion">
+            <img
+              src="https://images.unsplash.com/photo-1611080626919-7cf5a9dbab5b?auto=format&fit=crop&w=800&q=82"
+              alt="Accesorios"
+              width="800"
+              height="1000"
+              loading="lazy"
+              decoding="async"
+            />
+            <div class="category-label">
+              <strong>Accesorios</strong>
+              <span>Details</span>
             </div>
           </a>
 
         </div>
-
       </div>
     </section>
 
     <!-- COLECCIÓN -->
-    <section class="section soft" id="coleccion">
+    <section class="section" id="coleccion">
       <div class="container">
 
-        <div class="section-header" data-aos="fade-up">
-
-          <div class="kicker">Colección Mila</div>
-
-          <h2>Favoritos del momento</h2>
-
-          <div class="divider"></div>
-
+        <div class="collection-heading">
+          <h3>Favoritos del momento</h3>
+          <span>Selected by Mila</span>
         </div>
 
         <div class="products-grid">
 
-          <div class="product-card" data-aos="fade-up">
-            <div class="product-img" style="background-image:url('imagenes/gel-cejas.jpeg');"></div>
+          <article class="product-card">
+            <div class="product-image">
+              <img
+                src="https://images.unsplash.com/photo-1596462502278-27bfdc403348?auto=format&fit=crop&w=700&q=82"
+                alt="Gel de cejas Melu"
+                width="700"
+                height="770"
+                loading="lazy"
+                decoding="async"
+              />
+            </div>
             <div class="product-body">
-              <h3>Gel de cejas Melu</h3>
+              <div class="product-category">Maquillaje</div>
+              <h4 class="product-name">Gel de cejas Melu</h4>
               <div class="product-meta">
-                <div class="price">$18.000</div>
-                <div class="pill">Favorito</div>
+                <span class="price">$18.000</span>
+                <span class="product-tag">Favorito</span>
               </div>
             </div>
-          </div>
+          </article>
 
-          <div class="product-card" data-aos="fade-up">
-            <div class="product-img" style="background-image:url('imagenes/gel-hidratante.jpeg');"></div>
+          <article class="product-card">
+            <div class="product-image">
+              <img
+                src="https://images.unsplash.com/photo-1611085583191-a3b181a88401?auto=format&fit=crop&w=700&q=82"
+                alt="Gel hidratante Girly"
+                width="700"
+                height="770"
+                loading="lazy"
+                decoding="async"
+              />
+            </div>
             <div class="product-body">
-              <h3>Gel hidratante Girly</h3>
+              <div class="product-category">Skincare</div>
+              <h4 class="product-name">Gel hidratante Girly</h4>
               <div class="product-meta">
-                <div class="price">$29.000</div>
-                <div class="pill">Skincare</div>
+                <span class="price">$29.000</span>
+                <span class="product-tag">Skincare</span>
               </div>
             </div>
-          </div>
+          </article>
 
-          <div class="product-card" data-aos="fade-up">
-            <div class="product-img" style="background-image:url('imagenes/rubor.jpeg');"></div>
+          <article class="product-card">
+            <div class="product-image">
+              <img
+                src="https://images.unsplash.com/photo-1611930022293-2d17e9f7f8d2?auto=format&fit=crop&w=700&q=82"
+                alt="Rubor Ani-k Bonita"
+                width="700"
+                height="770"
+                loading="lazy"
+                decoding="async"
+              />
+            </div>
             <div class="product-body">
-              <h3>Rubor Ani-k Bonita</h3>
+              <div class="product-category">Maquillaje</div>
+              <h4 class="product-name">Rubor Ani-k Bonita</h4>
               <div class="product-meta">
-                <div class="price">$24.000</div>
-                <div class="pill">Favorito</div>
+                <span class="price">$24.000</span>
+                <span class="product-tag">Favorito</span>
               </div>
             </div>
-          </div>
+          </article>
 
-          <div class="product-card" data-aos="fade-up">
-            <div class="product-img" style="background-image:url('imagenes/base.jpeg');"></div>
+          <article class="product-card">
+            <div class="product-image">
+              <img
+                src="https://images.unsplash.com/photo-1583195764036-6dc248ac07d9?auto=format&fit=crop&w=700&q=82"
+                alt="Base profesional Elaya"
+                width="700"
+                height="770"
+                loading="lazy"
+                decoding="async"
+              />
+            </div>
             <div class="product-body">
-              <h3>Base profesional Elaya</h3>
+              <div class="product-category">Maquillaje</div>
+              <h4 class="product-name">Base profesional Elaya</h4>
               <div class="product-meta">
-                <div class="price">$22.000</div>
-                <div class="pill">Maquillaje</div>
+                <span class="price">$22.000</span>
+                <span class="product-tag">Beauty</span>
               </div>
             </div>
-          </div>
+          </article>
 
         </div>
-
-        <!-- CTA -->
-        <div style="margin-top: 60px;" data-aos="fade-up">
-
-          <div class="cta-banner">
-
-            <div>
-              <h3>¿No sabes qué elegir?</h3>
-              <p>
-                Cuéntanos qué estás buscando y te ayudamos a encontrar una opción que te guste.
-              </p>
-            </div>
-
-            <div class="cta-actions">
-              <a
-                href="https://wa.me/573001234567?text=Hola%20Mila%2C%20vi%20algo%20que%20me%20gust%C3%B3%20y%20quisiera%20saber%20m%C3%A1s"
-                target="_blank"
-                class="btn btn-primary"
-              >
-                <i class="fa-brands fa-whatsapp"></i>
-                Hablar por WhatsApp
-              </a>
-            </div>
-
-          </div>
-
-        </div>
-
       </div>
     </section>
 
-    <!-- CÓMO COMPRAR -->
-    <section class="section white" id="como-comprar">
-
+    <!-- CTA -->
+    <section class="section">
       <div class="container">
+        <div class="cta">
 
-        <div class="section-header" data-aos="fade-up">
+          <div class="cta-copy">
+            <div class="eyebrow">Need a little help?</div>
+            <h2 class="cta-title display">¿No sabes qué elegir?</h2>
+            <p>
+              ¿Tienes algo en mente? Cuéntanos qué buscas y te ayudamos a encontrarlo.
+            </p>
+            <a
+              class="button cta-button"
+              href="https://wa.me/573001234567?text=Hola%20Mila%2C%20quiero%20ayuda%20para%20elegir%20un%20producto."
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Hablar con Mila
+            </a>
+          </div>
 
-          <div class="kicker">Compra fácil</div>
-
-          <h2>Cómo comprar en Mila</h2>
-
-          <div class="divider"></div>
+          <div class="cta-mark" aria-hidden="true">M</div>
 
         </div>
-
-        <div class="steps-grid">
-
-          <div class="step-card" data-aos="fade-up">
-            <div class="step-icon"><i class="fa-solid fa-magnifying-glass"></i></div>
-            <h3>Explora</h3>
-            <p>Mira nuestras categorías y descubre los productos disponibles.</p>
-          </div>
-
-          <div class="step-card" data-aos="fade-up">
-            <div class="step-icon"><i class="fa-brands fa-whatsapp"></i></div>
-            <h3>Escríbenos</h3>
-            <p>Cuéntanos qué producto te interesa y te ayudamos con tu compra.</p>
-          </div>
-
-          <div class="step-card" data-aos="fade-up">
-            <div class="step-icon"><i class="fa-solid fa-truck-fast"></i></div>
-            <h3>Recíbelo</h3>
-            <p>Enviamos a toda Bogotá y Soacha con un empaque cuidado y seguro.</p>
-          </div>
-
-          <div class="step-card" data-aos="fade-up">
-            <div class="step-icon"><i class="fa-solid fa-heart"></i></div>
-            <h3>Disfruta tu compra</h3>
-            <p>Elige tus favoritos y hazlos parte de tu día a día.</p>
-          </div>
-
-        </div>
-
       </div>
-
     </section>
 
     <!-- SOBRE MILA -->
-    <section class="section soft" id="nosotras">
+    <section class="section" id="sobre-mila">
+      <div class="container about-grid">
 
-      <div class="container">
+        <div class="bunny-stage" aria-label="Mila Bunny, personaje de Mila">
 
-        <div class="hero-grid" style="grid-template-columns:1fr 1fr">
+          <!-- Personaje provisional en SVG inline. Puede sustituirse después por la ilustración definitiva. -->
+          <svg class="bunny" viewBox="0 0 420 500" role="img" aria-labelledby="bunnyTitle bunnyDesc">
+            <title id="bunnyTitle">Mila Bunny</title>
+            <desc id="bunnyDesc">Ilustración de un conejo estilizado como personaje de Mila.</desc>
 
-          <div class="about-img" data-aos="fade-right">
-            <img
-              src="imagenes/hero-mila.jpeg"
-              alt="Mila"
-              loading="lazy"
-            >
-          </div>
-
-          <div class="about-text" data-aos="fade-left">
-
-            <div class="kicker">Sobre Mila</div>
-
-            <h2>Un poco de Mila</h2>
-
-            <div class="divider" style="margin-left:0"></div>
-
-            <p>
-              Mila nace de la idea de reunir productos que tengan algo especial:
-              detalles delicados, femeninos y fáciles de incorporar a tu estilo.
-              Un espacio para descubrir cosas que simplemente se sienten muy tú.
-            </p>
-
-            <div style="margin-top: 20px;">
-              <a
-                href="https://wa.me/573001234567?text=Hola%20Mila%2C%20vi%20algo%20que%20me%20gust%C3%B3%20y%20quisiera%20saber%20m%C3%A1s"
-                target="_blank"
-                class="btn btn-primary"
-              >
-                <i class="fa-brands fa-whatsapp"></i>
-                Hablar con Mila
-              </a>
-            </div>
-
-          </div>
+            <ellipse cx="210" cy="415" rx="105" ry="30" fill="none" stroke="currentColor" stroke-width="7"/>
+            <path d="M145 175 C125 95 115 30 150 20 C184 11 192 91 193 145" fill="none" stroke="currentColor" stroke-width="9" stroke-linecap="round"/>
+            <path d="M275 175 C295 95 305 30 270 20 C236 11 228 91 227 145" fill="none" stroke="currentColor" stroke-width="9" stroke-linecap="round"/>
+            <path d="M130 178 C126 130 165 102 210 102 C255 102 294 130 290 178 L282 294 C279 345 249 373 210 373 C171 373 141 345 138 294 Z" fill="var(--cream)" stroke="currentColor" stroke-width="9"/>
+            <ellipse cx="174" cy="218" rx="9" ry="12" fill="currentColor"/>
+            <ellipse cx="246" cy="218" rx="9" ry="12" fill="currentColor"/>
+            <path d="M197 246 Q210 257 223 246" fill="none" stroke="currentColor" stroke-width="6" stroke-linecap="round"/>
+            <path d="M210 247 L210 264" fill="none" stroke="currentColor" stroke-width="5" stroke-linecap="round"/>
+            <path d="M150 286 Q210 320 270 286" fill="none" stroke="currentColor" stroke-width="7" stroke-linecap="round"/>
+            <path d="M136 315 C101 330 93 366 119 384" fill="none" stroke="currentColor" stroke-width="9" stroke-linecap="round"/>
+            <path d="M284 315 C319 330 327 366 301 384" fill="none" stroke="currentColor" stroke-width="9" stroke-linecap="round"/>
+            <circle cx="110" cy="373" r="12" fill="var(--pink)" stroke="currentColor" stroke-width="5"/>
+            <circle cx="310" cy="373" r="12" fill="var(--pink)" stroke="currentColor" stroke-width="5"/>
+          </svg>
 
         </div>
 
-      </div>
+        <div class="about-copy">
+          <div class="eyebrow">A little about Mila</div>
+          <h2 class="about-title display">Una experiencia que empieza antes de abrir la caja.</h2>
 
+          <p>
+            Mila nace de una idea sencilla: crear una experiencia de compra que se sienta tan especial como aquello que eliges.
+          </p>
+
+          <p>
+            Desde descubrir un producto, pedirlo y recibirlo, cada detalle forma parte de la experiencia. No queremos que comprar en Mila sea solamente recibir un pedido. Queremos que abrirlo también sea parte de lo bonito.
+          </p>
+
+          <div class="about-signature">Mila Bunny</div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- GOOD TO KNOW -->
+    <section class="section good-to-know" id="good-to-know">
+      <div class="container">
+
+        <div class="section-header">
+          <div>
+            <div class="eyebrow">Good to know</div>
+            <h2 class="section-title display">Antes de tu pedido.</h2>
+          </div>
+          <p class="section-intro">
+            La información esencial, sin llenar la página de texto.
+          </p>
+        </div>
+
+        <div class="info-grid">
+          <div class="info-item">
+            <div class="info-number">01</div>
+            <h3>Envíos</h3>
+            <p>Enviamos a toda Colombia. Antes de confirmar tu pedido te indicamos el valor y el tiempo estimado.</p>
+          </div>
+
+          <div class="info-item">
+            <div class="info-number">02</div>
+            <h3>Disponibilidad</h3>
+            <p>La disponibilidad se confirma al momento de realizar el pedido.</p>
+          </div>
+
+          <div class="info-item">
+            <div class="info-number">03</div>
+            <h3>Asesoría</h3>
+            <p>Si tienes dudas entre productos, escríbenos y te ayudamos a elegir.</p>
+          </div>
+        </div>
+
+      </div>
     </section>
 
     <!-- FAQ -->
-    <section class="section white" id="faq">
-
+    <section class="section" id="faq">
       <div class="container">
 
-        <div class="section-header" data-aos="fade-up">
-
-          <div class="kicker">Información</div>
-
-          <h2>Preguntas frecuentes</h2>
-
-          <div class="divider"></div>
-
+        <div class="section-header">
+          <div>
+            <div class="eyebrow">Good to know</div>
+            <h2 class="section-title display">Preguntas frecuentes.</h2>
+          </div>
+          <p class="section-intro">
+            Si no encuentras lo que buscas, siempre puedes escribirnos.
+          </p>
         </div>
 
-        <div class="faq-grid" data-aos="fade-up">
+        <div class="faq-grid">
 
           <div class="faq-item">
-            <div class="faq-question">
-              ¿Cómo hago un pedido?
-              <i class="fa-solid fa-chevron-down"></i>
-            </div>
+            <button class="faq-question" type="button" aria-expanded="false">
+              <span>¿Cómo hago un pedido?</span>
+              <span aria-hidden="true">+</span>
+            </button>
             <div class="faq-answer">
-              Escríbenos por WhatsApp, dinos qué producto quieres y te confirmamos disponibilidad y envío.
+              Escríbenos por WhatsApp, indícanos qué producto te interesa y confirmamos disponibilidad, valor y envío.
             </div>
           </div>
 
           <div class="faq-item">
-            <div class="faq-question">
-              ¿Hacen envíos a toda Bogotá?
-              <i class="fa-solid fa-chevron-down"></i>
-            </div>
+            <button class="faq-question" type="button" aria-expanded="false">
+              <span>¿Hacen envíos a toda Colombia?</span>
+              <span aria-hidden="true">+</span>
+            </button>
             <div class="faq-answer">
-              Sí, y también a Soacha con guía de seguimiento.
+              Sí. Realizamos envíos nacionales. El valor y tiempo estimado dependen de la ciudad de destino.
             </div>
           </div>
 
           <div class="faq-item">
-            <div class="faq-question">
-              ¿Los productos son originales?
-              <i class="fa-solid fa-chevron-down"></i>
-            </div>
+            <button class="faq-question" type="button" aria-expanded="false">
+              <span>¿Puedo pedir ayuda para elegir?</span>
+              <span aria-hidden="true">+</span>
+            </button>
             <div class="faq-answer">
-              Sí, seleccionamos productos originales y de buena calidad.
+              Sí. Cuéntanos qué buscas, qué te gusta o qué necesitas y te orientamos según los productos disponibles.
             </div>
           </div>
 
           <div class="faq-item">
-            <div class="faq-question">
-              ¿Puedo pedir ayuda para elegir?
-              <i class="fa-solid fa-chevron-down"></i>
-            </div>
+            <button class="faq-question" type="button" aria-expanded="false">
+              <span>¿Cómo puedo contactarlos?</span>
+              <span aria-hidden="true">+</span>
+            </button>
             <div class="faq-answer">
-              Claro. Escríbenos y cuéntanos qué estás buscando; te ayudamos a encontrar una opción adecuada.
+              Puedes escribirnos directamente por WhatsApp mediante cualquiera de los botones de contacto de la página.
             </div>
           </div>
 
         </div>
-
       </div>
-
     </section>
 
     <!-- CONTACTO -->
-    <section class="section soft" id="contacto">
-
+    <section class="section" id="contacto">
       <div class="container">
+        <div class="cta">
 
-        <div class="cta-banner" style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap;">
-
-          <div>
-            <h3>¿Encontraste algo que te gustó?</h3>
-            <p>Escríbenos y te ayudamos con tu compra.</p>
+          <div class="cta-copy">
+            <div class="eyebrow">Stay close</div>
+            <h2 class="cta-title display">Encontraste algo que te gustó.</h2>
+            <p>
+              Escríbenos y continuamos tu pedido por WhatsApp.
+            </p>
+            <a
+              class="button cta-button"
+              href="https://wa.me/573001234567?text=Hola%20Mila%2C%20quiero%20hacer%20un%20pedido."
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Comprar por WhatsApp
+            </a>
           </div>
 
-          <a
-            href="https://wa.me/573001234567?text=Hola%20Mila%2C%20vi%20algo%20que%20me%20gust%C3%B3%20y%20quisiera%20saber%20m%C3%A1s"
-            target="_blank"
-            class="btn btn-primary"
-          >
-            <i class="fa-brands fa-whatsapp"></i>
-            Contactar
-          </a>
+          <div class="cta-mark" aria-hidden="true">M</div>
 
+        </div>
+      </div>
+    </section>
+
+    <!-- AVISOS LEGALES -->
+    <section class="legal-section" id="legal">
+      <div class="container legal-grid">
+
+        <div class="legal-copy" id="terminos">
+          <h2>Términos y condiciones</h2>
+          <p>
+            Las compras están sujetas a disponibilidad, confirmación del pedido, condiciones de envío y demás condiciones informadas antes del pago. Esta sección debe completarse con las condiciones comerciales definitivas de Mila antes de publicar la tienda.
+          </p>
+        </div>
+
+        <div class="legal-copy" id="privacidad">
+          <h2>Política de privacidad</h2>
+          <p>
+            Mila tratará los datos suministrados por sus clientes únicamente para gestionar pedidos, atención y comunicaciones relacionadas con la compra, de acuerdo con la normativa colombiana aplicable. Esta sección debe completarse con la política de tratamiento de datos definitiva antes de publicar la tienda.
+          </p>
         </div>
 
       </div>
-
     </section>
 
   </main>
 
-  <!-- FOOTER -->
   <footer class="footer">
-
     <div class="container">
 
-      <div class="footer-grid">
+      <div class="footer-top">
 
         <div class="footer-brand">
-
-          <a href="#inicio" class="logo">
-            Mila <span class="logo-dot"></span>
-          </a>
-
-          <p style="margin-top: 12px; color: var(--gray-500);">
-            Accesorios y productos con un estilo delicado y femenino.
+          <div class="footer-logo">
+            Mila
+            <small>CO. · Beauty & Lifestyle</small>
+          </div>
+          <p>
+            Pequeños detalles. Mucha personalidad.
           </p>
-
         </div>
 
         <div class="footer-col">
-          <h4>Explorar</h4>
-          <a href="#categorias">Categorías</a>
-          <a href="#coleccion">Colección</a>
+          <h3>Explore</h3>
+          <ul class="footer-links">
+            <li><a href="#categorias">Categorías</a></li>
+            <li><a href="#coleccion">Colección</a></li>
+            <li><a href="#sobre-mila">A little about Mila</a></li>
+            <li><a href="#faq">Good to know</a></li>
+          </ul>
         </div>
 
         <div class="footer-col">
-          <h4>Información</h4>
-          <a href="#como-comprar">Cómo comprar</a>
-          <a href="#faq">Preguntas frecuentes</a>
-        </div>
-
-        <div class="footer-col">
-          <h4>Contacto</h4>
-          <a href="https://wa.me/573001234567" target="_blank">WhatsApp</a>
+          <h3>Info</h3>
+          <ul class="footer-links">
+            <li><a href="#terminos">Términos y condiciones</a></li>
+            <li><a href="#privacidad">Privacidad</a></li>
+            <li><a href="https://wa.me/573001234567" target="_blank" rel="noopener noreferrer">WhatsApp</a></li>
+          </ul>
         </div>
 
       </div>
 
       <div class="footer-bottom">
-        <div>© 2026 Mila — Todos los derechos reservados.</div>
-        <div>Hecho con atención a cada detalle.</div>
+        <span>© 2026 Mila CO. Todos los derechos reservados.</span>
+        <span>curated by Mila</span>
       </div>
 
     </div>
-
   </footer>
 
-  <!-- WHATSAPP FLOAT -->
   <a
-    href="https://wa.me/573001234567?text=Hola%20Mila%2C%20vi%20algo%20que%20me%20gust%C3%B3%20y%20quisiera%20saber%20m%C3%A1s"
-    class="whatsapp-float"
+    class="whatsapp"
+    href="https://wa.me/573001234567?text=Hola%20Mila%2C%20quiero%20hacer%20un%20pedido."
     target="_blank"
+    rel="noopener noreferrer"
     aria-label="Contactar a Mila por WhatsApp"
   >
-    <i class="fa-brands fa-whatsapp"></i>
+    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+      <path d="M20 11.5a8.2 8.2 0 0 1-12.2 7.1L4 20l1.5-3.6A8.2 8.2 0 1 1 20 11.5Z" stroke="currentColor" stroke-width="1.7"/>
+      <path d="M8.2 8.3c.2-.4.4-.4.7-.4h.5c.2 0 .4.1.5.4l.7 1.6c.1.2.1.4 0 .6l-.5.7c-.1.2-.1.3 0 .5.4.7 1 1.3 1.7 1.7.2.1.4.1.5 0l.7-.5c.2-.1.4-.1.6 0l1.6.7c.2.1.4.3.4.5v.5c0 .3-.1.5-.4.7-.4.3-1 .4-1.5.3-1-.2-2.2-.8-3.3-1.8-1.1-1-1.8-2.2-2.1-3.2-.2-.7-.1-1.3.3-1.6Z" fill="currentColor"/>
+    </svg>
   </a>
 
-  <!-- SCRIPTS -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
-
   <script>
-    // Inicializar AOS
-    AOS.init({
-      duration: 850,
-      once: true,
-      offset: 90
-    });
+    (() => {
+      "use strict";
 
-    // Toggle menú móvil
-    const menuIcon = document.getElementById("menuIcon");
-    const navLinks = document.getElementById("navLinks");
+      const menuToggle = document.getElementById("menuToggle");
+      const mobileNav = document.getElementById("mobileNav");
 
-    if (menuIcon && navLinks) {
-      menuIcon.addEventListener("click", () => {
-        navLinks.classList.toggle("active");
-      });
-
-      document.querySelectorAll(".nav-links a").forEach(link => {
-        link.addEventListener("click", () => {
-          navLinks.classList.remove("active");
+      if (menuToggle && mobileNav) {
+        menuToggle.addEventListener("click", () => {
+          const isOpen = mobileNav.classList.toggle("open");
+          menuToggle.setAttribute("aria-expanded", String(isOpen));
+          document.body.classList.toggle("menu-open", isOpen);
         });
-      });
-    }
 
-    // FAQ accordion
-    document.querySelectorAll(".faq-item").forEach(item => {
-      const question = item.querySelector(".faq-question");
-
-      if (question) {
-        question.addEventListener("click", () => {
-          // Opcional: cerrar otros FAQs para una mejor UX
-          // document.querySelectorAll(".faq-item").forEach(other => {
-          //   if (other !== item) other.classList.remove("active");
-          // });
-
-          item.classList.toggle("active");
+        mobileNav.querySelectorAll("a").forEach((link) => {
+          link.addEventListener("click", () => {
+            mobileNav.classList.remove("open");
+            menuToggle.setAttribute("aria-expanded", "false");
+            document.body.classList.remove("menu-open");
+          });
         });
       }
-    });
+
+      document.querySelectorAll(".faq-question").forEach((question) => {
+        question.addEventListener("click", () => {
+          const item = question.closest(".faq-item");
+          const isOpen = item.classList.toggle("open");
+
+          question.setAttribute("aria-expanded", String(isOpen));
+          question.querySelector("span:last-child").textContent = isOpen ? "−" : "+";
+        });
+      });
+    })();
   </script>
 
 </body>
