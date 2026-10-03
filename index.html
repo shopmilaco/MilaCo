@@ -18,7 +18,6 @@
       --cream: #fffdf5;
       --pink: #e7adb1;
 
-      /* Tonos derivados de la paleta oficial, sin introducir colores nuevos de identidad. */
       --brown-soft: rgba(104, 70, 47, .12);
       --brown-line: rgba(104, 70, 47, .22);
       --pink-soft: rgba(231, 173, 177, .34);
@@ -109,6 +108,7 @@
     /* =========================
        HEADER
     ========================= */
+
     .site-header {
       position: sticky;
       top: 0;
@@ -223,6 +223,7 @@
     /* =========================
        MOVING BRAND STRIP
     ========================= */
+
     .brand-strip {
       border-bottom: var(--line);
       border-top: var(--line);
@@ -254,18 +255,29 @@
     }
 
     @keyframes marquee {
-      from { transform: translateX(0); }
-      to { transform: translateX(-50%); }
+      from {
+        transform: translateX(0);
+      }
+
+      to {
+        transform: translateX(-50%);
+      }
     }
 
     @media (prefers-reduced-motion: reduce) {
-      html { scroll-behavior: auto; }
-      .brand-strip-track { animation: none; }
+      html {
+        scroll-behavior: auto;
+      }
+
+      .brand-strip-track {
+        animation: none;
+      }
     }
 
     /* =========================
        HERO
     ========================= */
+
     .hero {
       padding: clamp(54px, 7vw, 92px) 0 clamp(64px, 8vw, 110px);
     }
@@ -382,6 +394,7 @@
     /* =========================
        MARQUEE / MANIFESTO
     ========================= */
+
     .manifesto {
       padding: 22px 0;
       border-block: var(--line);
@@ -408,12 +421,15 @@
     }
 
     @keyframes manifesto {
-      to { transform: translateX(-50%); }
+      to {
+        transform: translateX(-50%);
+      }
     }
 
     /* =========================
        SECTIONS
     ========================= */
+
     .section {
       padding: var(--section-space) 0;
     }
@@ -441,6 +457,7 @@
     /* =========================
        CATEGORY EDIT
     ========================= */
+
     .category-grid {
       display: grid;
       grid-template-columns: 1.1fr .9fr .9fr;
@@ -494,6 +511,7 @@
     /* =========================
        PRODUCT EDIT
     ========================= */
+
     .collection-heading {
       display: flex;
       align-items: baseline;
@@ -584,6 +602,7 @@
     /* =========================
        CTA
     ========================= */
+
     .cta {
       background: var(--brown);
       color: var(--cream);
@@ -641,6 +660,7 @@
     /* =========================
        ABOUT + BUNNY
     ========================= */
+
     .about-grid {
       display: grid;
       grid-template-columns: .75fr 1.25fr;
@@ -650,12 +670,13 @@
 
     .bunny-stage {
       min-height: 470px;
-      background: var(--pink);
-      border: var(--line);
+      background: var(--cream);
+      border: 0;
       display: grid;
       place-items: center;
-      padding: 30px;
+      padding: 0;
       position: relative;
+      overflow: hidden;
     }
 
     .bunny-stage::after {
@@ -666,12 +687,14 @@
       font-size: .6rem;
       font-weight: 800;
       letter-spacing: .15em;
+      z-index: 2;
     }
 
     .bunny {
-      width: min(72%, 300px);
+      width: min(100%, 520px);
       height: auto;
-      color: var(--brown);
+      display: block;
+      mix-blend-mode: multiply;
     }
 
     .about-copy .eyebrow {
@@ -697,6 +720,7 @@
     /* =========================
        GOOD TO KNOW
     ========================= */
+
     .good-to-know {
       border-block: var(--line);
     }
@@ -737,6 +761,7 @@
     /* =========================
        FAQ
     ========================= */
+
     .faq-grid {
       max-width: 900px;
       margin-inline: auto;
@@ -782,6 +807,7 @@
     /* =========================
        LEGAL / FOOTER
     ========================= */
+
     .legal-section {
       padding: 54px 0;
       border-top: var(--line);
@@ -889,11 +915,13 @@
     /* =========================
        MOBILE
     ========================= */
+
     .mobile-nav {
       display: none;
     }
 
     @media (max-width: 980px) {
+
       .header-inner {
         grid-template-columns: 1fr auto auto;
       }
@@ -952,8 +980,9 @@
     }
 
     @media (max-width: 650px) {
+
       :root {
-        --page-pad: 16px;
+        --page-pad: 20px;
       }
 
       .site-header {
@@ -1081,8 +1110,29 @@
         border-top: 1px solid rgba(255,253,245,.35);
       }
 
+      /* Mila Bunny en móvil */
       .bunny-stage {
-        min-height: 360px;
+        min-height: auto;
+        width: 100%;
+        padding: 0;
+      }
+
+      .bunny {
+        width: 100%;
+        max-width: 520px;
+      }
+
+      .bunny-stage::after {
+        left: 12px;
+        top: 12px;
+      }
+
+      .about-title {
+        font-size: clamp(3rem, 15vw, 5rem);
+      }
+
+      .about-copy p {
+        font-size: .92rem;
       }
 
       .info-grid {
@@ -1153,6 +1203,7 @@
       <button class="menu-toggle" id="menuToggle" type="button" aria-label="Abrir menú" aria-expanded="false" aria-controls="mobileNav">
         <span></span>
       </button>
+
     </div>
 
     <nav class="mobile-nav" id="mobileNav" aria-label="Navegación móvil">
@@ -1216,7 +1267,10 @@
               height="1200"
               fetchpriority="high"
             />
-            <div class="hero-caption">Pequeños detalles. Mucha personalidad.</div>
+
+            <div class="hero-caption">
+              Pequeños detalles. Mucha personalidad.
+            </div>
           </div>
 
           <div class="pink-note" aria-hidden="true">
@@ -1250,6 +1304,7 @@
             <div class="eyebrow">Discover Mila</div>
             <h2 class="section-title display">Lo que te gusta.</h2>
           </div>
+
           <p class="section-intro">
             Una mezcla de belleza, cuidado y accesorios para encontrar ese producto que termina convirtiéndose en favorito.
           </p>
@@ -1266,6 +1321,7 @@
               loading="lazy"
               decoding="async"
             />
+
             <div class="category-label">
               <strong>Skincare</strong>
               <span>Care</span>
@@ -1281,6 +1337,7 @@
               loading="lazy"
               decoding="async"
             />
+
             <div class="category-label">
               <strong>Maquillaje</strong>
               <span>Beauty</span>
@@ -1289,13 +1346,14 @@
 
           <a class="category-card" href="#coleccion">
             <img
-              src="imagenes/ganchos.jpeg"
+              src="imagenes/ganchos.jpg"
               alt="Accesorios"
               width="800"
               height="1000"
               loading="lazy"
               decoding="async"
             />
+
             <div class="category-label">
               <strong>Accesorios</strong>
               <span>Details</span>
@@ -1328,9 +1386,11 @@
                 decoding="async"
               />
             </div>
+
             <div class="product-body">
               <div class="product-category">Maquillaje</div>
               <h4 class="product-name">Gel de cejas Melu</h4>
+
               <div class="product-meta">
                 <span class="price">$18.000</span>
                 <span class="product-tag">Favorito</span>
@@ -1349,9 +1409,11 @@
                 decoding="async"
               />
             </div>
+
             <div class="product-body">
               <div class="product-category">Skincare</div>
               <h4 class="product-name">Gel hidratante Girly</h4>
+
               <div class="product-meta">
                 <span class="price">$29.000</span>
                 <span class="product-tag">Skincare</span>
@@ -1370,9 +1432,11 @@
                 decoding="async"
               />
             </div>
+
             <div class="product-body">
               <div class="product-category">Maquillaje</div>
               <h4 class="product-name">Rubor Ani-k Bonita</h4>
+
               <div class="product-meta">
                 <span class="price">$24.000</span>
                 <span class="product-tag">Favorito</span>
@@ -1383,7 +1447,7 @@
           <article class="product-card">
             <div class="product-image">
               <img
-                src="imagenes/baselula.jpeg"
+                src="imagenes/baselula.png"
                 alt="Base Lula"
                 width="700"
                 height="770"
@@ -1391,9 +1455,11 @@
                 decoding="async"
               />
             </div>
+
             <div class="product-body">
               <div class="product-category">Maquillaje</div>
               <h4 class="product-name">Base profesional Lula</h4>
+
               <div class="product-meta">
                 <span class="price">$21.000</span>
                 <span class="product-tag">Beauty</span>
@@ -1408,14 +1474,20 @@
     <!-- CTA -->
     <section class="section">
       <div class="container">
+
         <div class="cta">
 
           <div class="cta-copy">
             <div class="eyebrow">Need a little help?</div>
-            <h2 class="cta-title display">¿No sabes qué elegir?</h2>
+
+            <h2 class="cta-title display">
+              ¿No sabes qué elegir?
+            </h2>
+
             <p>
               ¿Tienes algo en mente? Cuéntanos qué buscas y te ayudamos a encontrarlo.
             </p>
+
             <a
               class="button cta-button"
               href="https://wa.me/573001234567?text=Hola%20Mila%2C%20quiero%20ayuda%20para%20elegir%20un%20producto."
@@ -1432,19 +1504,29 @@
       </div>
     </section>
 
- <div class="bunny-stage" aria-label="Mila Bunny, personaje de Mila">
+    <!-- SOBRE MILA -->
+    <section class="section" id="sobre-mila">
+      <div class="container about-grid">
 
-  <img 
-    src="imagenes/Conejo.jpeg" 
-    alt="Mila Bunny"
-    class="bunny"
-  >
+        <div class="bunny-stage" aria-label="Mila Bunny, personaje de Mila">
 
-</div>
+          <img
+            src="imagenes/Conejo.jpeg"
+            alt="Mila Bunny"
+            class="bunny"
+          >
+
+        </div>
 
         <div class="about-copy">
-          <div class="eyebrow">A little about Mila</div>
-          <h2 class="about-title display">Una experiencia que empieza antes de abrir la caja.</h2>
+
+          <div class="eyebrow">
+            A little about Mila
+          </div>
+
+          <h2 class="about-title display">
+            Una experiencia que empieza antes de abrir la caja.
+          </h2>
 
           <p>
             Mila nace de una idea sencilla: crear una experiencia de compra que se sienta tan especial como aquello que eliges.
@@ -1454,7 +1536,10 @@
             Desde descubrir un producto, pedirlo y recibirlo, cada detalle forma parte de la experiencia. No queremos que comprar en Mila sea solamente recibir un pedido. Queremos que abrirlo también sea parte de lo bonito.
           </p>
 
-          <div class="about-signature">Mila Bunny</div>
+          <div class="about-signature">
+            Mila Bunny
+          </div>
+
         </div>
 
       </div>
@@ -1465,33 +1550,46 @@
       <div class="container">
 
         <div class="section-header">
+
           <div>
             <div class="eyebrow">Good to know</div>
-            <h2 class="section-title display">Antes de tu pedido.</h2>
+            <h2 class="section-title display">
+              Antes de tu pedido.
+            </h2>
           </div>
+
           <p class="section-intro">
             La información esencial, sin llenar la página de texto.
           </p>
+
         </div>
 
         <div class="info-grid">
+
           <div class="info-item">
             <div class="info-number">01</div>
             <h3>Envíos</h3>
-            <p>Enviamos a toda Colombia. Antes de confirmar tu pedido te indicamos el valor y el tiempo estimado.</p>
+            <p>
+              Enviamos a toda Colombia. Antes de confirmar tu pedido te indicamos el valor y el tiempo estimado.
+            </p>
           </div>
 
           <div class="info-item">
             <div class="info-number">02</div>
             <h3>Disponibilidad</h3>
-            <p>La disponibilidad se confirma al momento de realizar el pedido.</p>
+            <p>
+              La disponibilidad se confirma al momento de realizar el pedido.
+            </p>
           </div>
 
           <div class="info-item">
             <div class="info-number">03</div>
             <h3>Asesoría</h3>
-            <p>Si tienes dudas entre productos, escríbenos y te ayudamos a elegir.</p>
+            <p>
+              Si tienes dudas entre productos, escríbenos y te ayudamos a elegir.
+            </p>
           </div>
+
         </div>
 
       </div>
@@ -1502,55 +1600,72 @@
       <div class="container">
 
         <div class="section-header">
+
           <div>
             <div class="eyebrow">Good to know</div>
-            <h2 class="section-title display">Preguntas frecuentes.</h2>
+            <h2 class="section-title display">
+              Preguntas frecuentes.
+            </h2>
           </div>
+
           <p class="section-intro">
             Si no encuentras lo que buscas, siempre puedes escribirnos.
           </p>
+
         </div>
 
         <div class="faq-grid">
 
           <div class="faq-item">
+
             <button class="faq-question" type="button" aria-expanded="false">
               <span>¿Cómo hago un pedido?</span>
               <span aria-hidden="true">+</span>
             </button>
+
             <div class="faq-answer">
               Escríbenos por WhatsApp, indícanos qué producto te interesa y confirmamos disponibilidad, valor y envío.
             </div>
+
           </div>
 
           <div class="faq-item">
+
             <button class="faq-question" type="button" aria-expanded="false">
               <span>¿Hacen envíos a toda Colombia?</span>
               <span aria-hidden="true">+</span>
             </button>
+
             <div class="faq-answer">
               Sí. Realizamos envíos nacionales. El valor y tiempo estimado dependen de la ciudad de destino.
             </div>
+
           </div>
 
           <div class="faq-item">
+
             <button class="faq-question" type="button" aria-expanded="false">
               <span>¿Puedo pedir ayuda para elegir?</span>
               <span aria-hidden="true">+</span>
             </button>
+
             <div class="faq-answer">
               Sí. Cuéntanos qué buscas, qué te gusta o qué necesitas y te orientamos según los productos disponibles.
             </div>
+
           </div>
 
           <div class="faq-item">
+
             <button class="faq-question" type="button" aria-expanded="false">
               <span>¿Cómo puedo contactarlos?</span>
               <span aria-hidden="true">+</span>
             </button>
+
             <div class="faq-answer">
               Puedes escribirnos directamente por WhatsApp mediante cualquiera de los botones de contacto de la página.
             </div>
+
           </div>
 
         </div>
@@ -1560,14 +1675,23 @@
     <!-- CONTACTO -->
     <section class="section" id="contacto">
       <div class="container">
+
         <div class="cta">
 
           <div class="cta-copy">
-            <div class="eyebrow">Stay close</div>
-            <h2 class="cta-title display">Encontraste algo que te gustó.</h2>
+
+            <div class="eyebrow">
+              Stay close
+            </div>
+
+            <h2 class="cta-title display">
+              Encontraste algo que te gustó.
+            </h2>
+
             <p>
               Escríbenos y continuamos tu pedido por WhatsApp.
             </p>
+
             <a
               class="button cta-button"
               href="https://wa.me/573001234567?text=Hola%20Mila%2C%20quiero%20hacer%20un%20pedido."
@@ -1576,9 +1700,12 @@
             >
               Comprar por WhatsApp
             </a>
+
           </div>
 
-          <div class="cta-mark" aria-hidden="true">M</div>
+          <div class="cta-mark" aria-hidden="true">
+            M
+          </div>
 
         </div>
       </div>
@@ -1589,17 +1716,23 @@
       <div class="container legal-grid">
 
         <div class="legal-copy" id="terminos">
+
           <h2>Términos y condiciones</h2>
+
           <p>
             Las compras están sujetas a disponibilidad, confirmación del pedido, condiciones de envío y demás condiciones informadas antes del pago. Esta sección debe completarse con las condiciones comerciales definitivas de Mila antes de publicar la tienda.
           </p>
+
         </div>
 
         <div class="legal-copy" id="privacidad">
+
           <h2>Política de privacidad</h2>
+
           <p>
             Mila tratará los datos suministrados por sus clientes únicamente para gestionar pedidos, atención y comunicaciones relacionadas con la compra, de acuerdo con la normativa colombiana aplicable. Esta sección debe completarse con la política de tratamiento de datos definitiva antes de publicar la tienda.
           </p>
+
         </div>
 
       </div>
@@ -1613,38 +1746,55 @@
       <div class="footer-top">
 
         <div class="footer-brand">
+
           <div class="footer-logo">
             Mila
             <small>CO. · Beauty & Lifestyle</small>
           </div>
+
           <p>
             Pequeños detalles. Mucha personalidad.
           </p>
+
         </div>
 
         <div class="footer-col">
+
           <h3>Explore</h3>
+
           <ul class="footer-links">
             <li><a href="#categorias">Categorías</a></li>
             <li><a href="#coleccion">Colección</a></li>
             <li><a href="#sobre-mila">A little about Mila</a></li>
             <li><a href="#faq">Good to know</a></li>
           </ul>
+
         </div>
 
         <div class="footer-col">
+
           <h3>Info</h3>
+
           <ul class="footer-links">
             <li><a href="#terminos">Términos y condiciones</a></li>
             <li><a href="#privacidad">Privacidad</a></li>
-            <li><a href="https://wa.me/573001234567" target="_blank" rel="noopener noreferrer">WhatsApp</a></li>
+            <li>
+              <a
+                href="https://wa.me/573001234567"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                WhatsApp
+              </a>
+            </li>
           </ul>
+
         </div>
 
       </div>
 
       <div class="footer-bottom">
-        <span>© 2026 Mila CO. Todos los derechos reservados.</span>
+        <span>©️ 2026 Mila CO. Todos los derechos reservados.</span>
         <span>curated by Mila</span>
       </div>
 
@@ -1658,10 +1808,26 @@
     rel="noopener noreferrer"
     aria-label="Contactar a Mila por WhatsApp"
   >
-    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
-      <path d="M20 11.5a8.2 8.2 0 0 1-12.2 7.1L4 20l1.5-3.6A8.2 8.2 0 1 1 20 11.5Z" stroke="currentColor" stroke-width="1.7"/>
-      <path d="M8.2 8.3c.2-.4.4-.4.7-.4h.5c.2 0 .4.1.5.4l.7 1.6c.1.2.1.4 0 .6l-.5.7c-.1.2-.1.3 0 .5.4.7 1 1.3 1.7 1.7.2.1.4.1.5 0l.7-.5c.2-.1.4-.1.6 0l1.6.7c.2.1.4.3.4.5v.5c0 .3-.1.5-.4.7-.4.3-1 .4-1.5.3-1-.2-2.2-.8-3.3-1.8-1.1-1-1.8-2.2-2.1-3.2-.2-.7-.1-1.3.3-1.6Z" fill="currentColor"/>
+
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      aria-hidden="true"
+    >
+
+      <path
+        d="M20 11.5a8.2 8.2 0 0 1-12.2 7.1L4 20l1.5-3.6A8.2 8.2 0 1 1 20 11.5Z"
+        stroke="currentColor"
+        stroke-width="1.7"
+      />
+
+      <path
+        d="M8.2 8.3c.2-.4.4-.4.7-.4h.5c.2 0 .4.1.5.4l.7 1.6c.1.2.1.4 0 .6l-.5.7c-.1.2-.1.3 0 .5.4.7 1 1.3 1.7 1.7.2.1.4.1.5 0l.7-.5c.2-.1.4-.1.6 0l1.6.7c.2.1.4.3.4.5v.5c0 .3-.1.5-.4.7-.4.3-1 .4-1.5.3-1-.2-2.2-.8-3.3-1.8-1.1-1-1.8-2.2-2.1-3.2-.2-.7-.1-1.3.3-1.6Z"
+        fill="currentColor"
+      />
+
     </svg>
+
   </a>
 
   <script>
@@ -1672,30 +1838,64 @@
       const mobileNav = document.getElementById("mobileNav");
 
       if (menuToggle && mobileNav) {
+
         menuToggle.addEventListener("click", () => {
+
           const isOpen = mobileNav.classList.toggle("open");
-          menuToggle.setAttribute("aria-expanded", String(isOpen));
-          document.body.classList.toggle("menu-open", isOpen);
+
+          menuToggle.setAttribute(
+            "aria-expanded",
+            String(isOpen)
+          );
+
+          document.body.classList.toggle(
+            "menu-open",
+            isOpen
+          );
+
         });
 
         mobileNav.querySelectorAll("a").forEach((link) => {
+
           link.addEventListener("click", () => {
+
             mobileNav.classList.remove("open");
-            menuToggle.setAttribute("aria-expanded", "false");
-            document.body.classList.remove("menu-open");
+
+            menuToggle.setAttribute(
+              "aria-expanded",
+              "false"
+            );
+
+            document.body.classList.remove(
+              "menu-open"
+            );
+
           });
+
         });
+
       }
 
       document.querySelectorAll(".faq-question").forEach((question) => {
+
         question.addEventListener("click", () => {
+
           const item = question.closest(".faq-item");
           const isOpen = item.classList.toggle("open");
 
-          question.setAttribute("aria-expanded", String(isOpen));
-          question.querySelector("span:last-child").textContent = isOpen ? "−" : "+";
+          question.setAttribute(
+            "aria-expanded",
+            String(isOpen)
+          );
+
+          question.querySelector(
+            "span:last-child"
+          ).textContent = isOpen ? "−" : "+";
+
         });
+
       });
+
     })();
   </script>
 
