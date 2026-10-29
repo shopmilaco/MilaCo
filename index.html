@@ -1,1903 +1,1694 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-  <meta name="theme-color" content="#fffdf5" />
-  <meta name="description" content="Mila. Maquillaje, skincare y accesorios seleccionados para convertir cada compra en una experiencia especial." />
-  <title>Mila CO. | Beauty & Lifestyle</title>
-
-  <!-- Tipografías: editorial serif + script para los detalles de marca. -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Italianno&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-
-  <style>
-    :root {
-      --brown: #68462f;
-      --cream: #fffdf5;
-      --pink: #e7adb1;
-
-      --brown-soft: rgba(104, 70, 47, .12);
-      --brown-line: rgba(104, 70, 47, .22);
-      --pink-soft: rgba(231, 173, 177, .34);
-      --cream-deep: #f6efe2;
-
-      --serif: "DM Serif Display", Georgia, serif;
-      --script: "Italianno", "Brush Script MT", cursive;
-      --sans: "Manrope", Arial, sans-serif;
-
-      --content: 1180px;
-      --page-pad: clamp(20px, 4vw, 54px);
-      --section-space: clamp(76px, 9vw, 132px);
-      --line: 1px solid var(--brown-line);
-    }
-
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
-    html {
-      scroll-behavior: smooth;
-      background: var(--cream);
-    }
-
-    body {
-      background: var(--cream);
-      color: var(--brown);
-      font-family: var(--sans);
-      line-height: 1.6;
-      overflow-x: hidden;
-    }
-
-    body.menu-open {
-      overflow: hidden;
-    }
-
-    img {
-      display: block;
-      max-width: 100%;
-    }
-
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
-
-    button,
-    a {
-      -webkit-tap-highlight-color: transparent;
-    }
-
-    button {
-      font: inherit;
-    }
-
-    :focus-visible {
-      outline: 2px solid var(--brown);
-      outline-offset: 4px;
-    }
-
-    .container {
-      width: min(calc(100% - (var(--page-pad) * 2)), var(--content));
-      margin-inline: auto;
-    }
-
-    .eyebrow {
-      font-family: var(--sans);
-      font-size: .72rem;
-      font-weight: 800;
-      letter-spacing: .18em;
-      text-transform: uppercase;
-    }
-
-    .script {
-      font-family: var(--script);
-      font-weight: 400;
-    }
-
-    .display {
-      font-family: var(--serif);
-      font-weight: 400;
-      line-height: .98;
-      letter-spacing: -.035em;
-    }
-
-    /* =========================
-       HEADER
-    ========================= */
-
-    .site-header {
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      background: rgba(255, 253, 245, .96);
-      border-bottom: var(--line);
-    }
-
-    .header-inner {
-      min-height: 82px;
-      display: grid;
-      grid-template-columns: 1fr auto 1fr;
-      align-items: center;
-      gap: 24px;
-    }
-
-    .brand-lockup {
-      justify-self: start;
-      display: inline-flex;
-      flex-direction: column;
-      line-height: 1;
-      width: max-content;
-    }
-
-    .brand-lockup .mila {
-      font-family: var(--script);
-      font-size: clamp(2.5rem, 4vw, 3.5rem);
-      transform: translateY(3px);
-    }
-
-    .brand-lockup .co {
-      align-self: flex-end;
-      margin-top: -4px;
-      font-family: var(--serif);
-      font-size: .7rem;
-      letter-spacing: .08em;
-      text-transform: uppercase;
-    }
-
-    .desktop-nav {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: clamp(18px, 2.5vw, 34px);
-      list-style: none;
-    }
-
-    .desktop-nav a {
-      font-size: .72rem;
-      font-weight: 800;
-      letter-spacing: .12em;
-      text-transform: uppercase;
-    }
-
-    .desktop-nav a,
-    .footer-links a {
-      text-underline-offset: 4px;
-    }
-
-    .desktop-nav a:hover,
-    .footer-links a:hover {
-      text-decoration: underline;
-      text-decoration-thickness: 1px;
-    }
-
-    .header-action {
-      justify-self: end;
-    }
-
-    .button {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 9px;
-      min-height: 44px;
-      padding: 10px 19px;
-      border: 1px solid var(--brown);
-      background: var(--brown);
-      color: var(--cream);
-      font-size: .72rem;
-      font-weight: 800;
-      letter-spacing: .08em;
-      text-transform: uppercase;
-    }
-
-    .button.secondary {
-      background: transparent;
-      color: var(--brown);
-    }
-
-    .menu-toggle {
-      display: none;
-      border: 0;
-      background: transparent;
-      color: var(--brown);
-      width: 44px;
-      height: 44px;
-      cursor: pointer;
-    }
-
-    .menu-toggle span,
-    .menu-toggle::before,
-    .menu-toggle::after {
-      content: "";
-      display: block;
-      width: 22px;
-      height: 1px;
-      background: currentColor;
-      margin: 5px auto;
-    }
-
-    /* =========================
-       MOVING BRAND STRIP
-    ========================= */
-
-    .brand-strip {
-      border-bottom: var(--line);
-      border-top: var(--line);
-      overflow: hidden;
-      background: var(--pink);
-      white-space: nowrap;
-    }
-
-    .brand-strip-track {
-      display: inline-flex;
-      min-width: max-content;
-      animation: marquee 24s linear infinite;
-    }
-
-    .brand-strip-item {
-      display: inline-flex;
-      align-items: center;
-      gap: 22px;
-      padding: 9px 26px;
-      font-family: var(--serif);
-      font-size: .95rem;
-      letter-spacing: .02em;
-    }
-
-    .brand-strip-item::after {
-      content: "✦";
-      font-family: Georgia, serif;
-      font-size: .65rem;
-    }
-
-    @keyframes marquee {
-      from {
-        transform: translateX(0);
-      }
-
-      to {
-        transform: translateX(-50%);
-      }
-    }
-
-    @media (prefers-reduced-motion: reduce) {
-      html {
-        scroll-behavior: auto;
-      }
-
-      .brand-strip-track {
-        animation: none;
-      }
-    }
-
-    /* =========================
-       HERO
-    ========================= */
-
-    .hero {
-      padding: clamp(54px, 7vw, 92px) 0 clamp(64px, 8vw, 110px);
-    }
-
-    .hero-grid {
-      display: grid;
-      grid-template-columns: minmax(0, 1.1fr) minmax(300px, .9fr);
-      align-items: center;
-      gap: clamp(42px, 7vw, 94px);
-    }
-
-    .hero-copy {
-      max-width: 650px;
-    }
-
-    .hero-kicker {
-      display: flex;
-      align-items: center;
-      gap: 14px;
-      margin-bottom: 22px;
-    }
-
-    .hero-kicker::before {
-      content: "";
-      width: 42px;
-      height: 1px;
-      background: var(--brown);
-    }
-
-    .hero-title {
-      font-family: var(--serif);
-      font-size: clamp(4rem, 8vw, 7.8rem);
-      line-height: .83;
-      letter-spacing: -.055em;
-    }
-
-    .hero-title .script-word {
-      display: block;
-      margin-left: clamp(18px, 5vw, 70px);
-      color: var(--pink);
-      font-family: var(--script);
-      font-size: 1.08em;
-      line-height: .8;
-    }
-
-    .hero-description {
-      max-width: 520px;
-      margin: 30px 0 28px;
-      font-size: 1rem;
-    }
-
-    .hero-actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-    }
-
-    .hero-signature {
-      margin-top: 34px;
-      font-family: var(--script);
-      font-size: 2rem;
-      line-height: 1;
-    }
-
-    .hero-visual {
-      position: relative;
-    }
-
-    .hero-frame {
-      position: relative;
-      min-height: 570px;
-      background: var(--cream-deep);
-      border: var(--line);
-      overflow: hidden;
-    }
-
-    .hero-frame img {
-      width: 100%;
-      height: 570px;
-      object-fit: cover;
-    }
-
-    .hero-caption {
-      position: absolute;
-      left: 18px;
-      bottom: 18px;
-      padding: 11px 14px;
-      background: var(--cream);
-      border: 1px solid var(--brown);
-      font-size: .68rem;
-      font-weight: 800;
-      letter-spacing: .08em;
-      text-transform: uppercase;
-    }
-
-    .pink-note {
-      position: absolute;
-      right: -24px;
-      top: 42px;
-      width: 118px;
-      height: 118px;
-      display: grid;
-      place-items: center;
-      background: var(--pink);
-      border: 1px solid var(--brown);
-      border-radius: 50%;
-      text-align: center;
-      font-family: var(--serif);
-      font-size: 1.1rem;
-      line-height: 1.05;
-      transform: rotate(7deg);
-    }
-
-    /* =========================
-       MARQUEE / MANIFESTO
-    ========================= */
-
-    .manifesto {
-      padding: 22px 0;
-      border-block: var(--line);
-      overflow: hidden;
-    }
-
-    .manifesto-track {
-      display: flex;
-      width: max-content;
-      gap: 52px;
-      animation: manifesto 28s linear infinite;
-    }
-
-    .manifesto-word {
-      font-family: var(--serif);
-      font-size: clamp(1.6rem, 3vw, 2.8rem);
-      white-space: nowrap;
-    }
-
-    .manifesto-word:nth-child(even) {
-      font-family: var(--script);
-      color: var(--pink);
-      font-size: clamp(2.2rem, 4vw, 3.8rem);
-    }
-
-    @keyframes manifesto {
-      to {
-        transform: translateX(-50%);
-      }
-    }
-
-    /* =========================
-       SECTIONS
-    ========================= */
-
-    .section {
-      padding: var(--section-space) 0;
-    }
-
-    .section-header {
-      display: grid;
-      grid-template-columns: 1fr minmax(0, 2fr);
-      align-items: end;
-      gap: 40px;
-      margin-bottom: 48px;
-      border-bottom: var(--line);
-      padding-bottom: 20px;
-    }
-
-    .section-title {
-      font-size: clamp(3rem, 6vw, 5.5rem);
-    }
-
-    .section-intro {
-      max-width: 540px;
-      justify-self: end;
-      font-size: .95rem;
-    }
-
-    /* =========================
-       CATEGORY EDIT
-    ========================= */
-
-    .category-grid {
-      display: grid;
-      grid-template-columns: 1.1fr .9fr .9fr;
-      gap: 14px;
-    }
-
-    .category-card {
-      position: relative;
-      min-height: 440px;
-      overflow: hidden;
-      border: var(--line);
-      background: var(--cream-deep);
-    }
-
-    .category-card.large {
-      min-height: 590px;
-    }
-
-    .category-card img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-
-    .category-label {
-      position: absolute;
-      left: 16px;
-      bottom: 16px;
-      background: var(--cream);
-      border: 1px solid var(--brown);
-      padding: 12px 15px;
-    }
-
-    .category-label strong {
-      display: block;
-      font-family: var(--serif);
-      font-size: 1.45rem;
-      font-weight: 400;
-      line-height: 1;
-    }
-
-    .category-label span {
-      display: block;
-      margin-top: 4px;
-      font-size: .64rem;
-      font-weight: 800;
-      letter-spacing: .1em;
-      text-transform: uppercase;
-    }
-
-    /* =========================
-       PRODUCT EDIT
-    ========================= */
-
-    .collection-heading {
-      display: flex;
-      align-items: baseline;
-      justify-content: space-between;
-      gap: 24px;
-      margin-bottom: 30px;
-    }
-
-    .collection-heading h3 {
-      font-family: var(--serif);
-      font-size: clamp(2.5rem, 5vw, 4.2rem);
-      font-weight: 400;
-      line-height: 1;
-    }
-
-    .collection-heading span {
-      font-size: .7rem;
-      font-weight: 800;
-      letter-spacing: .12em;
-      text-transform: uppercase;
-    }
-
-    .products-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 14px;
-    }
-
-    .product-card {
-      border: var(--line);
-      background: var(--cream);
-    }
-
-    .product-image {
-      aspect-ratio: 1 / 1.1;
-      background: var(--cream-deep);
-      overflow: hidden;
-    }
-
-    .product-image img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-
-    .product-body {
-      padding: 16px;
-      border-top: var(--line);
-    }
-
-    .product-category {
-      font-size: .62rem;
-      font-weight: 800;
-      letter-spacing: .12em;
-      text-transform: uppercase;
-    }
-
-    .product-name {
-      margin: 7px 0 13px;
-      font-family: var(--serif);
-      font-size: 1.45rem;
-      font-weight: 400;
-      line-height: 1.05;
-    }
-
-    .product-meta {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 12px;
-    }
-
-    .price {
-      font-size: .86rem;
-      font-weight: 800;
-    }
-
-    .product-tag {
-      padding: 5px 8px;
-      background: var(--pink);
-      border: 1px solid var(--brown);
-      font-size: .58rem;
-      font-weight: 800;
-      letter-spacing: .08em;
-      text-transform: uppercase;
-    }
-
-    /* =========================
-       CTA
-    ========================= */
-
-    .cta {
-      background: var(--brown);
-      color: var(--cream);
-      border: 1px solid var(--brown);
-      min-height: 330px;
-      display: grid;
-      grid-template-columns: 1fr 180px;
-      align-items: stretch;
-    }
-
-    .cta-copy {
-      padding: clamp(34px, 6vw, 68px);
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-    }
-
-    .cta-copy .eyebrow {
-      color: var(--pink);
-      margin-bottom: 18px;
-    }
-
-    .cta-title {
-      max-width: 620px;
-      font-size: clamp(3rem, 6vw, 5.5rem);
-      color: var(--cream);
-    }
-
-    .cta-copy p {
-      max-width: 520px;
-      margin-top: 20px;
-      color: rgba(255,253,245,.82);
-    }
-
-    .cta-button {
-      margin-top: 28px;
-      width: max-content;
-      background: var(--pink);
-      color: var(--brown);
-      border-color: var(--pink);
-    }
-
-    .cta-mark {
-      min-width: 0;
-      display: grid;
-      place-items: center;
-      border-left: 1px solid rgba(255,253,245,.35);
-      background: var(--pink);
-      color: var(--brown);
-      font-family: var(--script);
-      font-size: clamp(5rem, 10vw, 9rem);
-      line-height: 1;
-    }
-
-    /* =========================
-       ABOUT + BUNNY
-    ========================= */
-
-    .about-grid {
-      display: grid;
-      grid-template-columns: .75fr 1.25fr;
-      gap: clamp(38px, 8vw, 110px);
-      align-items: center;
-    }
-
-    .bunny-stage {
-      min-height: 470px;
-      background: var(--cream);
-      border: 0;
-      display: grid;
-      place-items: center;
-      padding: 0;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .bunny-stage::after {
-      content: "MILA BUNNY";
-      position: absolute;
-      left: 16px;
-      top: 16px;
-      font-size: .6rem;
-      font-weight: 800;
-      letter-spacing: .15em;
-      z-index: 2;
-    }
-
-    .bunny {
-      width: min(100%, 520px);
-      height: auto;
-      display: block;
-      mix-blend-mode: multiply;
-    }
-
-    .about-copy .eyebrow {
-      margin-bottom: 15px;
-    }
-
-    .about-title {
-      font-size: clamp(3rem, 6vw, 5.6rem);
-    }
-
-    .about-copy p {
-      max-width: 600px;
-      margin-top: 25px;
-      font-size: 1rem;
-    }
-
-    .about-signature {
-      margin-top: 28px;
-      font-family: var(--script);
-      font-size: 2.7rem;
-    }
-
-    /* =========================
-       GOOD TO KNOW
-    ========================= */
-
-    .good-to-know {
-      border-block: var(--line);
-    }
-
-    .info-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-    }
-
-    .info-item {
-      min-height: 210px;
-      padding: 28px;
-      border-right: var(--line);
-    }
-
-    .info-item:last-child {
-      border-right: 0;
-    }
-
-    .info-number {
-      font-family: var(--script);
-      font-size: 2.2rem;
-      color: var(--pink);
-    }
-
-    .info-item h3 {
-      margin: 8px 0 8px;
-      font-family: var(--serif);
-      font-size: 1.65rem;
-      font-weight: 400;
-    }
-
-    .info-item p {
-      max-width: 280px;
-      font-size: .88rem;
-    }
-
-    /* =========================
-       FAQ
-    ========================= */
-
-    .faq-grid {
-      max-width: 900px;
-      margin-inline: auto;
-      border-top: var(--line);
-    }
-
-    .faq-item {
-      border-bottom: var(--line);
-    }
-
-    .faq-question {
-      width: 100%;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 20px;
-      padding: 21px 0;
-      border: 0;
-      background: transparent;
-      color: var(--brown);
-      text-align: left;
-      font-family: var(--serif);
-      font-size: 1.35rem;
-      cursor: pointer;
-    }
-
-    .faq-question span:last-child {
-      font-family: var(--sans);
-      font-size: 1.2rem;
-    }
-
-    .faq-answer {
-      max-width: 700px;
-      padding: 0 40px 22px 0;
-      font-size: .9rem;
-      display: none;
-    }
-
-    .faq-item.open .faq-answer {
-      display: block;
-    }
-
-    /* =========================
-       LEGAL / FOOTER
-    ========================= */
-
-    .legal-section {
-      padding: 54px 0;
-      border-top: var(--line);
-    }
-
-    .legal-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 50px;
-    }
-
-    .legal-copy h2 {
-      font-family: var(--serif);
-      font-size: 2rem;
-      font-weight: 400;
-      margin-bottom: 12px;
-    }
-
-    .legal-copy p {
-      font-size: .78rem;
-      max-width: 560px;
-    }
-
-    .footer {
-      background: var(--brown);
-      color: var(--cream);
-      padding: 62px 0 26px;
-    }
-
-    .footer-top {
-      display: grid;
-      grid-template-columns: 1.4fr 1fr 1fr;
-      gap: 50px;
-      padding-bottom: 48px;
-      border-bottom: 1px solid rgba(255,253,245,.28);
-    }
-
-    .footer-logo {
-      font-family: var(--script);
-      font-size: 4rem;
-      line-height: .8;
-    }
-
-    .footer-logo small {
-      display: block;
-      margin-top: 12px;
-      font-family: var(--serif);
-      font-size: .68rem;
-      letter-spacing: .14em;
-      text-transform: uppercase;
-    }
-
-    .footer p {
-      max-width: 380px;
-      margin-top: 22px;
-      color: rgba(255,253,245,.75);
-      font-size: .84rem;
-    }
-
-    .footer-col h3 {
-      margin-bottom: 14px;
-      color: var(--pink);
-      font-size: .68rem;
-      letter-spacing: .14em;
-      text-transform: uppercase;
-    }
-
-    .footer-links {
-      display: grid;
-      gap: 8px;
-      list-style: none;
-      font-family: var(--serif);
-      font-size: 1.05rem;
-    }
-
-    .footer-bottom {
-      display: flex;
-      justify-content: space-between;
-      gap: 20px;
-      padding-top: 22px;
-      color: rgba(255,253,245,.62);
-      font-size: .68rem;
-    }
-
-    .whatsapp {
-      position: fixed;
-      right: 20px;
-      bottom: 20px;
-      z-index: 90;
-      width: 55px;
-      height: 55px;
-      display: grid;
-      place-items: center;
-      background: var(--pink);
-      color: var(--brown);
-      border: 1px solid var(--brown);
-      border-radius: 50%;
-    }
-
-    .whatsapp svg {
-      width: 23px;
-      height: 23px;
-    }
-
-    /* =========================
-       MOBILE
-    ========================= */
-
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+<meta name="theme-color" content="#fffdf5" />
+<meta name="description" content="Mila. Maquillaje, skincare y accesorios seleccionados para convertir cada compra en una experiencia especial." />
+<title>Mila CO. | Beauty & Lifestyle</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Italianno&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --brown: #68462f;
+    --cream: #fffdf5;
+    --pink: #e7adb1;
+    --brown-soft: rgba(104, 70, 47, .12);
+    --brown-line: rgba(104, 70, 47, .22);
+    --pink-soft: rgba(231, 173, 177, .34);
+    --cream-deep: #f6efe2;
+    --serif: "DM Serif Display", Georgia, serif;
+    --script: "Italianno", "Brush Script MT", cursive;
+    --sans: "Manrope", Arial, sans-serif;
+    --content: 1180px;
+    --page-pad: clamp(20px, 4vw, 54px);
+    --section-space: clamp(76px, 9vw, 132px);
+    --line: 1px solid var(--brown-line);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; background: var(--cream); }
+  body {
+    background: var(--cream); color: var(--brown);
+    font-family: var(--sans); line-height: 1.6; overflow-x: hidden;
+  }
+  body.menu-open, body.cart-open { overflow: hidden; }
+  img { display: block; max-width: 100%; }
+  a { color: inherit; text-decoration: none; }
+  button, a { -webkit-tap-highlight-color: transparent; }
+  button { font: inherit; cursor: pointer; }
+  :focus-visible { outline: 2px solid var(--brown); outline-offset: 4px; }
+
+  .container {
+    width: min(calc(100% - (var(--page-pad) * 2)), var(--content));
+    margin-inline: auto;
+  }
+  .eyebrow {
+    font-family: var(--sans); font-size: .72rem; font-weight: 800;
+    letter-spacing: .18em; text-transform: uppercase;
+  }
+  .script { font-family: var(--script); font-weight: 400; }
+  .display {
+    font-family: var(--serif); font-weight: 400;
+    line-height: .98; letter-spacing: -.035em;
+  }
+
+  /* ========================= HEADER ========================= */
+  .site-header {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(255, 253, 245, .96); border-bottom: var(--line);
+  }
+  .header-inner {
+    min-height: 82px; display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center; gap: 24px;
+  }
+  .brand-lockup {
+    justify-self: start; display: inline-flex;
+    flex-direction: column; line-height: 1; width: max-content;
+  }
+  .brand-lockup .mila {
+    font-family: var(--script); font-size: clamp(2.5rem, 4vw, 3.5rem);
+    transform: translateY(3px);
+  }
+  .brand-lockup .co {
+    align-self: flex-end; margin-top: -4px;
+    font-family: var(--serif); font-size: .7rem;
+    letter-spacing: .08em; text-transform: uppercase;
+  }
+  .desktop-nav {
+    display: flex; align-items: center; justify-content: center;
+    gap: clamp(18px, 2.5vw, 34px); list-style: none;
+  }
+  .desktop-nav a {
+    font-size: .72rem; font-weight: 800;
+    letter-spacing: .12em; text-transform: uppercase;
+  }
+  .desktop-nav a:hover, .footer-links a:hover {
+    text-decoration: underline; text-decoration-thickness: 1px;
+  }
+  .header-action {
+    justify-self: end; display: flex; align-items: center; gap: 10px;
+  }
+  .button {
+    display: inline-flex; align-items: center; justify-content: center;
+    gap: 9px; min-height: 44px; padding: 10px 19px;
+    border: 1px solid var(--brown); background: var(--brown);
+    color: var(--cream); font-size: .72rem; font-weight: 800;
+    letter-spacing: .08em; text-transform: uppercase;
+    transition: background .2s, color .2s, opacity .2s;
+  }
+  .button:hover { opacity: .9; }
+  .button.secondary { background: transparent; color: var(--brown); }
+  .button:disabled { opacity: .45; cursor: not-allowed; }
+
+  .cart-btn {
+    position: relative; display: inline-flex;
+    align-items: center; justify-content: center;
+    width: 44px; height: 44px; border: 1px solid var(--brown);
+    background: transparent; color: var(--brown);
+  }
+  .cart-btn svg { width: 20px; height: 20px; }
+  .cart-count {
+    position: absolute; top: -8px; right: -8px;
+    min-width: 20px; height: 20px; padding: 0 5px;
+    display: grid; place-items: center;
+    background: var(--pink); border: 1px solid var(--brown);
+    border-radius: 50%; font-size: .64rem; font-weight: 800;
+    line-height: 1;
+  }
+  .cart-count[hidden] { display: none; }
+
+  .menu-toggle {
+    display: none; border: 0; background: transparent;
+    color: var(--brown); width: 44px; height: 44px;
+  }
+  .menu-toggle span, .menu-toggle::before, .menu-toggle::after {
+    content: ""; display: block; width: 22px; height: 1px;
+    background: currentColor; margin: 5px auto;
+  }
+
+  /* ========================= BRAND STRIP ========================= */
+  .brand-strip {
+    border-bottom: var(--line); border-top: var(--line);
+    overflow: hidden; background: var(--pink); white-space: nowrap;
+  }
+  .brand-strip-track {
+    display: inline-flex; min-width: max-content;
+    animation: marquee 24s linear infinite;
+  }
+  .brand-strip-item {
+    display: inline-flex; align-items: center; gap: 22px;
+    padding: 9px 26px; font-family: var(--serif);
+    font-size: .95rem; letter-spacing: .02em;
+  }
+  .brand-strip-item::after {
+    content: "✦"; font-family: Georgia, serif; font-size: .65rem;
+  }
+  @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+  /* ========================= HERO ========================= */
+  .hero { padding: clamp(54px, 7vw, 92px) 0 clamp(64px, 8vw, 110px); }
+  .hero-grid {
+    display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(300px, .9fr);
+    align-items: center; gap: clamp(42px, 7vw, 94px);
+  }
+  .hero-copy { max-width: 650px; }
+  .hero-kicker {
+    display: flex; align-items: center; gap: 14px; margin-bottom: 22px;
+  }
+  .hero-kicker::before { content: ""; width: 42px; height: 1px; background: var(--brown); }
+  .hero-title {
+    font-family: var(--serif); font-size: clamp(4rem, 8vw, 7.8rem);
+    line-height: .83; letter-spacing: -.055em;
+  }
+  .hero-title .script-word {
+    display: block; margin-left: clamp(18px, 5vw, 70px);
+    color: var(--pink); font-family: var(--script);
+    font-size: 1.08em; line-height: .8;
+  }
+  .hero-description { max-width: 520px; margin: 30px 0 28px; font-size: 1rem; }
+  .hero-actions { display: flex; flex-wrap: wrap; gap: 10px; }
+  .hero-signature { margin-top: 34px; font-family: var(--script); font-size: 2rem; line-height: 1; }
+  .hero-visual { position: relative; }
+  .hero-frame {
+    position: relative; min-height: 570px;
+    background: var(--cream-deep); border: var(--line); overflow: hidden;
+  }
+  .hero-frame img { width: 100%; height: 570px; object-fit: cover; }
+  .hero-caption {
+    position: absolute; left: 18px; bottom: 18px;
+    padding: 11px 14px; background: var(--cream);
+    border: 1px solid var(--brown); font-size: .68rem;
+    font-weight: 800; letter-spacing: .08em; text-transform: uppercase;
+  }
+  .pink-note {
+    position: absolute; right: -24px; top: 42px;
+    width: 118px; height: 118px; display: grid;
+    place-items: center; background: var(--pink);
+    border: 1px solid var(--brown); border-radius: 50%;
+    text-align: center; font-family: var(--serif);
+    font-size: 1.1rem; line-height: 1.05; transform: rotate(7deg);
+  }
+
+  /* ========================= MANIFESTO ========================= */
+  .manifesto { padding: 22px 0; border-block: var(--line); overflow: hidden; }
+  .manifesto-track {
+    display: flex; width: max-content; gap: 52px;
+    animation: manifesto 28s linear infinite;
+  }
+  .manifesto-word { font-family: var(--serif); font-size: clamp(1.6rem, 3vw, 2.8rem); white-space: nowrap; }
+  .manifesto-word:nth-child(even) {
+    font-family: var(--script); color: var(--pink);
+    font-size: clamp(2.2rem, 4vw, 3.8rem);
+  }
+  @keyframes manifesto { to { transform: translateX(-50%); } }
+
+  /* ========================= SECTIONS ========================= */
+  .section { padding: var(--section-space) 0; }
+  .section-header {
+    display: grid; grid-template-columns: 1fr minmax(0, 2fr);
+    align-items: end; gap: 40px; margin-bottom: 48px;
+    border-bottom: var(--line); padding-bottom: 20px;
+  }
+  .section-title { font-size: clamp(3rem, 6vw, 5.5rem); }
+  .section-intro { max-width: 540px; justify-self: end; font-size: .95rem; }
+
+  /* ========================= CATEGORY EDIT ========================= */
+  .category-grid { display: grid; grid-template-columns: 1.1fr .9fr .9fr; gap: 14px; }
+  .category-card {
+    position: relative; min-height: 440px;
+    overflow: hidden; border: var(--line); background: var(--cream-deep);
+  }
+  .category-card.large { min-height: 590px; }
+  .category-card img { width: 100%; height: 100%; object-fit: cover; }
+  .category-label {
+    position: absolute; left: 16px; bottom: 16px;
+    background: var(--cream); border: 1px solid var(--brown); padding: 12px 15px;
+  }
+  .category-label strong {
+    display: block; font-family: var(--serif);
+    font-size: 1.45rem; font-weight: 400; line-height: 1;
+  }
+  .category-label span {
+    display: block; margin-top: 4px; font-size: .64rem;
+    font-weight: 800; letter-spacing: .1em; text-transform: uppercase;
+  }
+
+  /* ========================= FILTERS ========================= */
+  .catalog-toolbar {
+    display: grid; gap: 18px; margin-bottom: 32px;
+  }
+  .catalog-search {
+    position: relative;
+  }
+  .catalog-search input {
+    width: 100%; padding: 12px 44px 12px 16px;
+    border: var(--line); background: var(--cream);
+    color: var(--brown); font-family: var(--sans); font-size: .9rem;
+  }
+  .catalog-search svg {
+    position: absolute; right: 14px; top: 50%;
+    transform: translateY(-50%); width: 18px; height: 18px;
+    pointer-events: none; color: var(--brown);
+  }
+  .catalog-filters {
+    display: flex; flex-wrap: wrap; gap: 8px;
+  }
+  .filter-chip {
+    padding: 8px 14px; border: 1px solid var(--brown-line);
+    background: transparent; color: var(--brown);
+    font-size: .68rem; font-weight: 800;
+    letter-spacing: .08em; text-transform: uppercase;
+    transition: background .2s, color .2s;
+  }
+  .filter-chip:hover { background: var(--cream-deep); }
+  .filter-chip.active {
+    background: var(--brown); color: var(--cream); border-color: var(--brown);
+  }
+
+  /* ========================= PRODUCTS ========================= */
+  .collection-heading {
+    display: flex; align-items: baseline;
+    justify-content: space-between; gap: 24px; margin-bottom: 30px;
+  }
+  .collection-heading h3 {
+    font-family: var(--serif); font-size: clamp(2.5rem, 5vw, 4.2rem);
+    font-weight: 400; line-height: 1;
+  }
+  .collection-heading span {
+    font-size: .7rem; font-weight: 800;
+    letter-spacing: .12em; text-transform: uppercase;
+  }
+
+  .products-grid {
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px;
+  }
+  .product-card {
+    display: flex; flex-direction: column;
+    border: var(--line); background: var(--cream); position: relative;
+  }
+  .product-image {
+    aspect-ratio: 1 / 1.1; background: var(--cream-deep);
+    overflow: hidden; position: relative;
+  }
+  .product-image img { width: 100%; height: 100%; object-fit: cover; }
+  .product-placeholder {
+    width: 100%; height: 100%; display: grid;
+    place-items: center; font-family: var(--script);
+    font-size: 4rem; color: var(--brown); opacity: .5;
+  }
+  .product-badge {
+    position: absolute; top: 10px; left: 10px;
+    padding: 4px 8px; background: var(--pink);
+    border: 1px solid var(--brown); font-size: .55rem;
+    font-weight: 800; letter-spacing: .08em;
+    text-transform: uppercase; z-index: 2;
+  }
+  .product-body {
+    padding: 16px; border-top: var(--line);
+    display: flex; flex-direction: column; flex: 1; gap: 6px;
+  }
+  .product-category {
+    font-size: .58rem; font-weight: 800;
+    letter-spacing: .12em; text-transform: uppercase;
+  }
+  .product-brand {
+    font-size: .58rem; font-weight: 600;
+    letter-spacing: .08em; text-transform: uppercase; opacity: .7;
+  }
+  .product-name {
+    margin: 2px 0 10px; font-family: var(--serif);
+    font-size: 1.3rem; font-weight: 400; line-height: 1.1;
+  }
+  .product-meta {
+    display: flex; align-items: center;
+    justify-content: space-between; gap: 10px;
+    margin-top: auto;
+  }
+  .price { font-size: .9rem; font-weight: 800; }
+  .product-actions {
+    display: flex; gap: 6px; margin-top: 10px;
+  }
+  .qty-input {
+    width: 46px; padding: 8px; border: var(--line);
+    background: var(--cream); color: var(--brown);
+    text-align: center; font-family: var(--sans);
+    font-size: .85rem; font-weight: 700;
+  }
+  .add-btn {
+    flex: 1; padding: 8px 12px;
+    border: 1px solid var(--brown); background: var(--brown);
+    color: var(--cream); font-size: .64rem; font-weight: 800;
+    letter-spacing: .06em; text-transform: uppercase;
+    transition: opacity .2s;
+  }
+  .add-btn:hover { opacity: .85; }
+  .add-btn:disabled {
+    background: var(--brown-line); border-color: var(--brown-line);
+    cursor: not-allowed; opacity: .6;
+  }
+  .product-card.out-of-stock .product-image { opacity: .6; }
+
+  .catalog-empty {
+    padding: 60px 20px; text-align: center;
+    border: var(--line); background: var(--cream-deep);
+  }
+  .catalog-empty p { font-family: var(--serif); font-size: 1.4rem; }
+
+  /* ========================= CART DRAWER ========================= */
+  .cart-overlay {
+    position: fixed; inset: 0; z-index: 200;
+    background: rgba(104, 70, 47, .45);
+    opacity: 0; visibility: hidden;
+    transition: opacity .25s, visibility .25s;
+  }
+  .cart-overlay.open { opacity: 1; visibility: visible; }
+
+  .cart-drawer {
+    position: fixed; top: 0; right: 0; bottom: 0; z-index: 201;
+    width: min(440px, 100%); background: var(--cream);
+    border-left: var(--line);
+    display: flex; flex-direction: column;
+    transform: translateX(100%);
+    transition: transform .3s ease;
+  }
+  .cart-drawer.open { transform: translateX(0); }
+  .cart-drawer-header {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 20px 22px; border-bottom: var(--line);
+  }
+  .cart-drawer-header h2 {
+    font-family: var(--serif); font-size: 1.8rem; font-weight: 400;
+  }
+  .cart-close {
+    width: 36px; height: 36px; display: grid; place-items: center;
+    border: 1px solid var(--brown); background: transparent;
+    color: var(--brown); font-size: 1.1rem;
+  }
+  .cart-body { flex: 1; overflow-y: auto; padding: 16px 22px; }
+  .cart-empty {
+    padding: 60px 20px; text-align: center;
+  }
+  .cart-empty p { font-family: var(--serif); font-size: 1.3rem; margin-bottom: 6px; }
+  .cart-empty small { font-size: .85rem; opacity: .7; }
+
+  .cart-item {
+    display: grid; grid-template-columns: 70px 1fr auto;
+    gap: 12px; padding: 14px 0; border-bottom: var(--line);
+  }
+  .cart-item-img {
+    width: 70px; height: 80px; background: var(--cream-deep);
+    border: 1px solid var(--brown-line); overflow: hidden;
+  }
+  .cart-item-img img { width: 100%; height: 100%; object-fit: cover; }
+  .cart-item-placeholder {
+    width: 100%; height: 100%; display: grid; place-items: center;
+    font-family: var(--script); font-size: 1.8rem; opacity: .5;
+  }
+  .cart-item-info { display: flex; flex-direction: column; gap: 4px; }
+  .cart-item-name {
+    font-family: var(--serif); font-size: 1rem; font-weight: 400;
+    line-height: 1.15;
+  }
+  .cart-item-price { font-size: .78rem; font-weight: 700; opacity: .8; }
+  .cart-item-controls {
+    display: flex; align-items: center; gap: 6px; margin-top: 6px;
+  }
+  .qty-btn {
+    width: 26px; height: 26px; display: grid; place-items: center;
+    border: 1px solid var(--brown-line); background: transparent;
+    color: var(--brown); font-size: 1rem; line-height: 1;
+  }
+  .qty-btn:hover { background: var(--cream-deep); }
+  .cart-item-qty {
+    min-width: 26px; text-align: center;
+    font-size: .8rem; font-weight: 800;
+  }
+  .cart-item-remove {
+    align-self: start; width: 24px; height: 24px;
+    display: grid; place-items: center;
+    border: 0; background: transparent;
+    color: var(--brown); opacity: .55; font-size: 1rem;
+  }
+  .cart-item-remove:hover { opacity: 1; }
+
+  .cart-footer {
+    border-top: var(--line); padding: 18px 22px 22px;
+    background: var(--cream); display: grid; gap: 12px;
+  }
+  .cart-subtotal {
+    display: flex; justify-content: space-between; align-items: baseline;
+  }
+  .cart-subtotal span:first-child {
+    font-size: .68rem; font-weight: 800;
+    letter-spacing: .12em; text-transform: uppercase;
+  }
+  .cart-subtotal strong { font-family: var(--serif); font-size: 1.6rem; font-weight: 400; }
+  .cart-footer .button { width: 100%; }
+
+  /* ========================= CHECKOUT MODAL ========================= */
+  .modal-overlay {
+    position: fixed; inset: 0; z-index: 300;
+    background: rgba(104, 70, 47, .55);
+    display: grid; place-items: center; padding: 20px;
+    opacity: 0; visibility: hidden;
+    transition: opacity .25s, visibility .25s;
+  }
+  .modal-overlay.open { opacity: 1; visibility: visible; }
+  .checkout-modal {
+    width: min(560px, 100%); max-height: 90vh; overflow-y: auto;
+    background: var(--cream); border: var(--line);
+    padding: clamp(24px, 4vw, 40px);
+    transform: translateY(20px);
+    transition: transform .25s;
+  }
+  .modal-overlay.open .checkout-modal { transform: translateY(0); }
+  .checkout-modal h2 {
+    font-family: var(--serif); font-size: clamp(2rem, 4vw, 2.8rem);
+    font-weight: 400; line-height: 1; margin-bottom: 8px;
+  }
+  .checkout-modal .eyebrow { margin-bottom: 14px; }
+  .checkout-modal p.intro { font-size: .9rem; margin-bottom: 24px; opacity: .85; }
+  .checkout-form { display: grid; gap: 14px; }
+  .form-row { display: grid; gap: 6px; }
+  .form-row label {
+    font-size: .64rem; font-weight: 800;
+    letter-spacing: .1em; text-transform: uppercase;
+  }
+  .form-row input, .form-row textarea {
+    padding: 11px 13px; border: var(--line);
+    background: var(--cream); color: var(--brown);
+    font-family: var(--sans); font-size: .9rem; width: 100%;
+  }
+  .form-row textarea { resize: vertical; min-height: 70px; }
+  .checkout-total {
+    margin: 18px 0; padding: 14px 0;
+    border-top: var(--line); border-bottom: var(--line);
+    display: flex; justify-content: space-between; align-items: baseline;
+  }
+  .checkout-total span:first-child {
+    font-size: .68rem; font-weight: 800;
+    letter-spacing: .12em; text-transform: uppercase;
+  }
+  .checkout-total strong { font-family: var(--serif); font-size: 1.8rem; font-weight: 400; }
+  .checkout-actions { display: grid; gap: 10px; }
+  .checkout-actions .button { width: 100%; }
+  .checkout-note {
+    margin-top: 14px; padding: 12px 14px;
+    background: var(--cream-deep); border: 1px solid var(--brown-line);
+    font-size: .78rem;
+  }
+  .checkout-note strong { display: block; margin-bottom: 4px; }
+
+  /* ========================= TOAST ========================= */
+  .toast {
+    position: fixed; bottom: 24px; left: 50%;
+    transform: translate(-50%, 20px);
+    z-index: 400; padding: 12px 20px;
+    background: var(--brown); color: var(--cream);
+    font-size: .78rem; font-weight: 700;
+    border: 1px solid var(--brown);
+    opacity: 0; visibility: hidden;
+    transition: opacity .25s, transform .25s, visibility .25s;
+    max-width: 90vw; text-align: center;
+  }
+  .toast.show { opacity: 1; visibility: visible; transform: translate(-50%, 0); }
+
+  /* ========================= CTA ========================= */
+  .cta {
+    background: var(--brown); color: var(--cream);
+    border: 1px solid var(--brown); min-height: 330px;
+    display: grid; grid-template-columns: 1fr 180px; align-items: stretch;
+  }
+  .cta-copy {
+    padding: clamp(34px, 6vw, 68px);
+    display: flex; flex-direction: column; justify-content: center;
+  }
+  .cta-copy .eyebrow { color: var(--pink); margin-bottom: 18px; }
+  .cta-title { max-width: 620px; font-size: clamp(3rem, 6vw, 5.5rem); color: var(--cream); }
+  .cta-copy p { max-width: 520px; margin-top: 20px; color: rgba(255,253,245,.82); }
+  .cta-button {
+    margin-top: 28px; width: max-content;
+    background: var(--pink); color: var(--brown); border-color: var(--pink);
+  }
+  .cta-mark {
+    min-width: 0; display: grid; place-items: center;
+    border-left: 1px solid rgba(255,253,245,.35);
+    background: var(--pink); color: var(--brown);
+    font-family: var(--script); font-size: clamp(5rem, 10vw, 9rem); line-height: 1;
+  }
+
+  /* ========================= ABOUT ========================= */
+  .about-grid {
+    display: grid; grid-template-columns: .75fr 1.25fr;
+    gap: clamp(38px, 8vw, 110px); align-items: center;
+  }
+  .bunny-stage {
+    min-height: 470px; background: var(--pink); border: var(--line);
+    display: grid; place-items: center; padding: 30px; position: relative;
+  }
+  .bunny-stage::after {
+    content: "MILA BUNNY"; position: absolute; left: 16px; top: 16px;
+    font-size: .6rem; font-weight: 800; letter-spacing: .15em;
+  }
+  .bunny { width: min(72%, 300px); height: auto; color: var(--brown); }
+  .about-copy .eyebrow { margin-bottom: 15px; }
+  .about-title { font-size: clamp(3rem, 6vw, 5.6rem); }
+  .about-copy p { max-width: 600px; margin-top: 25px; font-size: 1rem; }
+  .about-signature { margin-top: 28px; font-family: var(--script); font-size: 2.7rem; }
+
+  /* ========================= GOOD TO KNOW ========================= */
+  .good-to-know { border-block: var(--line); }
+  .info-grid { display: grid; grid-template-columns: repeat(3, 1fr); }
+  .info-item { min-height: 210px; padding: 28px; border-right: var(--line); }
+  .info-item:last-child { border-right: 0; }
+  .info-number { font-family: var(--script); font-size: 2.2rem; color: var(--pink); }
+  .info-item h3 {
+    margin: 8px 0; font-family: var(--serif);
+    font-size: 1.65rem; font-weight: 400;
+  }
+  .info-item p { max-width: 280px; font-size: .88rem; }
+
+  /* ========================= FAQ ========================= */
+  .faq-grid { max-width: 900px; margin-inline: auto; border-top: var(--line); }
+  .faq-item { border-bottom: var(--line); }
+  .faq-question {
+    width: 100%; display: flex; justify-content: space-between;
+    align-items: center; gap: 20px; padding: 21px 0;
+    border: 0; background: transparent; color: var(--brown);
+    text-align: left; font-family: var(--serif);
+    font-size: 1.35rem;
+  }
+  .faq-question span:last-child { font-family: var(--sans); font-size: 1.2rem; }
+  .faq-answer {
+    max-width: 700px; padding: 0 40px 22px 0;
+    font-size: .9rem; display: none;
+  }
+  .faq-item.open .faq-answer { display: block; }
+
+  /* ========================= LEGAL / FOOTER ========================= */
+  .legal-section { padding: 54px 0; border-top: var(--line); }
+  .legal-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 50px; }
+  .legal-copy h2 {
+    font-family: var(--serif); font-size: 2rem;
+    font-weight: 400; margin-bottom: 12px;
+  }
+  .legal-copy p { font-size: .78rem; max-width: 560px; }
+  .footer {
+    background: var(--brown); color: var(--cream); padding: 62px 0 26px;
+  }
+  .footer-top {
+    display: grid; grid-template-columns: 1.4fr 1fr 1fr;
+    gap: 50px; padding-bottom: 48px;
+    border-bottom: 1px solid rgba(255,253,245,.28);
+  }
+  .footer-logo { font-family: var(--script); font-size: 4rem; line-height: .8; }
+  .footer-logo small {
+    display: block; margin-top: 12px;
+    font-family: var(--serif); font-size: .68rem;
+    letter-spacing: .14em; text-transform: uppercase;
+  }
+  .footer p {
+    max-width: 380px; margin-top: 22px;
+    color: rgba(255,253,245,.75); font-size: .84rem;
+  }
+  .footer-col h3 {
+    margin-bottom: 14px; color: var(--pink);
+    font-size: .68rem; letter-spacing: .14em; text-transform: uppercase;
+  }
+  .footer-links {
+    display: grid; gap: 8px; list-style: none;
+    font-family: var(--serif); font-size: 1.05rem;
+  }
+  .footer-bottom {
+    display: flex; justify-content: space-between; gap: 20px;
+    padding-top: 22px; color: rgba(255,253,245,.62); font-size: .68rem;
+  }
+  .whatsapp {
+    position: fixed; right: 20px; bottom: 20px; z-index: 90;
+    width: 55px; height: 55px; display: grid; place-items: center;
+    background: var(--pink); color: var(--brown);
+    border: 1px solid var(--brown); border-radius: 50%;
+  }
+  .whatsapp svg { width: 23px; height: 23px; }
+
+  /* ========================= MOBILE ========================= */
+  .mobile-nav { display: none; }
+  @media (max-width: 980px) {
+    .header-inner { grid-template-columns: 1fr auto auto; }
+    .desktop-nav { display: none; }
+    .menu-toggle { display: block; }
+    .hero-grid, .about-grid { grid-template-columns: 1fr; }
+    .hero-copy { max-width: 760px; }
+    .hero-frame, .hero-frame img { min-height: 520px; height: 520px; }
+    .category-grid { grid-template-columns: 1fr 1fr; }
+    .category-card.large { grid-column: 1 / -1; min-height: 480px; }
+    .products-grid { grid-template-columns: repeat(2, 1fr); }
+    .cta { grid-template-columns: 1fr 130px; }
+    .footer-top { grid-template-columns: 1fr 1fr; }
+    .footer-brand { grid-column: 1 / -1; }
+    .cart-drawer { width: min(400px, 100%); }
+  }
+  @media (max-width: 650px) {
+    :root { --page-pad: 16px; }
+    .header-inner { min-height: 70px; }
+    .brand-lockup .mila { font-size: 2.7rem; }
+    .header-action { display: none; }
     .mobile-nav {
-      display: none;
+      position: fixed; inset: 70px 0 0; z-index: 99;
+      display: block; padding: 30px var(--page-pad);
+      background: var(--cream); border-top: var(--line);
+      transform: translateX(100%);
+      transition: transform .25s ease;
+      overflow-y: auto;
     }
-
-    @media (max-width: 980px) {
-
-      .header-inner {
-        grid-template-columns: 1fr auto auto;
-      }
-
-      .desktop-nav {
-        display: none;
-      }
-
-      .header-action {
-        display: block;
-      }
-
-      .menu-toggle {
-        display: block;
-      }
-
-      .hero-grid,
-      .about-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .hero-copy {
-        max-width: 760px;
-      }
-
-      .hero-frame,
-      .hero-frame img {
-        min-height: 520px;
-        height: 520px;
-      }
-
-      .category-grid {
-        grid-template-columns: 1fr 1fr;
-      }
-
-      .category-card.large {
-        grid-column: 1 / -1;
-        min-height: 480px;
-      }
-
-      .products-grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
-
-      .cta {
-        grid-template-columns: 1fr 130px;
-      }
-
-      .footer-top {
-        grid-template-columns: 1fr 1fr;
-      }
-
-      .footer-brand {
-        grid-column: 1 / -1;
-      }
-    }
-
-    @media (max-width: 650px) {
-
-      :root {
-        --page-pad: 20px;
-      }
-
-      .site-header {
-        position: sticky;
-      }
-
-      .header-inner {
-        min-height: 70px;
-      }
-
-      .brand-lockup .mila {
-        font-size: 2.7rem;
-      }
-
-      .header-action {
-        display: none;
-      }
-
-      .mobile-nav {
-        position: fixed;
-        inset: 70px 0 0;
-        z-index: 99;
-        display: block;
-        padding: 30px var(--page-pad);
-        background: var(--cream);
-        border-top: var(--line);
-        transform: translateX(100%);
-        transition: transform .25s ease;
-      }
-
-      .mobile-nav.open {
-        transform: translateX(0);
-      }
-
-      .mobile-nav ul {
-        display: grid;
-        gap: 20px;
-        list-style: none;
-      }
-
-      .mobile-nav a {
-        font-family: var(--serif);
-        font-size: 2rem;
-      }
-
-      .hero {
-        padding-top: 44px;
-      }
-
-      .hero-title {
-        font-size: clamp(3.7rem, 19vw, 6rem);
-      }
-
-      .hero-description {
-        font-size: .92rem;
-      }
-
-      .hero-actions .button {
-        width: 100%;
-      }
-
-      .hero-frame,
-      .hero-frame img {
-        min-height: 410px;
-        height: 410px;
-      }
-
-      .pink-note {
-        right: 10px;
-        top: 18px;
-        width: 90px;
-        height: 90px;
-        font-size: .9rem;
-      }
-
-      .section-header {
-        grid-template-columns: 1fr;
-        gap: 12px;
-      }
-
-      .section-intro {
-        justify-self: start;
-      }
-
-      .category-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .category-card,
-      .category-card.large {
-        grid-column: auto;
-        min-height: 390px;
-      }
-
-      .products-grid {
-        grid-template-columns: 1fr 1fr;
-        gap: 8px;
-      }
-
-      .product-body {
-        padding: 11px;
-      }
-
-      .product-name {
-        font-size: 1.15rem;
-      }
-
-      .product-meta {
-        align-items: flex-start;
-        flex-direction: column;
-        gap: 8px;
-      }
-
-      .cta {
-        grid-template-columns: 1fr;
-      }
-
-      .cta-copy {
-        padding: 35px 24px;
-      }
-
-      .cta-mark {
-        min-height: 120px;
-        border-left: 0;
-        border-top: 1px solid rgba(255,253,245,.35);
-      }
-
-      /* Mila Bunny en móvil */
-      .bunny-stage {
-        min-height: auto;
-        width: 100%;
-        padding: 0;
-      }
-
-      .bunny {
-        width: 100%;
-        max-width: 520px;
-      }
-
-      .bunny-stage::after {
-        left: 12px;
-        top: 12px;
-      }
-
-      .about-title {
-        font-size: clamp(3rem, 15vw, 5rem);
-      }
-
-      .about-copy p {
-        font-size: .92rem;
-      }
-
-      .info-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .info-item {
-        min-height: auto;
-        border-right: 0;
-        border-bottom: var(--line);
-      }
-
-      .info-item:last-child {
-        border-bottom: 0;
-      }
-
-      .legal-grid {
-        grid-template-columns: 1fr;
-        gap: 32px;
-      }
-
-      .footer-top {
-        grid-template-columns: 1fr;
-        gap: 34px;
-      }
-
-      .footer-brand {
-        grid-column: auto;
-      }
-
-      .footer-bottom {
-        flex-direction: column;
-      }
-
-      .whatsapp {
-        right: 14px;
-        bottom: 14px;
-      }
-    }
-  </style>
+    .mobile-nav.open { transform: translateX(0); }
+    .mobile-nav ul { display: grid; gap: 20px; list-style: none; }
+    .mobile-nav a { font-family: var(--serif); font-size: 2rem; }
+    .hero { padding-top: 44px; }
+    .hero-title { font-size: clamp(3.7rem, 19vw, 6rem); }
+    .hero-description { font-size: .92rem; }
+    .hero-actions .button { width: 100%; }
+    .hero-frame, .hero-frame img { min-height: 410px; height: 410px; }
+    .pink-note { right: 10px; top: 18px; width: 90px; height: 90px; font-size: .9rem; }
+    .section-header { grid-template-columns: 1fr; gap: 12px; }
+    .section-intro { justify-self: start; }
+    .category-grid { grid-template-columns: 1fr; }
+    .category-card, .category-card.large { grid-column: auto; min-height: 390px; }
+    .products-grid { grid-template-columns: 1fr 1fr; gap: 8px; }
+    .product-body { padding: 11px; }
+    .product-name { font-size: 1.1rem; }
+    .product-meta { flex-direction: column; align-items: flex-start; gap: 6px; }
+    .product-actions { flex-wrap: wrap; }
+    .cta { grid-template-columns: 1fr; }
+    .cta-copy { padding: 35px 24px; }
+    .cta-mark { min-height: 120px; border-left: 0; border-top: 1px solid rgba(255,253,245,.35); }
+    .bunny-stage { min-height: 360px; }
+    .info-grid { grid-template-columns: 1fr; }
+    .info-item { min-height: auto; border-right: 0; border-bottom: var(--line); }
+    .info-item:last-child { border-bottom: 0; }
+    .legal-grid { grid-template-columns: 1fr; gap: 32px; }
+    .footer-top { grid-template-columns: 1fr; gap: 34px; }
+    .footer-brand { grid-column: auto; }
+    .footer-bottom { flex-direction: column; }
+    .whatsapp { right: 14px; bottom: 14px; }
+    .cart-drawer { width: 100%; }
+    .cart-item { grid-template-columns: 60px 1fr auto; }
+    .cart-item-img { width: 60px; height: 70px; }
+    .checkout-modal { padding: 22px 18px; }
+  }
+</style>
 </head>
-
 <body>
 
-  <header class="site-header">
-    <div class="container header-inner">
+<header class="site-header">
+  <div class="container header-inner">
+    <a href="#inicio" class="brand-lockup" aria-label="Mila CO. inicio">
+      <span class="mila">Mila</span>
+      <span class="co">CO.</span>
+    </a>
 
-      <a href="#inicio" class="brand-lockup" aria-label="Mila CO. inicio">
-        <span class="mila">Mila</span>
-        <span class="co">CO.</span>
-      </a>
-
-      <nav aria-label="Navegación principal">
-        <ul class="desktop-nav">
-          <li><a href="#categorias">Categorías</a></li>
-          <li><a href="#coleccion">Colección</a></li>
-          <li><a href="#sobre-mila">Sobre Mila</a></li>
-          <li><a href="#faq">Good to know</a></li>
-        </ul>
-      </nav>
-
-      <div class="header-action">
-        <a class="button" href="https://wa.me/573227334620?text=Hola%20Mila%2C%20quiero%20hacer%20un%20pedido." target="_blank" rel="noopener noreferrer">
-          Comprar
-        </a>
-      </div>
-
-      <button class="menu-toggle" id="menuToggle" type="button" aria-label="Abrir menú" aria-expanded="false" aria-controls="mobileNav">
-        <span></span>
-      </button>
-
-    </div>
-
-    <nav class="mobile-nav" id="mobileNav" aria-label="Navegación móvil">
-      <ul>
-        <li><a href="#inicio">Inicio</a></li>
+    <nav aria-label="Navegación principal">
+      <ul class="desktop-nav">
         <li><a href="#categorias">Categorías</a></li>
         <li><a href="#coleccion">Colección</a></li>
         <li><a href="#sobre-mila">Sobre Mila</a></li>
         <li><a href="#faq">Good to know</a></li>
-        <li><a href="#contacto">Contacto</a></li>
       </ul>
     </nav>
-  </header>
 
-  <main id="inicio">
-
-    <!-- LÍNEA DE MARCA -->
-    <div class="brand-strip" aria-label="Categorías de Mila">
-      <div class="brand-strip-track">
-        <span class="brand-strip-item">Maquillaje</span>
-        <span class="brand-strip-item">Skincare</span>
-        <span class="brand-strip-item">Accesorios</span>
-        <span class="brand-strip-item">Mila CO.</span>
-        <span class="brand-strip-item">Maquillaje</span>
-        <span class="brand-strip-item">Skincare</span>
-        <span class="brand-strip-item">Accesorios</span>
-        <span class="brand-strip-item">Mila CO.</span>
-      </div>
+    <div class="header-action">
+      <button class="cart-btn" id="cartBtnHeader" type="button" aria-label="Abrir carrito">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true">
+          <path d="M3 4h2l2.4 11.2a2 2 0 0 0 2 1.6h7.9a2 2 0 0 0 2-1.6L21 8H6"/>
+          <circle cx="10" cy="20" r="1.2"/><circle cx="18" cy="20" r="1.2"/>
+        </svg>
+        <span class="cart-count" id="cartCount" hidden>0</span>
+      </button>
     </div>
 
-    <!-- HERO -->
-    <section class="hero">
-      <div class="container hero-grid">
+    <button class="menu-toggle" id="menuToggle" type="button" aria-label="Abrir menú" aria-expanded="false" aria-controls="mobileNav">
+      <span></span>
+    </button>
+  </div>
 
-        <div class="hero-copy">
-          <div class="hero-kicker eyebrow">Beauty & Lifestyle</div>
+  <nav class="mobile-nav" id="mobileNav" aria-label="Navegación móvil">
+    <ul>
+      <li><a href="#inicio">Inicio</a></li>
+      <li><a href="#categorias">Categorías</a></li>
+      <li><a href="#coleccion">Colección</a></li>
+      <li><a href="#sobre-mila">Sobre Mila</a></li>
+      <li><a href="#faq">Good to know</a></li>
+      <li><a href="#contacto">Contacto</a></li>
+      <li><a href="#" id="cartBtnMobile">Carrito</a></li>
+    </ul>
+  </nav>
+</header>
 
-          <h1 class="hero-title display">
-            Descubre tus
-            <span class="script-word">favoritos.</span>
-          </h1>
+<main id="inicio">
 
-          <p class="hero-description">
-            Maquillaje, skincare y accesorios elegidos para que cada compra se sienta especial, desde el primer vistazo hasta que llega a tus manos.
-          </p>
+  <div class="brand-strip" aria-label="Categorías de Mila">
+    <div class="brand-strip-track">
+      <span class="brand-strip-item">Maquillaje</span>
+      <span class="brand-strip-item">Skincare</span>
+      <span class="brand-strip-item">Accesorios</span>
+      <span class="brand-strip-item">Mila CO.</span>
+      <span class="brand-strip-item">Maquillaje</span>
+      <span class="brand-strip-item">Skincare</span>
+      <span class="brand-strip-item">Accesorios</span>
+      <span class="brand-strip-item">Mila CO.</span>
+    </div>
+  </div>
 
-          <div class="hero-actions">
-            <a href="#coleccion" class="button">Ver colección</a>
-            <a href="#categorias" class="button secondary">Explorar Mila</a>
-          </div>
-
-          <div class="hero-signature">curated by Mila</div>
+  <section class="hero">
+    <div class="container hero-grid">
+      <div class="hero-copy">
+        <div class="hero-kicker eyebrow">Beauty & Lifestyle</div>
+        <h1 class="hero-title display">
+          Descubre tus
+          <span class="script-word">favoritos.</span>
+        </h1>
+        <p class="hero-description">
+          Maquillaje, skincare y accesorios elegidos para que cada compra se sienta especial, desde el primer vistazo hasta que llega a tus manos.
+        </p>
+        <div class="hero-actions">
+          <a href="#coleccion" class="button">Ver colección</a>
+          <a href="#categorias" class="button secondary">Explorar Mila</a>
         </div>
-
-        <div class="hero-visual">
-          <div class="hero-frame">
-            <img
-              src="imagenes/MilaPink.jpeg"
-              alt="Selección de productos de belleza"
-              width="1000"
-              height="1200"
-              fetchpriority="high"
-            />
-
-            <div class="hero-caption">
-              Pequeños detalles. Mucha personalidad.
-            </div>
-          </div>
-
-          <div class="pink-note" aria-hidden="true">
-            made<br>with<br>Mila
-          </div>
-        </div>
-
+        <div class="hero-signature">curated by Mila</div>
       </div>
-    </section>
-
-    <!-- MANIFIESTO VISUAL -->
-    <div class="manifesto" aria-hidden="true">
-      <div class="manifesto-track">
-        <span class="manifesto-word">beauty</span>
-        <span class="manifesto-word">style</span>
-        <span class="manifesto-word">little things</span>
-        <span class="manifesto-word">Mila</span>
-        <span class="manifesto-word">beauty</span>
-        <span class="manifesto-word">style</span>
-        <span class="manifesto-word">little things</span>
-        <span class="manifesto-word">Mila</span>
+      <div class="hero-visual">
+        <div class="hero-frame">
+          <img src="imagenes/MilaPink.jpeg" alt="Selección de productos de belleza" width="1000" height="1200" fetchpriority="high" onerror="this.style.display='none'"/>
+          <div class="hero-caption">Pequeños detalles. Mucha personalidad.</div>
+        </div>
+        <div class="pink-note" aria-hidden="true">made<br>with<br>Mila</div>
       </div>
     </div>
-
-    <!-- CATEGORÍAS -->
-    <section class="section" id="categorias">
-      <div class="container">
-
-        <div class="section-header">
-          <div>
-            <div class="eyebrow">Discover Mila</div>
-            <h2 class="section-title display">Lo que te gusta.</h2>
-          </div>
-
-          <p class="section-intro">
-            Una mezcla de belleza, cuidado y accesorios para encontrar ese producto que termina convirtiéndose en favorito.
-          </p>
-        </div>
-
-        <div class="category-grid">
-
-          <a class="category-card large" href="#coleccion">
-            <img
-              src="imagenes/clean.jpeg"
-              alt="Productos de skincare"
-              width="1000"
-              height="1200"
-              loading="lazy"
-              decoding="async"
-            />
-
-            <div class="category-label">
-              <strong>Skincare</strong>
-              <span>Care</span>
-            </div>
-          </a>
-
-          <a class="category-card" href="#coleccion">
-            <img
-              src="imagenes/gel-cejas.jpeg"
-              alt="Productos de maquillaje"
-              width="800"
-              height="1000"
-              loading="lazy"
-              decoding="async"
-            />
-
-            <div class="category-label">
-              <strong>Maquillaje</strong>
-              <span>Beauty</span>
-            </div>
-          </a>
-
-          <a class="category-card" href="#coleccion">
-            <img
-              src="imagenes/ganchos.jpg"
-              alt="Accesorios"
-              width="800"
-              height="1000"
-              loading="lazy"
-              decoding="async"
-            />
-
-            <div class="category-label">
-              <strong>Accesorios</strong>
-              <span>Details</span>
-            </div>
-          </a>
-
-        </div>
-      </div>
-    </section>
-
-    <!-- COLECCIÓN -->
-    <section class="section" id="coleccion">
-      <div class="container">
-
-        <div class="collection-heading">
-          <h3>Favoritos del momento</h3>
-          <span>Selected by Mila</span>
-        </div>
-
-        <div class="products-grid">
-
-          <article class="product-card">
-            <div class="product-image">
-              <img
-                src="imagenes/gel-cejas.jpeg"
-                alt="Gel de cejas Melu"
-                width="700"
-                height="770"
-                loading="lazy"
-                decoding="async"
-              />
-            </div>
-
-            <div class="product-body">
-              <div class="product-category">Maquillaje</div>
-              <h4 class="product-name">Gel de cejas Melu</h4>
-
-              <div class="product-meta">
-                <span class="price">$18.000</span>
-                <span class="product-tag">Favorito</span>
-              </div>
-            </div>
-          </article>
-
-          <article class="product-card">
-            <div class="product-image">
-              <img
-                src="imagenes/gel-hidratante.jpeg"
-                alt="Gel hidratante Girly"
-                width="700"
-                height="770"
-                loading="lazy"
-                decoding="async"
-              />
-            </div>
-
-            <div class="product-body">
-              <div class="product-category">Skincare</div>
-              <h4 class="product-name">Gel hidratante Girly</h4>
-
-              <div class="product-meta">
-                <span class="price">$29.000</span>
-                <span class="product-tag">Skincare</span>
-              </div>
-            </div>
-          </article>
-
-          <article class="product-card">
-            <div class="product-image">
-              <img
-                src="imagenes/rubor.jpeg"
-                alt="Rubor Ani-k Bonita"
-                width="700"
-                height="770"
-                loading="lazy"
-                decoding="async"
-              />
-            </div>
-
-            <div class="product-body">
-              <div class="product-category">Maquillaje</div>
-              <h4 class="product-name">Rubor Ani-k Bonita</h4>
-
-              <div class="product-meta">
-                <span class="price">$24.000</span>
-                <span class="product-tag">Favorito</span>
-              </div>
-            </div>
-          </article>
-
-          <article class="product-card">
-            <div class="product-image">
-              <img
-                src="imagenes/baselula.png"
-                alt="Base Lula"
-                width="700"
-                height="770"
-                loading="lazy"
-                decoding="async"
-              />
-            </div>
-
-            <div class="product-body">
-              <div class="product-category">Maquillaje</div>
-              <h4 class="product-name">Base profesional Lula</h4>
-
-              <div class="product-meta">
-                <span class="price">$21.000</span>
-                <span class="product-tag">Beauty</span>
-              </div>
-            </div>
-          </article>
-
-        </div>
-      </div>
-    </section>
-
-    <!-- CTA -->
-    <section class="section">
-      <div class="container">
-
-        <div class="cta">
-
-          <div class="cta-copy">
-            <div class="eyebrow">Need a little help?</div>
-
-            <h2 class="cta-title display">
-              ¿No sabes qué elegir?
-            </h2>
-
-            <p>
-              ¿Tienes algo en mente? Cuéntanos qué buscas y te ayudamos a encontrarlo.
-            </p>
-
-            <a
-              class="button cta-button"
-              href="https://wa.me/573227334620?text=Hola%20Mila%2C%20quiero%20ayuda%20para%20elegir%20un%20producto."
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Hablar con Mila
-            </a>
-          </div>
-
-          <div class="cta-mark" aria-hidden="true">M</div>
-
-        </div>
-      </div>
-    </section>
-
-    <!-- SOBRE MILA -->
-    <section class="section" id="sobre-mila">
-      <div class="container about-grid">
-
-        <div class="bunny-stage" aria-label="Mila Bunny, personaje de Mila">
-
-          <img
-            src="imagenes/Conejo.jpeg"
-            alt="Mila Bunny"
-            class="bunny"
-          >
-
-        </div>
-
-        <div class="about-copy">
-
-          <div class="eyebrow">
-            A little about Mila
-          </div>
-
-          <h2 class="about-title display">
-            Una experiencia que empieza antes de abrir la caja.
-          </h2>
-
-          <p>
-            Mila nace de una idea sencilla: crear una experiencia de compra que se sienta tan especial como aquello que eliges.
-          </p>
-
-          <p>
-            Desde descubrir un producto, pedirlo y recibirlo, cada detalle forma parte de la experiencia. No queremos que comprar en Mila sea solamente recibir un pedido. Queremos que abrirlo también sea parte de lo bonito.
-          </p>
-
-          <div class="about-signature">
-            Mila Bunny
-          </div>
-
-        </div>
-
-      </div>
-    </section>
-
-    <!-- GOOD TO KNOW -->
-    <section class="section good-to-know" id="good-to-know">
-      <div class="container">
-
-        <div class="section-header">
-
-          <div>
-            <div class="eyebrow">Good to know</div>
-            <h2 class="section-title display">
-              Antes de tu pedido.
-            </h2>
-          </div>
-
-          <p class="section-intro">
-            La información esencial, sin llenar la página de texto.
-          </p>
-
-        </div>
-
-        <div class="info-grid">
-
-          <div class="info-item">
-            <div class="info-number">01</div>
-            <h3>Envíos</h3>
-            <p>
-              Enviamos a toda Colombia. Antes de confirmar tu pedido te indicamos el valor y el tiempo estimado.
-            </p>
-          </div>
-
-          <div class="info-item">
-            <div class="info-number">02</div>
-            <h3>Disponibilidad</h3>
-            <p>
-              La disponibilidad se confirma al momento de realizar el pedido.
-            </p>
-          </div>
-
-          <div class="info-item">
-            <div class="info-number">03</div>
-            <h3>Asesoría</h3>
-            <p>
-              Si tienes dudas entre productos, escríbenos y te ayudamos a elegir.
-            </p>
-          </div>
-
-        </div>
-
-      </div>
-    </section>
-
-    <!-- FAQ -->
-    <section class="section" id="faq">
-      <div class="container">
-
-        <div class="section-header">
-
-          <div>
-            <div class="eyebrow">Good to know</div>
-            <h2 class="section-title display">
-              Preguntas frecuentes.
-            </h2>
-          </div>
-
-          <p class="section-intro">
-            Si no encuentras lo que buscas, siempre puedes escribirnos.
-          </p>
-
-        </div>
-
-        <div class="faq-grid">
-
-          <div class="faq-item">
-
-            <button class="faq-question" type="button" aria-expanded="false">
-              <span>¿Cómo hago un pedido?</span>
-              <span aria-hidden="true">+</span>
-            </button>
-
-            <div class="faq-answer">
-              Escríbenos por WhatsApp, indícanos qué producto te interesa y confirmamos disponibilidad, valor y envío.
-            </div>
-
-          </div>
-
-          <div class="faq-item">
-
-            <button class="faq-question" type="button" aria-expanded="false">
-              <span>¿Hacen envíos a toda Colombia?</span>
-              <span aria-hidden="true">+</span>
-            </button>
-
-            <div class="faq-answer">
-              Sí. Realizamos envíos nacionales. El valor y tiempo estimado dependen de la ciudad de destino.
-            </div>
-
-          </div>
-
-          <div class="faq-item">
-
-            <button class="faq-question" type="button" aria-expanded="false">
-              <span>¿Puedo pedir ayuda para elegir?</span>
-              <span aria-hidden="true">+</span>
-            </button>
-
-            <div class="faq-answer">
-              Sí. Cuéntanos qué buscas, qué te gusta o qué necesitas y te orientamos según los productos disponibles.
-            </div>
-
-          </div>
-
-          <div class="faq-item">
-
-            <button class="faq-question" type="button" aria-expanded="false">
-              <span>¿Cómo puedo contactarlos?</span>
-              <span aria-hidden="true">+</span>
-            </button>
-
-            <div class="faq-answer">
-              Puedes escribirnos directamente por WhatsApp mediante cualquiera de los botones de contacto de la página.
-            </div>
-
-          </div>
-
-        </div>
-      </div>
-    </section>
-
-    <!-- CONTACTO -->
-    <section class="section" id="contacto">
-      <div class="container">
-
-        <div class="cta">
-
-          <div class="cta-copy">
-
-            <div class="eyebrow">
-              Stay close
-            </div>
-
-            <h2 class="cta-title display">
-              Encontraste algo que te gustó.
-            </h2>
-
-            <p>
-              Escríbenos y continuamos tu pedido por WhatsApp.
-            </p>
-
-            <a
-              class="button cta-button"
-              href="https://wa.me/573227334620?text=Hola%20Mila%2C%20quiero%20hacer%20un%20pedido."
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Comprar por WhatsApp
-            </a>
-
-          </div>
-
-          <div class="cta-mark" aria-hidden="true">
-            M
-          </div>
-
-        </div>
-      </div>
-    </section>
-
-    <!-- AVISOS LEGALES -->
-    <section class="legal-section" id="legal">
-      <div class="container legal-grid">
-
-        <div class="legal-copy" id="terminos">
-
-          <h2>Términos y condiciones</h2>
-
-          <p>
-            Las compras están sujetas a disponibilidad, confirmación del pedido, condiciones de envío y demás condiciones informadas antes del pago. Esta sección debe completarse con las condiciones comerciales definitivas de Mila antes de publicar la tienda.
-          </p>
-
-        </div>
-
-        <div class="legal-copy" id="privacidad">
-
-          <h2>Política de privacidad</h2>
-
-          <p>
-            Mila tratará los datos suministrados por sus clientes únicamente para gestionar pedidos, atención y comunicaciones relacionadas con la compra, de acuerdo con la normativa colombiana aplicable. Esta sección debe completarse con la política de tratamiento de datos definitiva antes de publicar la tienda.
-          </p>
-
-        </div>
-
-      </div>
-    </section>
-
-  </main>
-
-  <footer class="footer">
+  </section>
+
+  <div class="manifesto" aria-hidden="true">
+    <div class="manifesto-track">
+      <span class="manifesto-word">beauty</span>
+      <span class="manifesto-word">style</span>
+      <span class="manifesto-word">little things</span>
+      <span class="manifesto-word">Mila</span>
+      <span class="manifesto-word">beauty</span>
+      <span class="manifesto-word">style</span>
+      <span class="manifesto-word">little things</span>
+      <span class="manifesto-word">Mila</span>
+    </div>
+  </div>
+
+  <section class="section" id="categorias">
     <div class="container">
-
-      <div class="footer-top">
-
-        <div class="footer-brand">
-
-          <div class="footer-logo">
-            Mila
-            <small>CO. · Beauty & Lifestyle</small>
-          </div>
-
-          <p>
-            Pequeños detalles. Mucha personalidad.
-          </p>
-
+      <div class="section-header">
+        <div>
+          <div class="eyebrow">Discover Mila</div>
+          <h2 class="section-title display">Lo que te gusta.</h2>
         </div>
-
-        <div class="footer-col">
-
-          <h3>Explore</h3>
-
-          <ul class="footer-links">
-            <li><a href="#categorias">Categorías</a></li>
-            <li><a href="#coleccion">Colección</a></li>
-            <li><a href="#sobre-mila">A little about Mila</a></li>
-            <li><a href="#faq">Good to know</a></li>
-          </ul>
-
-        </div>
-
-        <div class="footer-col">
-
-          <h3>Info</h3>
-
-          <ul class="footer-links">
-            <li><a href="#terminos">Términos y condiciones</a></li>
-            <li><a href="#privacidad">Privacidad</a></li>
-            <li>
-              <a
-                href="https://wa.me/573227334620"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                WhatsApp
-              </a>
-            </li>
-          </ul>
-
-        </div>
-
+        <p class="section-intro">
+          Una mezcla de belleza, cuidado y accesorios para encontrar ese producto que termina convirtiéndose en favorito.
+        </p>
       </div>
-
-      <div class="footer-bottom">
-        <span>©️ 2026 Mila CO. Todos los derechos reservados.</span>
-        <span>curated by Mila</span>
+      <div class="category-grid">
+        <a class="category-card large" href="#coleccion" data-cat-filter="Skincare">
+          <img src="imagenes/clean.jpeg" alt="Productos de skincare" width="1000" height="1200" loading="lazy" onerror="this.style.display='none'"/>
+          <div class="category-label"><strong>Skincare</strong><span>Care</span></div>
+        </a>
+        <a class="category-card" href="#coleccion" data-cat-filter="Maquillaje">
+          <img src="imagenes/gel-cejas.jpeg" alt="Productos de maquillaje" width="800" height="1000" loading="lazy" onerror="this.style.display='none'"/>
+          <div class="category-label"><strong>Maquillaje</strong><span>Beauty</span></div>
+        </a>
+        <a class="category-card" href="#coleccion" data-cat-filter="Accesorios">
+          <img src="imagenes/ganchos.jpeg" alt="Accesorios" width="800" height="1000" loading="lazy" onerror="this.style.display='none'"/>
+          <div class="category-label"><strong>Accesorios</strong><span>Details</span></div>
+        </a>
       </div>
-
     </div>
-  </footer>
+  </section>
 
-  <a
-    class="whatsapp"
-    href="https://wa.me/573227334620?text=Hola%20Mila%2C%20quiero%20hacer%20un%20pedido."
-    target="_blank"
-    rel="noopener noreferrer"
-    aria-label="Contactar a Mila por WhatsApp"
-  >
+  <section class="section" id="coleccion">
+    <div class="container">
+      <div class="collection-heading">
+        <h3>Favoritos del momento</h3>
+        <span>Selected by Mila</span>
+      </div>
+      <div class="products-grid" id="favoritesGrid"></div>
 
-    <svg
-      viewBox="0 0 24 24"
-      fill="none"
-      aria-hidden="true"
-    >
+      <div class="collection-heading" style="margin-top: 70px;">
+        <h3>Catálogo completo</h3>
+        <span id="catalogCount">— productos</span>
+      </div>
 
-      <path
-        d="M20 11.5a8.2 8.2 0 0 1-12.2 7.1L4 20l1.5-3.6A8.2 8.2 0 1 1 20 11.5Z"
-        stroke="currentColor"
-        stroke-width="1.7"
-      />
+      <div class="catalog-toolbar">
+        <div class="catalog-search">
+          <input type="search" id="searchInput" placeholder="Buscar producto por nombre o marca..." aria-label="Buscar producto"/>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+            <circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/>
+          </svg>
+        </div>
+        <div class="catalog-filters" id="categoryFilters" aria-label="Filtrar por categoría"></div>
+        <div class="catalog-filters" id="brandFilters" aria-label="Filtrar por marca"></div>
+      </div>
 
-      <path
-        d="M8.2 8.3c.2-.4.4-.4.7-.4h.5c.2 0 .4.1.5.4l.7 1.6c.1.2.1.4 0 .6l-.5.7c-.1.2-.1.3 0 .5.4.7 1 1.3 1.7 1.7.2.1.4.1.5 0l.7-.5c.2-.1.4-.1.6 0l1.6.7c.2.1.4.3.4.5v.5c0 .3-.1.5-.4.7-.4.3-1 .4-1.5.3-1-.2-2.2-.8-3.3-1.8-1.1-1-1.8-2.2-2.1-3.2-.2-.7-.1-1.3.3-1.6Z"
-        fill="currentColor"
-      />
+      <div class="products-grid" id="productsGrid"></div>
+      <div class="catalog-empty" id="catalogEmpty" hidden>
+        <p>No encontramos productos con ese filtro.</p>
+        <small>Prueba con otra categoría, marca o palabra.</small>
+      </div>
+    </div>
+  </section>
 
-    </svg>
+  <section class="section">
+    <div class="container">
+      <div class="cta">
+        <div class="cta-copy">
+          <div class="eyebrow">Need a little help?</div>
+          <h2 class="cta-title display">¿No sabes qué elegir?</h2>
+          <p>¿Tienes algo en mente? Cuéntanos qué buscas y te ayudamos a encontrarlo.</p>
+          <a class="button cta-button" href="https://wa.me/573227334620?text=Hola%20Mila%2C%20quiero%20ayuda%20para%20elegir%20un%20producto." target="_blank" rel="noopener noreferrer">
+            Hablar con Mila
+          </a>
+        </div>
+        <div class="cta-mark" aria-hidden="true">M</div>
+      </div>
+    </div>
+  </section>
 
-  </a>
+  <section class="section" id="sobre-mila">
+    <div class="container about-grid">
+      <div class="bunny-stage" aria-label="Mila Bunny, personaje de Mila">
+        <img src="imagenes/Conejo.jpeg" alt="Mila Bunny" class="bunny" onerror="this.style.display='none'"/>
+      </div>
+      <div class="about-copy">
+        <div class="eyebrow">A little about Mila</div>
+        <h2 class="about-title display">Una experiencia que empieza antes de abrir la caja.</h2>
+        <p>Mila nace de una idea sencilla: crear una experiencia de compra que se sienta tan especial como aquello que eliges.</p>
+        <p>Desde descubrir un producto, pedirlo y recibirlo, cada detalle forma parte de la experiencia. No queremos que comprar en Mila sea solamente recibir un pedido. Queremos que abrirlo también sea parte de lo bonito.</p>
+        <div class="about-signature">Mila Bunny</div>
+      </div>
+    </div>
+  </section>
 
-  <script>
-    (() => {
-      "use strict";
+  <section class="section good-to-know" id="good-to-know">
+    <div class="container">
+      <div class="section-header">
+        <div>
+          <div class="eyebrow">Good to know</div>
+          <h2 class="section-title display">Antes de tu pedido.</h2>
+        </div>
+        <p class="section-intro">La información esencial, sin llenar la página de texto.</p>
+      </div>
+      <div class="info-grid">
+        <div class="info-item">
+          <div class="info-number">01</div>
+          <h3>Envíos</h3>
+          <p>Enviamos a toda Colombia. Antes de confirmar tu pedido te indicamos el valor y el tiempo estimado.</p>
+        </div>
+        <div class="info-item">
+          <div class="info-number">02</div>
+          <h3>Disponibilidad</h3>
+          <p>La disponibilidad se confirma al momento de realizar el pedido.</p>
+        </div>
+        <div class="info-item">
+          <div class="info-number">03</div>
+          <h3>Asesoría</h3>
+          <p>Si tienes dudas entre productos, escríbenos y te ayudamos a elegir.</p>
+        </div>
+      </div>
+    </div>
+  </section>
 
-      const menuToggle = document.getElementById("menuToggle");
-      const mobileNav = document.getElementById("mobileNav");
+  <section class="section" id="faq">
+    <div class="container">
+      <div class="section-header">
+        <div>
+          <div class="eyebrow">Good to know</div>
+          <h2 class="section-title display">Preguntas frecuentes.</h2>
+        </div>
+        <p class="section-intro">Si no encuentras lo que buscas, siempre puedes escribirnos.</p>
+      </div>
+      <div class="faq-grid">
+        <div class="faq-item">
+          <button class="faq-question" type="button" aria-expanded="false">
+            <span>¿Cómo hago un pedido?</span><span aria-hidden="true">+</span>
+          </button>
+          <div class="faq-answer">Elige tus productos, añádelos al carrito, completa tus datos y envía el pedido por WhatsApp o paga en línea. Confirmamos disponibilidad y te acompañamos en el proceso.</div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" type="button" aria-expanded="false">
+            <span>¿Hacen envíos a toda Colombia?</span><span aria-hidden="true">+</span>
+          </button>
+          <div class="faq-answer">Sí. Realizamos envíos nacionales. El valor y tiempo estimado dependen de la ciudad de destino.</div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" type="button" aria-expanded="false">
+            <span>¿Puedo pedir ayuda para elegir?</span><span aria-hidden="true">+</span>
+          </button>
+          <div class="faq-answer">Sí. Cuéntanos qué buscas, qué te gusta o qué necesitas y te orientamos según los productos disponibles.</div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" type="button" aria-expanded="false">
+            <span>¿Cómo puedo contactarlos?</span><span aria-hidden="true">+</span>
+          </button>
+          <div class="faq-answer">Puedes escribirnos directamente por WhatsApp al +57 322 733 4620 o usar cualquiera de los botones de contacto de la página.</div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-      if (menuToggle && mobileNav) {
+  <section class="section" id="contacto">
+    <div class="container">
+      <div class="cta">
+        <div class="cta-copy">
+          <div class="eyebrow">Stay close</div>
+          <h2 class="cta-title display">Encontraste algo que te gustó.</h2>
+          <p>Escríbenos y continuamos tu pedido por WhatsApp.</p>
+          <a class="button cta-button" href="https://wa.me/573227334620?text=Hola%20Mila%2C%20quiero%20hacer%20un%20pedido." target="_blank" rel="noopener noreferrer">
+            Comprar por WhatsApp
+          </a>
+        </div>
+        <div class="cta-mark" aria-hidden="true">M</div>
+      </div>
+    </div>
+  </section>
 
-        menuToggle.addEventListener("click", () => {
+  <section class="legal-section" id="legal">
+    <div class="container legal-grid">
+      <div class="legal-copy" id="terminos">
+        <h2>Términos y condiciones</h2>
+        <p>Las compras están sujetas a disponibilidad, confirmación del pedido, condiciones de envío y demás condiciones informadas antes del pago. Esta sección debe completarse con las condiciones comerciales definitivas de Mila antes de publicar la tienda.</p>
+      </div>
+      <div class="legal-copy" id="privacidad">
+        <h2>Política de privacidad</h2>
+        <p>Mila tratará los datos suministrados por sus clientes únicamente para gestionar pedidos, atención y comunicaciones relacionadas con la compra, de acuerdo con la normativa colombiana aplicable. Esta sección debe completarse con la política de tratamiento de datos definitiva antes de publicar la tienda.</p>
+      </div>
+    </div>
+  </section>
 
-          const isOpen = mobileNav.classList.toggle("open");
+</main>
 
-          menuToggle.setAttribute(
-            "aria-expanded",
-            String(isOpen)
-          );
+<footer class="footer">
+  <div class="container">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <div class="footer-logo">Mila<small>CO. · Beauty & Lifestyle</small></div>
+        <p>Pequeños detalles. Mucha personalidad.</p>
+      </div>
+      <div class="footer-col">
+        <h3>Explore</h3>
+        <ul class="footer-links">
+          <li><a href="#categorias">Categorías</a></li>
+          <li><a href="#coleccion">Colección</a></li>
+          <li><a href="#sobre-mila">A little about Mila</a></li>
+          <li><a href="#faq">Good to know</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h3>Info</h3>
+        <ul class="footer-links">
+          <li><a href="#terminos">Términos y condiciones</a></li>
+          <li><a href="#privacidad">Privacidad</a></li>
+          <li><a href="https://wa.me/573227334620" target="_blank" rel="noopener noreferrer">WhatsApp</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Mila CO. Todos los derechos reservados.</span>
+      <span>curated by Mila</span>
+    </div>
+  </div>
+</footer>
 
-          document.body.classList.toggle(
-            "menu-open",
-            isOpen
-          );
+<a class="whatsapp" href="https://wa.me/573227334620?text=Hola%20Mila%2C%20quiero%20hacer%20un%20pedido." target="_blank" rel="noopener noreferrer" aria-label="Contactar a Mila por WhatsApp">
+  <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+    <path d="M20 11.5a8.2 8.2 0 0 1-12.2 7.1L4 20l1.5-3.6A8.2 8.2 0 1 1 20 11.5Z" stroke="currentColor" stroke-width="1.7"/>
+    <path d="M8.2 8.3c.2-.4.4-.4.7-.4h.5c.2 0 .4.1.5.4l.7 1.6c.1.2.1.4 0 .6l-.5.7c-.1.2-.1.3 0 .5.4.7 1 1.3 1.7 1.7.2.1.4.1.5 0l.7-.5c.2-.1.4-.1.6 0l1.6.7c.2.1.4.3.4.5v.5c0 .3-.1.5-.4.7-.4.3-1 .4-1.5.3-1-.2-2.2-.8-3.3-1.8-1.1-1-1.8-2.2-2.1-3.2-.2-.7-.1-1.3.3-1.6Z" fill="currentColor"/>
+  </svg>
+</a>
 
-        });
+<!-- CART DRAWER -->
+<div class="cart-overlay" id="cartOverlay" aria-hidden="true"></div>
+<aside class="cart-drawer" id="cartDrawer" aria-label="Carrito de compras" aria-hidden="true">
+  <div class="cart-drawer-header">
+    <h2>Tu carrito</h2>
+    <button class="cart-close" id="cartClose" type="button" aria-label="Cerrar carrito">✕</button>
+  </div>
+  <div class="cart-body" id="cartBody"></div>
+  <div class="cart-footer" id="cartFooter" hidden>
+    <div class="cart-subtotal">
+      <span>Subtotal</span>
+      <strong id="cartSubtotal">$0</strong>
+    </div>
+    <button class="button" id="checkoutBtn" type="button">Continuar con el pedido</button>
+  </div>
+</aside>
 
-        mobileNav.querySelectorAll("a").forEach((link) => {
+<!-- CHECKOUT MODAL -->
+<div class="modal-overlay" id="checkoutOverlay" aria-hidden="true">
+  <div class="checkout-modal" role="dialog" aria-modal="true" aria-labelledby="checkoutTitle">
+    <div class="eyebrow">Checkout</div>
+    <h2 id="checkoutTitle" class="display">Completa tu pedido</h2>
+    <p class="intro">Cuéntanos dónde te lo enviamos y elige cómo quieres pagar.</p>
 
-          link.addEventListener("click", () => {
+    <form class="checkout-form" id="checkoutForm" novalidate>
+      <div class="form-row">
+        <label for="ckName">Nombre completo</label>
+        <input type="text" id="ckName" name="name" required autocomplete="name" placeholder="Tu nombre"/>
+      </div>
+      <div class="form-row">
+        <label for="ckPhone">Teléfono / WhatsApp</label>
+        <input type="tel" id="ckPhone" name="phone" required autocomplete="tel" placeholder="Ej. 300 123 4567"/>
+      </div>
+      <div class="form-row">
+        <label for="ckCity">Ciudad</label>
+        <input type="text" id="ckCity" name="city" required autocomplete="address-level2" placeholder="Ej. Bogotá"/>
+      </div>
+      <div class="form-row">
+        <label for="ckAddress">Dirección</label>
+        <input type="text" id="ckAddress" name="address" required autocomplete="street-address" placeholder="Calle, número, barrio"/>
+      </div>
+      <div class="form-row">
+        <label for="ckNotes">Notas (opcional)</label>
+        <textarea id="ckNotes" name="notes" placeholder="Referencias, indicaciones especiales..."></textarea>
+      </div>
 
-            mobileNav.classList.remove("open");
+      <div class="checkout-total">
+        <span>Total del pedido</span>
+        <strong id="checkoutTotal">$0</strong>
+      </div>
 
-            menuToggle.setAttribute(
-              "aria-expanded",
-              "false"
-            );
+      <div class="checkout-actions">
+        <button type="button" class="button" id="payWhatsappBtn">Pedir por WhatsApp</button>
+        <button type="button" class="button secondary" id="payWompiBtn">Pagar en línea (Wompi)</button>
+      </div>
 
-            document.body.classList.remove(
-              "menu-open"
-            );
+      <div class="checkout-note" id="wompiNote">
+        <strong>Pago en línea próximamente</strong>
+        Estamos terminando de conectar la pasarela Wompi. Por ahora completa tu pedido por WhatsApp y te enviamos los datos de pago.
+      </div>
+    </form>
 
-          });
+    <button type="button" class="cart-close" id="checkoutClose" style="position:absolute; top:16px; right:16px;" aria-label="Cerrar checkout">✕</button>
+  </div>
+</div>
 
-        });
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
 
+<script>
+(() => {
+  "use strict";
+
+  /* =========================================================
+     CONFIG
+  ========================================================= */
+  const CONFIG = {
+    whatsappNumber: "573227334620",
+    currency: "COP",
+    // 👇 Cuando tengas la llave pública de Wompi, pégala aquí.
+    // Mientras esté el placeholder, el botón de Wompi muestra aviso.
+    wompiPublicKey: "TU_PUBLIC_KEY_WOMPI_AQUI",
+    wompiCurrency: "COP"
+  };
+
+  /* =========================================================
+     PRODUCTOS — extraídos del inventario Mila CO.
+     Categorías asignadas por lógica de producto.
+     Favoritos: productos destacados del mes.
+  ========================================================= */
+  const PRODUCTS = [
+    // BLOOMSHELL
+    { code: "BLOOM-PRIMER", name: "Bloom Primer", brand: "Bloomshell", category: "Maquillaje", price: 19900, image: "imagenes/bloom-primer.jpeg", stock: 8, favorite: false },
+    { code: "BLOOM-CON-01", name: "My Concealer 20 ml · 01 Natural", brand: "Bloomshell", category: "Maquillaje", price: 29900, image: "imagenes/bloom-con-01.jpeg", stock: 2, favorite: false },
+    { code: "BLOOM-CON-02", name: "My Concealer 20 ml · 02 Beige", brand: "Bloomshell", category: "Maquillaje", price: 29900, image: "imagenes/bloom-con-02.jpeg", stock: 3, favorite: false },
+    { code: "BLOOM-CON-03", name: "My Concealer 20 ml · 03 Vainilla", brand: "Bloomshell", category: "Maquillaje", price: 29900, image: "imagenes/bloom-con-03.jpeg", stock: 3, favorite: false },
+    { code: "BLOOM-LAM", name: "Bloom Lamination · Cejas", brand: "Bloomshell", category: "Maquillaje", price: 18900, image: "imagenes/bloom-lam.jpeg", stock: 8, favorite: false },
+    { code: "BLOOM-FL-02", name: "Bloom Floral Liquid · 02 Durazno", brand: "Bloomshell", category: "Maquillaje", price: 22900, image: "imagenes/bloom-fl-02.jpeg", stock: 5, favorite: false },
+    { code: "BLOOM-FL-04", name: "Bloom Floral Liquid · 04 Lula", brand: "Bloomshell", category: "Maquillaje", price: 22900, image: "imagenes/bloom-fl-04.jpeg", stock: 3, favorite: true },
+    { code: "BLOOM-JELLY-01", name: "Bloom Jelly Cream · Tono 01", brand: "Bloomshell", category: "Skincare", price: 17900, image: "imagenes/bloom-jelly-01.jpeg", stock: 2, favorite: false },
+    { code: "BLOOM-JELLY-02", name: "Bloom Jelly Cream · Tono 02", brand: "Bloomshell", category: "Skincare", price: 17900, image: "imagenes/bloom-jelly-02.jpeg", stock: 4, favorite: true },
+    { code: "BLOOM-JELLY-03", name: "Bloom Jelly Cream · Tono 03", brand: "Bloomshell", category: "Skincare", price: 17900, image: "imagenes/bloom-jelly-03.jpeg", stock: 2, favorite: false },
+    { code: "BLOOM-POL-02", name: "Polvo suelto Bloom · 02 Pink", brand: "Bloomshell", category: "Maquillaje", price: 27900, image: "imagenes/bloom-pol-02.jpeg", stock: 3, favorite: false },
+    { code: "BLOOM-POL-03", name: "Polvo suelto Bloom · 03 Natural", brand: "Bloomshell", category: "Maquillaje", price: 27900, image: "imagenes/bloom-pol-03.jpeg", stock: 5, favorite: false },
+
+    // GIRLY
+    { code: "GIRLY-GEL", name: "Gel hidratante de aloe vera Girly · mini", brand: "Girly", category: "Skincare", price: 16900, image: "imagenes/girly-gel.jpeg", stock: 25, favorite: true },
+
+    // TRUE LOVER
+    { code: "TL-COR-02", name: "Corrector hidratante True Lover · Tono 02", brand: "True Lover", category: "Maquillaje", price: 9900, image: "imagenes/tl-cor-02.jpeg", stock: 5, favorite: false },
+    { code: "TL-COR-03", name: "Corrector hidratante True Lover · Tono 03", brand: "True Lover", category: "Maquillaje", price: 9900, image: "imagenes/tl-cor-03.jpeg", stock: 5, favorite: false },
+    { code: "TL-COR-04", name: "Corrector hidratante True Lover · Tono 04", brand: "True Lover", category: "Maquillaje", price: 9900, image: "imagenes/tl-cor-04.jpeg", stock: 5, favorite: false },
+    { code: "TL-ILUM-04", name: "Iluminador líquido True Lover · Tono 04", brand: "True Lover", category: "Maquillaje", price: 8900, image: "imagenes/tl-ilum-04.jpeg", stock: 5, favorite: false },
+    { code: "TL-ILUM-05", name: "Iluminador líquido True Lover · Tono 05", brand: "True Lover", category: "Maquillaje", price: 8900, image: "imagenes/tl-ilum-05.jpeg", stock: 5, favorite: true },
+    { code: "TL-ILUM-06", name: "Iluminador líquido True Lover · Tono 06", brand: "True Lover", category: "Maquillaje", price: 8900, image: "imagenes/tl-ilum-06.jpeg", stock: 5, favorite: false },
+    { code: "TL-DELINEADOR", name: "Delineador de ojos True Lover", brand: "True Lover", category: "Maquillaje", price: 7900, image: "imagenes/tl-delineador.jpeg", stock: 2, favorite: true },
+    { code: "TL-PALETA-CAF", name: "Paleta de sombras True Lover · Café", brand: "True Lover", category: "Maquillaje", price: 11900, image: "imagenes/tl-paleta-caf.jpeg", stock: 4, favorite: false },
+    { code: "TL-PALETA-ROS", name: "Paleta de sombras True Lover · Rosa", brand: "True Lover", category: "Maquillaje", price: 11900, image: "imagenes/tl-paleta-ros.jpeg", stock: 4, favorite: false },
+    { code: "TL-PALETA-SAL", name: "Paleta de sombras True Lover · Salmón", brand: "True Lover", category: "Maquillaje", price: 11900, image: "imagenes/tl-paleta-sal.jpeg", stock: 2, favorite: false },
+    { code: "TL-TINTA-01", name: "Tinta para labios True Lover · 01 Magenta", brand: "True Lover", category: "Maquillaje", price: 7900, image: "imagenes/tl-tinta-01.jpeg", stock: 5, favorite: false },
+    { code: "TL-TINTA-02", name: "Tinta para labios True Lover · 02 Coral", brand: "True Lover", category: "Maquillaje", price: 7900, image: "imagenes/tl-tinta-02.jpeg", stock: 5, favorite: false },
+    { code: "TL-TINTA-03", name: "Tinta para labios True Lover · 03 Rojo", brand: "True Lover", category: "Maquillaje", price: 7900, image: "imagenes/tl-tinta-03.jpeg", stock: 5, favorite: false },
+
+    // ENGOL COLLECTIONS
+    { code: "ENGOL-GLOSS", name: "Postres & Gloss Engol Collections", brand: "Engol Collections", category: "Maquillaje", price: 34900, image: "imagenes/engol-gloss.jpeg", stock: 13, favorite: true },
+
+    // LULA
+    { code: "LULA-BASE-02", name: "Base líquida Mate Lula · Tono 02", brand: "Lula", category: "Maquillaje", price: 24900, image: "imagenes/lula-base-02.jpeg", stock: 3, favorite: false },
+    { code: "LULA-BASE-03", name: "Base líquida Mate Lula · Tono 03", brand: "Lula", category: "Maquillaje", price: 24900, image: "imagenes/lula-base-03.jpeg", stock: 2, favorite: true },
+
+    // MELU
+    { code: "MELU-GEL", name: "Gel fijador de cejas Melu", brand: "Melu", category: "Maquillaje", price: 18900, image: "imagenes/melu-gel.jpeg", stock: 10, favorite: true },
+
+    // ANI-K
+    { code: "ANIK-SB-05", name: "Serum Blush 05 Berry Me", brand: "Ani-K", category: "Maquillaje", price: 25900, image: "imagenes/anik-sb-05.jpeg", stock: 3, favorite: false },
+    { code: "ANIK-SB-03", name: "Serum Blush 03 Toasty", brand: "Ani-K", category: "Maquillaje", price: 25900, image: "imagenes/anik-sb-03.jpeg", stock: 3, favorite: false },
+    { code: "ANIK-SB-04", name: "Serum Blush 04 That Girl", brand: "Ani-K", category: "Maquillaje", price: 25900, image: "imagenes/anik-sb-04.jpeg", stock: 3, favorite: false },
+    { code: "ANIK-MC", name: "Pestañina Café a Prueba de Agua", brand: "Ani-K", category: "Maquillaje", price: 21900, image: "imagenes/anik-mc.jpeg", stock: 3, favorite: false },
+    { code: "ANIK-GC", name: "Gel de Cejas Ani-K", brand: "Ani-K", category: "Maquillaje", price: 19900, image: "imagenes/anik-gc.jpeg", stock: 3, favorite: false },
+    { code: "ANIK-FL", name: "Pestañina Flash Lash", brand: "Ani-K", category: "Maquillaje", price: 21900, image: "imagenes/anik-fl.jpeg", stock: 3, favorite: false },
+    { code: "ANIK-COR-00", name: "Corrector Grande 00 Snow", brand: "Ani-K", category: "Maquillaje", price: 22900, image: "imagenes/anik-cor-00.jpeg", stock: 3, favorite: false },
+    { code: "ANIK-COR-04", name: "Corrector Grande 04 Ginger", brand: "Ani-K", category: "Maquillaje", price: 22900, image: "imagenes/anik-cor-04.jpeg", stock: 3, favorite: false },
+    { code: "ANIK-GB-02", name: "Gloss Bonita 02 Kim", brand: "Ani-K", category: "Maquillaje", price: 19900, image: "imagenes/anik-gb-02.jpeg", stock: 3, favorite: false },
+    { code: "ANIK-GB-01", name: "Gloss Bonita 01 Diva", brand: "Ani-K", category: "Maquillaje", price: 19900, image: "imagenes/anik-gb-01.jpeg", stock: 3, favorite: false },
+    { code: "ANIK-COR-02-1", name: "Corrector Grande 02-1", brand: "Ani-K", category: "Maquillaje", price: 22900, image: "imagenes/anik-cor-02-1.jpeg", stock: 4, favorite: false },
+    { code: "ANIK-COR-01", name: "Corrector Grande 01 Bone", brand: "Ani-K", category: "Maquillaje", price: 22900, image: "imagenes/anik-cor-01.jpeg", stock: 4, favorite: false },
+    { code: "ANIK-KE-03", name: "Kit de Cejas 03 Dark", brand: "Ani-K", category: "Maquillaje", price: 19900, image: "imagenes/anik-ke-03.jpeg", stock: 2, favorite: false },
+    { code: "ANIK-KE-02", name: "Kit de Cejas 02 Medium", brand: "Ani-K", category: "Maquillaje", price: 19900, image: "imagenes/anik-ke-02.jpeg", stock: 2, favorite: false },
+    { code: "ANIK-KE-01", name: "Kit de Cejas 01 Light", brand: "Ani-K", category: "Maquillaje", price: 19900, image: "imagenes/anik-ke-01.jpeg", stock: 2, favorite: false },
+    { code: "ANIK-CL-02", name: "Contorno Líquido 02 Hollywood Vibes", brand: "Ani-K", category: "Maquillaje", price: 25900, image: "imagenes/anik-cl-02.jpeg", stock: 2, favorite: false },
+
+    // TRENDY
+    { code: "STN-BCC1366", name: "Brillo Cherry Color", brand: "Trendy", category: "Maquillaje", price: 6900, image: "imagenes/stn-bcc1366.jpeg", stock: 5, favorite: false },
+    { code: "STN-SPG1766", name: "Sombra Escarcha Party Glitter", brand: "Trendy", category: "Maquillaje", price: 6900, image: "imagenes/stn-spg1766.jpeg", stock: 5, favorite: false },
+    { code: "STN-DCT2573", name: "Delineador café Rainbow", brand: "Trendy", category: "Maquillaje", price: 11900, image: "imagenes/stn-dct2573.jpeg", stock: 5, favorite: false },
+    { code: "STN-CQT1981", name: "Contorno en crema Queen", brand: "Trendy", category: "Maquillaje", price: 12900, image: "imagenes/stn-cqt1981.jpeg", stock: 5, favorite: false },
+    { code: "STN-PBB1462", name: "Polvos compactos Banana Boom", brand: "Trendy", category: "Maquillaje", price: 12900, image: "imagenes/stn-pbb1462.jpeg", stock: 5, favorite: false },
+    { code: "STN-P112", name: "Brocha individual lengua de gato", brand: "Trendy", category: "Accesorios", price: 6900, image: "imagenes/stn-p112.jpeg", stock: 5, favorite: false },
+    { code: "R1602-02", name: "Rubor doble Mia · tono 02", brand: "Trendy", category: "Maquillaje", price: 29900, image: "imagenes/r1602-02.jpeg", stock: 3, favorite: false },
+    { code: "R1602-01", name: "Rubor doble Mia · tono 01", brand: "Trendy", category: "Maquillaje", price: 29900, image: "imagenes/r1602-01.jpeg", stock: 2, favorite: false },
+    { code: "BLS2258-06", name: "Brillo Lip Oil Sandía · tono 06", brand: "Trendy", category: "Maquillaje", price: 4900, image: "imagenes/bls2258-06.jpeg", stock: 5, favorite: false },
+    { code: "ABT1742-01", name: "Rubor en crema Aura · tono 01", brand: "Trendy", category: "Maquillaje", price: 7900, image: "imagenes/abt1742-01.jpeg", stock: 5, favorite: false },
+    { code: "STN-TGT1896", name: "Tinta gloss Corazón", brand: "Trendy", category: "Maquillaje", price: 5900, image: "imagenes/stn-tgt1896.jpeg", stock: 6, favorite: false },
+    { code: "CMT547-00", name: "Corrector Magic Mini · tono 00", brand: "Trendy", category: "Maquillaje", price: 12900, image: "imagenes/cmt547-00.jpeg", stock: 2, favorite: false },
+    { code: "CMT547-03", name: "Corrector Magic Mini · tono 03", brand: "Trendy", category: "Maquillaje", price: 12900, image: "imagenes/cmt547-03.jpeg", stock: 3, favorite: false },
+    { code: "CE10", name: "Delineador doble Trendy Cat Eye", brand: "Trendy", category: "Maquillaje", price: 16900, image: "imagenes/ce10.jpeg", stock: 5, favorite: false },
+    { code: "STN-CHT1253", name: "Iluminador en trío Cloud", brand: "Trendy", category: "Maquillaje", price: 6900, image: "imagenes/stn-cht1253.jpeg", stock: 5, favorite: false },
+    { code: "STN-PSA2483", name: "Polvo suelto Arenita Bob Esponja", brand: "Trendy", category: "Maquillaje", price: 16900, image: "imagenes/stn-psa2483.jpeg", stock: 5, favorite: false }
+  ];
+
+  const CATEGORIES = ["Todos", "Maquillaje", "Skincare", "Accesorios"];
+  const BRANDS = ["Todas", ...Array.from(new Set(PRODUCTS.map(p => p.brand))).sort()];
+
+  /* =========================================================
+     HELPERS
+  ========================================================= */
+  const $ = (sel, ctx = document) => ctx.querySelector(sel);
+  const $$ = (sel, ctx = document) => Array.from(ctx.querySelectorAll(sel));
+
+  const formatPrice = (value) => {
+    const n = Math.round(Number(value) || 0);
+    return "$" + n.toLocaleString("es-CO");
+  };
+
+  let toastTimer;
+  const showToast = (msg) => {
+    const toast = $("#toast");
+    toast.textContent = msg;
+    toast.classList.add("show");
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(() => toast.classList.remove("show"), 2600);
+  };
+
+  /* =========================================================
+     STATE
+  ========================================================= */
+  let cart = [];
+  try { cart = JSON.parse(localStorage.getItem("mila_cart") || "[]") || []; } catch { cart = []; }
+  cart = cart.filter(item => PRODUCTS.some(p => p.code === item.code));
+
+  let filters = { category: "Todos", brand: "Todas", search: "" };
+
+  const saveCart = () => {
+    localStorage.setItem("mila_cart", JSON.stringify(cart));
+  };
+
+  const findProduct = (code) => PRODUCTS.find(p => p.code === code);
+  const cartCount = () => cart.reduce((sum, i) => sum + i.qty, 0);
+  const cartTotal = () => cart.reduce((sum, i) => {
+    const p = findProduct(i.code);
+    return sum + (p ? p.price * i.qty : 0);
+  }, 0);
+
+  /* =========================================================
+     PRODUCT CARD RENDER
+  ========================================================= */
+  const productImageHTML = (product, size = "main") => {
+    if (product.image) {
+      const cls = size === "cart" ? "" : "";
+      return `<img src="${product.image}" alt="${product.name}" loading="lazy" onerror="this.style.display='none'; this.parentNode.classList.add('img-failed');"/>`;
+    }
+    return `<div class="product-placeholder">${product.name.charAt(0)}</div>`;
+  };
+
+  const productCardHTML = (product) => {
+    const out = product.stock <= 0;
+    const favBadge = product.favorite ? '<span class="product-badge">Favorito</span>' : '';
+    const stockNote = out ? "Agotado" : (product.stock <= 3 ? `Últimas ${product.stock}` : "");
+    return `
+      <article class="product-card${out ? " out-of-stock" : ""}">
+        <div class="product-image">
+          ${favBadge}
+          ${productImageHTML(product)}
+        </div>
+        <div class="product-body">
+          <div class="product-category">${product.category}</div>
+          <div class="product-brand">${product.brand}</div>
+          <h4 class="product-name">${product.name}</h4>
+          <div class="product-meta">
+            <span class="price">${formatPrice(product.price)}</span>
+            ${stockNote ? `<span class="product-tag" style="padding:4px 6px;background:${out ? 'var(--brown-line)' : 'var(--pink)'};border:1px solid var(--brown);font-size:.55rem;font-weight:800;letter-spacing:.06em;text-transform:uppercase;">${stockNote}</span>` : ""}
+          </div>
+          <div class="product-actions">
+            ${out
+              ? `<button class="add-btn" disabled>Agotado</button>`
+              : `<input class="qty-input" type="number" min="1" max="${product.stock}" value="1" aria-label="Cantidad de ${product.name}"/>
+                 <button class="add-btn" type="button" data-add="${product.code}">Añadir</button>`
+            }
+          </div>
+        </div>
+      </article>
+    `;
+  };
+
+  /* =========================================================
+     RENDER CATALOG
+  ========================================================= */
+  const renderFavorites = () => {
+    const grid = $("#favoritesGrid");
+    const favs = PRODUCTS.filter(p => p.favorite);
+    grid.innerHTML = favs.map(productCardHTML).join("");
+  };
+
+  const applyFilters = (list) => {
+    return list.filter(p => {
+      if (filters.category !== "Todos" && p.category !== filters.category) return false;
+      if (filters.brand !== "Todas" && p.brand !== filters.brand) return false;
+      if (filters.search) {
+        const q = filters.search.toLowerCase();
+        if (!p.name.toLowerCase().includes(q) && !p.brand.toLowerCase().includes(q)) return false;
       }
+      return true;
+    });
+  };
 
-      document.querySelectorAll(".faq-question").forEach((question) => {
+  const renderProducts = () => {
+    const grid = $("#productsGrid");
+    const empty = $("#catalogEmpty");
+    const count = $("#catalogCount");
+    const list = applyFilters(PRODUCTS);
+    count.textContent = `${list.length} producto${list.length === 1 ? "" : "s"}`;
+    if (list.length === 0) {
+      grid.innerHTML = "";
+      empty.hidden = false;
+    } else {
+      empty.hidden = true;
+      grid.innerHTML = list.map(productCardHTML).join("");
+    }
+  };
 
-        question.addEventListener("click", () => {
+  const renderFilters = () => {
+    const catBox = $("#categoryFilters");
+    const brandBox = $("#brandFilters");
+    catBox.innerHTML = CATEGORIES.map(c =>
+      `<button type="button" class="filter-chip${c === filters.category ? " active" : ""}" data-cat="${c}">${c}</button>`
+    ).join("");
+    brandBox.innerHTML = BRANDS.map(b =>
+      `<button type="button" class="filter-chip${b === filters.brand ? " active" : ""}" data-brand="${b}">${b}</button>`
+    ).join("");
+  };
 
-          const item = question.closest(".faq-item");
-          const isOpen = item.classList.toggle("open");
+  /* =========================================================
+     ADD TO CART
+  ========================================================= */
+  const addToCart = (code, qty = 1) => {
+    const product = findProduct(code);
+    if (!product || product.stock <= 0) return;
+    qty = Math.max(1, Math.min(Number(qty) || 1, product.stock));
+    const existing = cart.find(i => i.code === code);
+    if (existing) {
+      existing.qty = Math.min(existing.qty + qty, product.stock);
+    } else {
+      cart.push({ code, qty });
+    }
+    saveCart();
+    renderCart();
+    showToast(`${product.name} añadido al carrito`);
+  };
 
-          question.setAttribute(
-            "aria-expanded",
-            String(isOpen)
-          );
+  const updateQty = (code, delta) => {
+    const item = cart.find(i => i.code === code);
+    if (!item) return;
+    const product = findProduct(code);
+    const max = product ? product.stock : 99;
+    item.qty = Math.max(1, Math.min(item.qty + delta, max));
+    saveCart();
+    renderCart();
+  };
 
-          question.querySelector(
-            "span:last-child"
-          ).textContent = isOpen ? "−" : "+";
+  const removeItem = (code) => {
+    cart = cart.filter(i => i.code !== code);
+    saveCart();
+    renderCart();
+  };
 
-        });
+  /* =========================================================
+     RENDER CART
+  ========================================================= */
+  const renderCart = () => {
+    const body = $("#cartBody");
+    const footer = $("#cartFooter");
+    const countEl = $("#cartCount");
+    const subtotalEl = $("#cartSubtotal");
 
+    const count = cartCount();
+    countEl.textContent = count;
+    countEl.hidden = count === 0;
+
+    if (cart.length === 0) {
+      body.innerHTML = `
+        <div class="cart-empty">
+          <p>Tu carrito está vacío.</p>
+          <small>Añade tus favoritos para comenzar.</small>
+        </div>`;
+      footer.hidden = true;
+      return;
+    }
+
+    body.innerHTML = cart.map(item => {
+      const p = findProduct(item.code);
+      if (!p) return "";
+      const img = p.image
+        ? `<img src="${p.image}" alt="${p.name}" onerror="this.style.display='none'; this.parentNode.innerHTML='<div class=&quot;cart-item-placeholder&quot;>${p.name.charAt(0)}</div>';"/>`
+        : `<div class="cart-item-placeholder">${p.name.charAt(0)}</div>`;
+      return `
+        <div class="cart-item">
+          <div class="cart-item-img">${img}</div>
+          <div class="cart-item-info">
+            <div class="cart-item-name">${p.name}</div>
+            <div class="cart-item-price">${formatPrice(p.price)}</div>
+            <div class="cart-item-controls">
+              <button class="qty-btn" type="button" data-dec="${p.code}" aria-label="Quitar uno">−</button>
+              <span class="cart-item-qty">${item.qty}</span>
+              <button class="qty-btn" type="button" data-inc="${p.code}" aria-label="Añadir uno">+</button>
+            </div>
+          </div>
+          <button class="cart-item-remove" type="button" data-remove="${p.code}" aria-label="Eliminar">✕</button>
+        </div>`;
+    }).join("");
+
+    footer.hidden = false;
+    subtotalEl.textContent = formatPrice(cartTotal());
+  };
+
+  /* =========================================================
+     CART DRAWER OPEN/CLOSE
+  ========================================================= */
+  const openCart = () => {
+    $("#cartDrawer").classList.add("open");
+    $("#cartOverlay").classList.add("open");
+    $("#cartDrawer").setAttribute("aria-hidden", "false");
+    $("#cartOverlay").setAttribute("aria-hidden", "false");
+    document.body.classList.add("cart-open");
+  };
+  const closeCart = () => {
+    $("#cartDrawer").classList.remove("open");
+    $("#cartOverlay").classList.remove("open");
+    $("#cartDrawer").setAttribute("aria-hidden", "true");
+    $("#cartOverlay").setAttribute("aria-hidden", "true");
+    document.body.classList.remove("cart-open");
+  };
+
+  /* =========================================================
+     CHECKOUT
+  ========================================================= */
+  const openCheckout = () => {
+    if (cart.length === 0) {
+      showToast("Tu carrito está vacío.");
+      return;
+    }
+    closeCart();
+    $("#checkoutOverlay").classList.add("open");
+    $("#checkoutOverlay").setAttribute("aria-hidden", "false");
+    $("#checkoutTotal").textContent = formatPrice(cartTotal());
+    document.body.classList.add("cart-open");
+  };
+  const closeCheckout = () => {
+    $("#checkoutOverlay").classList.remove("open");
+    $("#checkoutOverlay").setAttribute("aria-hidden", "true");
+    document.body.classList.remove("cart-open");
+  };
+
+  const getCustomerData = () => ({
+    name: $("#ckName").value.trim(),
+    phone: $("#ckPhone").value.trim(),
+    city: $("#ckCity").value.trim(),
+    address: $("#ckAddress").value.trim(),
+    notes: $("#ckNotes").value.trim()
+  });
+
+  const validateCustomer = (data) => {
+    if (!data.name || !data.phone || !data.city || !data.address) {
+      showToast("Completa nombre, teléfono, ciudad y dirección.");
+      return false;
+    }
+    return true;
+  };
+
+  const buildWhatsappMessage = (data) => {
+    const lines = [];
+    lines.push(`*Nuevo pedido Mila CO.*`);
+    lines.push("");
+    lines.push(`*Cliente:* ${data.name}`);
+    lines.push(`*Teléfono:* ${data.phone}`);
+    lines.push(`*Ciudad:* ${data.city}`);
+    lines.push(`*Dirección:* ${data.address}`);
+    if (data.notes) lines.push(`*Notas:* ${data.notes}`);
+    lines.push("");
+    lines.push(`*Productos:*`);
+    cart.forEach(item => {
+      const p = findProduct(item.code);
+      if (!p) return;
+      lines.push(`• ${p.name} × ${item.qty} — ${formatPrice(p.price * item.qty)}`);
+    });
+    lines.push("");
+    lines.push(`*Total:* ${formatPrice(cartTotal())}`);
+    lines.push("");
+    lines.push(`Quedo atento(a) para coordinar el pago y el envío.`);
+    return lines.join("\n");
+  };
+
+  const sendWhatsapp = () => {
+    const data = getCustomerData();
+    if (!validateCustomer(data)) return;
+    const msg = buildWhatsappMessage(data);
+    const url = `https://wa.me/${CONFIG.whatsappNumber}?text=${encodeURIComponent(msg)}`;
+    window.open(url, "_blank", "noopener");
+    showToast("Abriendo WhatsApp con tu pedido...");
+  };
+
+  /* =========================================================
+     WOMPI (preparado, requiere publicKey real)
+     Docs: https://docs.wompi.co/docs/colombia/widget-checkout-web/
+  ========================================================= */
+  const payWithWompi = () => {
+    const data = getCustomerData();
+    if (!validateCustomer(data)) return;
+
+    if (!CONFIG.wompiPublicKey || CONFIG.wompiPublicKey === "TU_PUBLIC_KEY_WOMPI_AQUI") {
+      showToast("Pago en línea próximamente. Usa WhatsApp por ahora.");
+      return;
+    }
+
+    // ---- Integración Wompi ----
+    // Cuando tengas la llave pública, este bloque crea el checkout.
+    // Requiere además el script de Wompi en el <head>:
+    // <script src="https://checkout.wompi.co/widget.js"></script>
+    //
+    // const reference = "MILA-" + Date.now();
+    // const amountInCents = cartTotal() * 100;
+    // const checkout = new WidgetCheckout({
+    //   currency: CONFIG.wompiCurrency,
+    //   amountInCents,
+    //   reference,
+    //   publicKey: CONFIG.wompiPublicKey,
+    //   redirectUrl: window.location.href,
+    //   customerData: {
+    //     email: "", // pedir email en el form si activas Wompi
+    //     fullName: data.name,
+    //     phoneNumber: data.phone,
+    //     phoneNumberPrefix: "+57",
+    //     legalId: "",
+    //     legalIdType: "CC"
+    //   },
+    //   shippingAddress: {
+    //     addressLine1: data.address,
+    //     city: data.city,
+    //     country: "CO",
+    //     name: data.name,
+    //     phoneNumber: data.phone
+    //   }
+    // });
+    // checkout.open((result) => {
+    //   const tx = result.transaction;
+    //   if (tx.status === "APPROVED") {
+    //     showToast("Pago aprobado. ¡Gracias!");
+    //     cart = [];
+    //     saveCart();
+    //     renderCart();
+    //     closeCheckout();
+    //   } else {
+    //     showToast("El pago no se completó. Intenta de nuevo.");
+    //   }
+    // });
+
+    showToast("Wompi listo para activar con tu llave pública.");
+  };
+
+  /* =========================================================
+     EVENT BINDINGS
+  ========================================================= */
+  const bindEvents = () => {
+    // Menu móvil
+    const menuToggle = $("#menuToggle");
+    const mobileNav = $("#mobileNav");
+    if (menuToggle && mobileNav) {
+      menuToggle.addEventListener("click", () => {
+        const isOpen = mobileNav.classList.toggle("open");
+        menuToggle.setAttribute("aria-expanded", String(isOpen));
+        document.body.classList.toggle("menu-open", isOpen);
       });
+      mobileNav.querySelectorAll("a").forEach(link => {
+        link.addEventListener("click", () => {
+          mobileNav.classList.remove("open");
+          menuToggle.setAttribute("aria-expanded", "false");
+          document.body.classList.remove("menu-open");
+        });
+      });
+    }
 
-    })();
-  </script>
+    // FAQ
+    $$(".faq-question").forEach(q => {
+      q.addEventListener("click", () => {
+        const item = q.closest(".faq-item");
+        const isOpen = item.classList.toggle("open");
+        q.setAttribute("aria-expanded", String(isOpen));
+        q.querySelector("span:last-child").textContent = isOpen ? "−" : "+";
+      });
+    });
+
+    // Cart open/close
+    $("#cartBtnHeader").addEventListener("click", openCart);
+    const cartBtnMobile = $("#cartBtnMobile");
+    if (cartBtnMobile) {
+      cartBtnMobile.addEventListener("click", (e) => { e.preventDefault(); openCart(); });
+    }
+    $("#cartClose").addEventListener("click", closeCart);
+    $("#cartOverlay").addEventListener("click", closeCart);
+
+    // Add to cart (delegado)
+    document.addEventListener("click", (e) => {
+      const addBtn = e.target.closest("[data-add]");
+      if (addBtn) {
+        const card = addBtn.closest(".product-card");
+        const input = card ? card.querySelector(".qty-input") : null;
+        const qty = input ? Number(input.value) || 1 : 1;
+        addToCart(addBtn.dataset.add, qty);
+        if (input) input.value = 1;
+        return;
+      }
+      const incBtn = e.target.closest("[data-inc]");
+      if (incBtn) { updateQty(incBtn.dataset.inc, 1); return; }
+      const decBtn = e.target.closest("[data-dec]");
+      if (decBtn) { updateQty(decBtn.dataset.dec, -1); return; }
+      const rmBtn = e.target.closest("[data-remove]");
+      if (rmBtn) { removeItem(rmBtn.dataset.remove); return; }
+    });
+
+    // Filters
+    $("#categoryFilters").addEventListener("click", (e) => {
+      const btn = e.target.closest("[data-cat]");
+      if (!btn) return;
+      filters.category = btn.dataset.cat;
+      renderFilters();
+      renderProducts();
+    });
+    $("#brandFilters").addEventListener("click", (e) => {
+      const btn = e.target.closest("[data-brand]");
+      if (!btn) return;
+      filters.brand = btn.dataset.brand;
+      renderFilters();
+      renderProducts();
+    });
+
+    // Search
+    $("#searchInput").addEventListener("input", (e) => {
+      filters.search = e.target.value.trim();
+      renderProducts();
+    });
+
+    // Category cards -> filter
+    $$(".category-card[data-cat-filter]").forEach(card => {
+      card.addEventListener("click", () => {
+        filters.category = card.dataset.catFilter;
+        filters.brand = "Todas";
+        filters.search = "";
+        $("#searchInput").value = "";
+        renderFilters();
+        renderProducts();
+      });
+    });
+
+    // Checkout
+    $("#checkoutBtn").addEventListener("click", openCheckout);
+    $("#checkoutClose").addEventListener("click", closeCheckout);
+    $("#checkoutOverlay").addEventListener("click", (e) => {
+      if (e.target === $("#checkoutOverlay")) closeCheckout();
+    });
+    $("#payWhatsappBtn").addEventListener("click", sendWhatsapp);
+    $("#payWompiBtn").addEventListener("click", payWithWompi);
+
+    // Esc cierra overlays
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") {
+        if ($("#checkoutOverlay").classList.contains("open")) closeCheckout();
+        else if ($("#cartDrawer").classList.contains("open")) closeCart();
+      }
+    });
+  };
+
+  /* =========================================================
+     INIT
+  ========================================================= */
+  const init = () => {
+    renderFilters();
+    renderFavorites();
+    renderProducts();
+    renderCart();
+    bindEvents();
+  };
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", init);
+  } else {
+    init();
+  }
+})();
+</script>
 
 </body>
 </html>
